@@ -6,51 +6,51 @@
     <title>BetEngine</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-<!-- ============== HEADER ============== -->
-<header class="top-header">
+<header class="top-bar">
+    <div class="left-block"></div>
 
-    <!-- ROW 1: TOP ICON BAR -->
-    <div class="header-row row-1">
-        <div class="left-icons">
-            <img src="assets/icons/menu.svg" alt="Menu">
-            <img src="assets/icons/search.svg" alt="Search">
-        </div>
-
-        <div class="right-icons">
-            <img src="assets/icons/moon.svg" alt="Dark mode">
-            <img src="assets/icons/user.svg" alt="User">
-        </div>
-    </div>
-
-    <!-- ROW 2: LOGO ONLY (VERSION B) -->
-    <div class="header-row row-2">
-        <div class="brand">
-            <div class="logo-circle">BE</div>
-            <span class="brand-name">BetEngine</span>
-        </div>
-    </div>
-
-    <!-- ROW 3: MAIN NAVIGATION -->
-    <div class="header-row row-3">
-        <nav class="sub-nav">
-            <a href="#" class="active">Home</a>
-            <a href="#">Next Matches</a>
-            <a href="#">Dropping Odds</a>
-            <a href="#">Sure Bets</a>
-            <a href="#">In-Play Odds</a>
-            <a href="#">All Events</a>
-            <a href="#">Betting Tools</a>
-            <a href="#">Premium</a>
+    <div class="center-block">
+        <nav class="main-nav">
+            <a href="#" class="nav-item">ODDS COMPARISON</a>
+            <a href="#" class="nav-item active">COMMUNITY</a>
+            <a href="#" class="nav-item bookmakers">
+                BOOKMAKERS
+                <span class="premium-badge">⭐</span>
+            </a>
         </nav>
     </div>
 
-</header>
-<!-- ========== END HEADER ========== -->
+    <div class="right-block">
+        <div class="top-options">
+            <span class="small-label">Odds formats:</span>
+            <span class="selector">Decimal Odds ▾</span>
+            <span class="small-label icon-globe">Language:</span>
+            <span class="selector">English ▾</span>
+            <button class="login-btn">LOGIN</button>
+            <button class="register-btn">REGISTER</button>
+        </div>
 
-<!-- ========== MAIN CONTENT (TEMP) ========== -->
+        <div class="search-box">
+            <input type="text" placeholder="Search (team / player)" />
+            <span class="search-icon">🔍</span>
+            <span class="gift-icon">🎁</span>
+        </div>
+    </div>
+</header>
+
+<nav class="sub-nav">
+    <a href="#" class="sub-item">HOME</a>
+    <a href="#" class="sub-item">NEXT MATCHES</a>
+    <a href="#" class="sub-item active">DROPPING ODDS</a>
+    <a href="#" class="sub-item">SURE BETS</a>
+    <a href="#" class="sub-item">IN PLAY ODDS</a>
+    <a href="#" class="sub-item">ALL EVENTS</a>
+    <a href="#" class="sub-item">BETTING TOOLS ▾</a>
+    <a href="#" class="sub-item">BETTING</a>
+</nav>
+
 <main class="content">
     <h1>Home Page Content Here</h1>
 </main>
