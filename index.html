@@ -1,105 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>BetEngine</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #050509;
-      color: #e5e7eb;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .page {
-      max-width: 1200px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 16px;
-    }
-
-    header {
-      padding: 12px 0 20px 0;
-      border-bottom: 1px solid #1f2933;
-      margin-bottom: 16px;
-    }
-
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-      color: #3b82f6;
-    }
-
-    .tagline {
-      font-size: 12px;
-      color: #9ca3af;
-      margin-top: 4px;
-    }
-
-    main {
-      flex: 1;
-      padding: 16px 0;
-    }
-
-    .box {
-      border: 1px solid #1f2933;
-      border-radius: 8px;
-      padding: 16px;
-      background: #0b0f19;
-    }
-
-    .box h2 {
-      margin-bottom: 8px;
-      font-size: 18px;
-      color: #f9fafb;
-    }
-
-    .box p {
-      font-size: 14px;
-      color: #9ca3af;
-    }
-
-    footer {
-      border-top: 1px solid #1f2933;
-      padding: 12px 0;
-      font-size: 12px;
-      color: #6b7280;
-      text-align: center;
-      margin-top: 24px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BetEngine</title>
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 
 <body>
-  <div class="page">
-    <header>
-      <div class="logo">BetEngine</div>
-      <div class="tagline">New clean start – core layout skeleton</div>
-    </header>
 
-    <main>
-      <div class="box">
-        <h2>BetEngine is alive</h2>
-        <p>
-          This is the new clean skeleton. The next steps will be building the full header
-          (two-row OddsPortal style with Community / Premium / Bookmakers, Dropping Odds, etc.).
-        </p>
-      </div>
-    </main>
+<!-- ================= HEADER ================= -->
+<header class="top-header">
 
-    <footer>
-      © 2025 BetEngine. Initial clean setup.
-    </footer>
-  </div>
+    <!-- ROW 1 -->
+    <div class="header-row row-1">
+        <div class="left-icons">
+            <img src="public/icons/menu.svg" alt="Menu">
+            <img src="public/icons/search.svg" alt="Search">
+        </div>
+        <div class="right-icons">
+            <img src="public/icons/moon.svg" alt="Dark Mode">
+            <img src="public/icons/user.svg" alt="User">
+        </div>
+    </div>
+
+    <!-- ROW 2 -->
+    <div class="header-row row-2">
+        <img src="public/logo.svg" alt="Logo" class="site-logo">
+        <nav class="main-nav">
+            <a href="#">Football</a>
+            <a href="#">Basketball</a>
+            <a href="#">Tennis</a>
+            <a href="#">Hockey</a>
+            <a href="#">More</a>
+        </nav>
+    </div>
+
+    <!-- ROW 3 -->
+    <div class="header-row row-3">
+        <nav class="sub-nav">
+            <a href="#">Home</a>
+            <a href="#">Next Matches</a>
+            <a href="#">Dropping Odds</a>
+            <a href="#">Sure Bets</a>
+            <a href="#">In-Play Odds</a>
+            <a href="#">All Events</a>
+            <a href="#">Betting Tools</a>
+            <a href="#">Premium</a>
+        </nav>
+    </div>
+
+</header>
+<!-- =============== END HEADER =============== -->
+
+
+<!-- =============== MAIN CONTENT =============== -->
+<main class="content">
+    <h1 style="color: white; text-align:center; margin-top:40px;">
+        Home Page Content Here
+    </h1>
+</main>
+
+
+<!-- =============== SCRIPTS =============== -->
+<script src="scripts/main.js"></script>
+
 </body>
 </html>
