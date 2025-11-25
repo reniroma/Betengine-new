@@ -1,72 +1,202 @@
+/* Global */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     margin: 0;
-    background: #0b0b0b;
-    font-family: Arial, sans-serif;
-    color: #fff;
+    background: #050608;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #ffffff;
 }
 
-/* HEADER MAIN CONTAINER */
+/* HEADER CONTAINER */
 .top-header {
     width: 100%;
-    background: #0d0d0d;
-    border-bottom: 1px solid #1f1f1f;
+    background: #06070a;
+    border-bottom: 1px solid #181a20;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
 }
 
-/* ROW 1 */
+/* GENERIC ROW */
+.header-row {
+    width: 100%;
+}
+
+/* ========== ROW 1: SMALL TOP BAR ========== */
 .row-1 {
     display: flex;
     justify-content: space-between;
-    padding: 8px 14px;
     align-items: center;
+    padding: 4px 16px;
+    background: #050609;
+    font-size: 12px;
 }
 
-.left-icons img,
-.right-icons img {
-    width: 20px;
-    height: 20px;
-    margin-left: 12px;
+.top-left,
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-/* ROW 2 */
+.icon-btn {
+    border: none;
+    background: transparent;
+    color: #c7c9d3;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 999px;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+}
+
+/* ========== ROW 2: BRAND + MAIN SPORTS NAV ========== */
 .row-2 {
     display: flex;
     justify-content: space-between;
-    padding: 14px 20px;
     align-items: center;
-    border-top: 1px solid #1a1a1a;
-    border-bottom: 1px solid #1a1a1a;
+    padding: 10px 20px;
+    border-top: 1px solid #12131a;
+    border-bottom: 1px solid #12131a;
+    background: #090b10;
 }
 
-.site-logo {
-    height: 34px;
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.main-nav a {
-    margin-left: 26px;
-    text-decoration: none;
-    color: #ddd;
-    font-size: 15px;
-}
-
-.main-nav a:hover {
-    color: #fff;
-}
-
-/* ROW 3 */
-.row-3 {
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: 10px 16px;
-    border-bottom: 1px solid #1a1a1a;
-}
-
-.sub-nav a {
-    margin-right: 26px;
-    text-decoration: none;
-    color: #ccc;
+.logo-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ff8a00, #ff3d71);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
     font-size: 14px;
 }
 
+.brand-name {
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.03em;
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #d4d7e3;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 2px;
+}
+
+.main-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: #ff8a00;
+    transition: width 0.2s ease-out;
+}
+
+.main-nav a:hover {
+    color: #ffffff;
+}
+
+.main-nav a:hover::after {
+    width: 100%;
+}
+
+/* ========== ROW 3: SECONDARY NAV ========== */
+.row-3 {
+    background: #0b0d14;
+    border-top: 1px solid #14151f;
+    border-bottom: 1px solid #14151f;
+    padding: 8px 16px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.sub-nav {
+    display: inline-flex;
+    gap: 20px;
+}
+
+.sub-nav a {
+    text-decoration: none;
+    color: #c2c5d2;
+    font-size: 13px;
+    padding: 4px 6px;
+    border-radius: 999px;
+    transition: background 0.15s ease-out, color 0.15s ease-out;
+}
+
 .sub-nav a:hover {
-    color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+    color: #ffffff;
+}
+
+.sub-nav a.active {
+    background: #ff8a00;
+    color: #050608;
+    font-weight: 600;
+}
+
+/* ========== MAIN CONTENT PLACEHOLDER ========== */
+.content {
+    padding: 40px 20px;
+}
+
+.hero-placeholder {
+    max-width: 900px;
+    margin: 80px auto 0;
+    text-align: center;
+}
+
+.hero-placeholder h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.hero-placeholder p {
+    font-size: 14px;
+    color: #a0a4b8;
+}
+
+/* Simple responsiveness */
+@media (max-width: 768px) {
+    .row-2 {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .main-nav {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        row-gap: 6px;
+    }
 }
