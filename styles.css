@@ -1,11 +1,10 @@
-/* RESET */
+/* GLOBAL RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* BASE */
 body {
   font-family: Arial, sans-serif;
   background: #050509;
@@ -15,6 +14,7 @@ body {
   flex-direction: column;
 }
 
+/* PAGE WRAPPER */
 .page {
   max-width: 1200px;
   width: 100%;
