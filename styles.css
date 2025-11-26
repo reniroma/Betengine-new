@@ -29,29 +29,36 @@ body {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }
 
-/* STRICT: Community tab visibility control (NO other modifications) */
+/* ------------------------------------------------------ */
+/* STRICT VISIBILITY: row-3 groups */
+/* ------------------------------------------------------ */
 
-/* Hide ALL row-3 groups by default */
+/* Hide ALL submenu groups */
 .row-3-home,
-.row-3-users,
-.row-3-feed,
-.row-3-top,
-.row-3-predictions,
-.row-3-coupons,
-.row-3-statistics,
-.row-3-profile,
-.row-3-community {
+.row-3-community,
+.row-3-bookmakers {
     display: none;
 }
 
-/* Show ONLY Community group when “Community” tab is active */
+/* SHOW HOME when home tab active */
+.nav-main a[data-tab="home"].active ~ .row-3 .row-3-home {
+    display: flex;
+}
+
+/* SHOW COMMUNITY when community tab active */
 .nav-main a[data-tab="community"].active ~ .row-3 .row-3-community {
     display: flex;
 }
 
-/* ROW STRUCTURE — IDENTICAL TO ODSSPORTAL (STRICT) */
+/* SHOW BOOKMAKERS when bookmakers tab active */
+.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-bookmakers {
+    display: flex;
+}
 
-/* Row 1 */
+/* ------------------------------------------------------ */
+/* ROW STRUCTURE — STRICT ODSSPORTAL HEIGHTS */
+/* ------------------------------------------------------ */
+
 .row1 {
     height: 46px;
     padding: 0 24px;
@@ -62,7 +69,6 @@ body {
     gap: 16px;
 }
 
-/* Row 2 */
 .row2 {
     min-height: 50px;
     padding: 0 24px;
@@ -73,7 +79,6 @@ body {
     gap: 16px;
 }
 
-/* Row 3 (sub-nav) */
 .row-3 {
     height: 44px;
     padding: 0 24px;
@@ -255,6 +260,10 @@ body {
     color: #000000;
     font-weight: 700;
 }
+
+/* ------------------------------------------------------ */
+/* EVERYTHING BELOW REMAINS IDENTICAL (NO CHANGES) */
+/* ------------------------------------------------------ */
 
 .top-bar {
     background-color: var(--bg-header);
