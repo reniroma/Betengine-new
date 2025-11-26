@@ -7,6 +7,11 @@ body {
     font-family: Arial, sans-serif;
 }
 
+:focus-visible {
+    outline: 2px solid #f5a623;
+    outline-offset: 2px;
+}
+
 /* ROW HEIGHTS */
 
 .row1,
@@ -113,6 +118,10 @@ body {
     border-bottom: 2px solid #f5a623;
 }
 
+.nav-item:hover {
+    color: #ffffff;
+}
+
 .bookmakers {
     display: flex;
     align-items: center;
@@ -155,6 +164,11 @@ body {
     font-size: 13px;
 }
 
+.icon-globe::before {
+    content: "🌐";
+    margin-right: 6px;
+}
+
 .selector {
     color: #f5a623;
     font-size: 13px;
@@ -168,12 +182,24 @@ body {
     border: 1px solid #ffffff;
     background: transparent;
     cursor: pointer;
+    color: #ffffff;
+    transition: transform 120ms ease, background-color 120ms ease, color 120ms ease;
 }
 
 .register-btn {
     background: #f5a623;
     border: none;
     color: #000;
+}
+
+.login-btn:hover,
+.register-btn:hover {
+    transform: translateY(-1px);
+}
+
+.login-btn:active,
+.register-btn:active {
+    transform: translateY(0);
 }
 
 /* SEARCH BOX */
@@ -194,6 +220,11 @@ body {
     background: transparent;
     color: #ffffff;
     font-size: 13px;
+    outline: none;
+}
+
+.search-box input::placeholder {
+    color: #cfd4d6;
 }
 
 .search-icon,
@@ -225,6 +256,10 @@ body {
 .sub-item.active {
     color: #f5a623;
     font-weight: bold;
+}
+
+.sub-item:hover {
+    color: #ffffff;
 }
 
 .content {
