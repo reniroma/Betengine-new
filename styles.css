@@ -24,8 +24,17 @@ body {
 
 .header {
     background-color: var(--bg-header);
+    color: var(--text-secondary);
     border-bottom: 1px solid var(--border-neon);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.top-bar,
+.main-nav,
+.nav-bar {
+    background-color: var(--bg-header);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-neon);
 }
 
 .top-row {
@@ -37,6 +46,9 @@ body {
     border-bottom: 1px solid var(--border-neon);
     background-color: var(--bg-header);
     color: var(--text-secondary);
+    background-color: var(--bg-header);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-neon);
 }
 
 .brand-area {
@@ -48,7 +60,7 @@ body {
 .brand-mark {
     width: 44px;
     height: 44px;
-    background: var(--text-secondary);
+    background: var(--bg-button-primary);
     border-radius: 6px;
     box-shadow: inset 0 0 0 2px var(--border-neon);
 }
@@ -56,7 +68,7 @@ body {
 .brand-text {
     font-size: 18px;
     font-weight: 700;
-    color: var(--text-primary);
+    color: var(--text-secondary);
     letter-spacing: 0.3px;
 }
 
@@ -65,6 +77,7 @@ body {
     align-items: center;
     gap: 10px;
     margin-left: 12px;
+    background-color: var(--bg-nav);
 }
 
 .primary-link {
@@ -79,6 +92,11 @@ body {
     border-bottom: none;
 }
 
+.main-nav a,
+.nav-bar a {
+    color: var(--text-secondary);
+}
+
 .primary-link.active {
     background-color: var(--bg-button-primary);
     color: #000000;
@@ -86,6 +104,12 @@ body {
 
 .primary-link.premium {
     border-radius: 4px 0 0 0;
+}
+
+.main-nav a.active,
+.nav-bar a.active {
+    background-color: var(--bg-button-primary);
+    color: #000000;
 }
 
 .premium-tag {
@@ -167,6 +191,7 @@ body {
     border-radius: 4px;
     border: 1px solid var(--border-neon);
     background-color: var(--bg-panel);
+    background: var(--bg-panel);
     color: var(--text-primary);
     font-weight: 700;
     cursor: pointer;
@@ -219,6 +244,17 @@ body {
     display: flex;
     flex-direction: column;
     gap: 12px;
+}
+
+.panel,
+.content-wrapper,
+.sidebar,
+.coupon-box,
+.top-events-box,
+.filter-bar {
+    background-color: var(--bg-panel);
+    color: var(--text-primary);
+    border: 1px solid var(--border-neon);
 }
 
 .panel {
@@ -340,6 +376,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    border: 1px solid var(--border-neon);
 }
 
 .banner-title {
@@ -353,7 +390,7 @@ body {
 
 .banner-btn {
     align-self: flex-start;
-    background-color: var(--bg-panel);
+    background-color: var(--bg-header);
     color: var(--text-secondary);
     border: 1px solid var(--border-neon);
     border-radius: 4px;
@@ -372,6 +409,7 @@ body {
     flex-direction: column;
     gap: 8px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+    color: var(--text-primary);
 }
 
 .breadcrumb {
@@ -401,6 +439,7 @@ body {
     align-items: center;
     gap: 10px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+    color: var(--text-primary);
 }
 
 .filter-control {
@@ -410,8 +449,8 @@ body {
     border: 1px solid var(--border-neon);
     padding: 6px 10px;
     border-radius: 4px;
-    background-color: var(--bg-header);
-    color: var(--text-muted);
+    background-color: var(--bg-panel);
+    color: var(--text-primary);
     font-size: 13px;
 }
 
@@ -437,14 +476,15 @@ body {
     min-height: 320px;
 }
 
-.btn,
-.button,
-.claim-button,
-.filter-button,
-.auth-btn,
-.banner-btn,
+.main-nav a,
+.nav-bar a,
 .primary-link,
-.secondary-link {
+.secondary-link,
+.banner-btn,
+.auth-btn,
+.filter-control,
+.filter-check,
+.panel-toggle {
     transition: color 0.2s ease, background-color 0.2s ease, text-shadow 0.2s ease;
 }
 
@@ -461,14 +501,41 @@ body {
 .button:hover,
 .claim-button:hover,
 .filter-button:hover,
+.main-nav a:hover,
+.nav-bar a:hover,
 .primary-link:hover,
 .secondary-link:hover,
+.banner-btn:hover,
 .auth-btn:hover,
-.banner-btn:hover {
+.filter-control:hover {
     text-shadow: 0 0 8px #00eaff;
+}
+
+.primary-link.active,
+.secondary-link.active,
+.auth-btn.register,
+.banner-card,
+.coupon .panel-head {
+    background-color: var(--bg-button-primary);
+}
+
+.primary-link.active,
+.secondary-link.active,
+.auth-btn.register,
+.banner-card,
+.coupon .panel-head,
+.btn,
+.button,
+.claim-button,
+.filter-button {
+    color: #000000;
 }
 
 .text-secondary,
 .link-secondary {
     color: var(--text-secondary);
+}
+
+.text-muted {
+    color: var(--text-muted);
 }
