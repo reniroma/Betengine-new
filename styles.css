@@ -29,6 +29,26 @@ body {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }
 
+/* STRICT: Community tab visibility control (NO other modifications) */
+
+/* Hide ALL row-3 groups by default */
+.row-3-home,
+.row-3-users,
+.row-3-feed,
+.row-3-top,
+.row-3-predictions,
+.row-3-coupons,
+.row-3-statistics,
+.row-3-profile,
+.row-3-community {
+    display: none;
+}
+
+/* Show ONLY Community group when “Community” tab is active */
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-community {
+    display: flex;
+}
+
 /* ROW STRUCTURE — IDENTICAL TO ODSSPORTAL (STRICT) */
 
 /* Row 1 */
@@ -44,7 +64,7 @@ body {
 
 /* Row 2 */
 .row2 {
-    height: 50px;
+    min-height: 50px;
     padding: 0 24px;
     display: flex;
     align-items: center;
@@ -54,7 +74,7 @@ body {
 }
 
 /* Row 3 (sub-nav) */
-.sub-nav {
+.row-3 {
     height: 44px;
     padding: 0 24px;
     display: flex;
@@ -62,6 +82,7 @@ body {
     border-bottom: 1px solid var(--border-neon);
     background-color: var(--bg-nav);
     gap: 10px;
+    width: 100%;
 }
 
 .left-block,
@@ -141,6 +162,10 @@ body {
     display: flex;
     align-items: center;
     gap: 16px;
+}
+
+.nav-main {
+    flex-wrap: wrap;
 }
 
 .nav-item {
