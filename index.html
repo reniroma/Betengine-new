@@ -18,7 +18,12 @@
             </div>
         </div>
 
-        <div class="center-block"></div>
+        <div class="center-block">
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav sub-nav">
+                <span class="menu-icon" aria-hidden="true">☰</span>
+                <span class="menu-label">Menu</span>
+            </button>
+        </div>
 
         <div class="right-block">
             <div class="top-options">
@@ -38,7 +43,7 @@
         <div class="left-block"></div>
 
         <div class="center-block">
-            <nav class="main-nav">
+            <nav class="main-nav" id="main-nav" aria-label="Primary">
                 <a href="#" class="nav-item">ODDS COMPARISON</a>
                 <a href="#" class="nav-item active">COMMUNITY</a>
                 <a href="#" class="nav-item bookmakers">
@@ -63,7 +68,7 @@
     <div class="row2-separator"></div>
 </header>
 
-<nav class="sub-nav">
+<nav class="sub-nav" id="sub-nav" aria-label="Secondary">
     <a href="#" class="sub-item">HOME</a>
     <a href="#" class="sub-item">NEXT MATCHES</a>
     <a href="#" class="sub-item active">DROPPING ODDS</a>
