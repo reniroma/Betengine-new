@@ -82,7 +82,7 @@ body {
 }
 
 .brand-name {
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 800;
     letter-spacing: 0.5px;
 }
@@ -97,6 +97,7 @@ body {
 
 .main-nav {
     display: flex;
+    align-items: center;
 }
 
 .nav-item {
@@ -138,6 +139,9 @@ body {
     font-size: 18px;
     width: 18px;
     height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* RIGHT AREA */
