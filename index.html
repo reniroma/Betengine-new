@@ -7,47 +7,73 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="header">
-        <div class="top-row">
-            <div class="brand-area">
-                <div class="brand-mark"></div>
-                <span class="brand-text">BetEngine</span>
-                <nav class="primary-nav" aria-label="Primary navigation">
-                    <a class="primary-link active" href="#">ODDS COMPARISON</a>
-                    <a class="primary-link" href="#">COMMUNITY</a>
-                    <a class="primary-link premium" href="#">BOOKMAKERS</a>
-                    <span class="premium-tag">PREMIUM ★</span>
-                </nav>
-            </div>
-            <div class="utility-area">
-                <div class="meta-text">Odds format: <span class="meta-strong">Decimal Odds</span></div>
-                <div class="meta-text">Language: <span class="meta-strong">English</span></div>
-                <div class="search-area">
-                    <input type="search" placeholder="Search (team / player)">
-                    <button class="icon-btn" type="button" aria-label="Search">
-                        <img src="images/search.svg" alt="" aria-hidden="true">
-                    </button>
-                    <button class="icon-btn" type="button" aria-label="Gifts">
-                        <img src="images/gift.svg" alt="" aria-hidden="true">
-                    </button>
+    <header class="top-bar header">
+        <div class="row1">
+            <div class="left-block">
+                <div class="brand-area">
+                    <div class="logo">BE</div>
+                    <div class="brand">
+                        <span class="brand-name">BetEngine</span>
+                        <span class="brand-tagline">Smart betting tools</span>
+                    </div>
                 </div>
-                <div class="auth-area">
+            </div>
+
+            <div class="center-block"></div>
+
+            <div class="right-block">
+                <div class="top-options">
+                    <span class="small-label">Odds formats:</span>
+                    <span class="selector">Decimal Odds ▾</span>
+                    <span class="small-label icon-globe">Language:</span>
+                    <span class="selector">English ▾</span>
                     <button class="auth-btn login" type="button">LOGIN</button>
                     <button class="auth-btn register" type="button">REGISTER</button>
                 </div>
             </div>
         </div>
-        <nav class="secondary-nav" aria-label="Secondary navigation">
-            <a class="secondary-link" href="#">HOME</a>
-            <a class="secondary-link" href="#">NEXT MATCHES</a>
-            <a class="secondary-link active" href="#">DROPPING ODDS</a>
-            <a class="secondary-link" href="#">SURE BETS</a>
-            <a class="secondary-link" href="#">IN PLAY ODDS</a>
-            <a class="secondary-link" href="#">ALL EVENTS</a>
-            <a class="secondary-link" href="#">BETTING TOOLS</a>
-            <a class="secondary-link" href="#">BETTING</a>
-        </nav>
+
+        <div class="row1-separator"></div>
+
+        <div class="row2">
+            <div class="left-block"></div>
+
+            <div class="center-block">
+                <nav class="main-nav" id="main-nav" aria-label="Primary navigation">
+                    <a href="#" class="nav-item">ODDS COMPARISON</a>
+                    <a href="#" class="nav-item active">COMMUNITY</a>
+                    <a href="#" class="nav-item bookmakers">
+                        BOOKMAKERS
+                        <span class="premium-tag">
+                            PREMIUM
+                            <span class="premium-star">★</span>
+                        </span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="right-block">
+                <div class="search-box">
+                    <input type="search" placeholder="Search (team / player)" aria-label="Search team or player" />
+                    <span class="search-icon">🔍</span>
+                    <span class="gift-icon" aria-hidden="true">🎁</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row2-separator"></div>
     </header>
+
+    <nav class="sub-nav" id="sub-nav" aria-label="Secondary navigation">
+        <a href="#" class="sub-item">HOME</a>
+        <a href="#" class="sub-item">NEXT MATCHES</a>
+        <a href="#" class="sub-item active">DROPPING ODDS</a>
+        <a href="#" class="sub-item">SURE BETS</a>
+        <a href="#" class="sub-item">IN PLAY ODDS</a>
+        <a href="#" class="sub-item">ALL EVENTS</a>
+        <a href="#" class="sub-item">BETTING TOOLS ▾</a>
+        <a href="#" class="sub-item">BETTING</a>
+    </nav>
 
     <main class="layout">
         <aside class="sidebar">
