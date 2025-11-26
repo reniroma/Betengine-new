@@ -12,20 +12,28 @@ body {
 .top-bar {
     width: 100%;
     display: flex;
-    background: #1f2426;
-    padding: 14px 28px 10px;
-    height: 120px;
-    box-sizing: border-box;
     align-items: center;
+    background: #1f2426;
+    padding: 24px 28px 14px;
+    height: 118px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #2f3537;
+    position: relative;
+}
+
+.row1-separator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(90deg, #1c2022 0%, #3a3f40 50%, #1c2022 100%);
     border-bottom: 1px solid #2f3537;
 }
 
 .left-block {
-    width: 380px;
+    width: 320px;
     height: 100%;
-    display: flex;
-    align-items: center;
-    gap: 12px;
 }
 
 .center-block {
@@ -36,41 +44,10 @@ body {
     padding-bottom: 16px;
 }
 
-.logo {
-    width: 54px;
-    height: 54px;
-    display: grid;
-    place-items: center;
-    background: linear-gradient(135deg, #f5a623, #f58b23);
-    border-radius: 14px;
-    color: #101415;
-    font-weight: 800;
-    letter-spacing: 1px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
-}
-
-.brand {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.brand-name {
-    font-size: 20px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-}
-
-.brand-tagline {
-    font-size: 12px;
-    color: #a9b0b2;
-    letter-spacing: 0.3px;
-}
-
 /* ROW 2 MAIN NAV */
 .main-nav {
     display: flex;
-    gap: 40px;
+    gap: 36px;
     align-items: flex-end;
 }
 
@@ -106,14 +83,14 @@ body {
     align-items: center;
     background: #f5a623;
     color: #000;
-    padding: 2px 6px;
+    padding: 3px 8px;
     font-size: 12px;
-    font-weight: 700;
-    border-radius: 3px;
+    font-weight: 800;
+    border-radius: 4px;
 }
 
 .premium-star {
-    color: #fff;
+    color: #ffffff;
     margin-left: 6px;
     font-size: 12px;
 }
@@ -133,8 +110,8 @@ body {
     align-items: center;
     justify-content: flex-end;
     gap: 12px;
-    padding-top: 2px;
-    height: 50px;
+    padding-top: 4px;
+    height: 52px;
 }
 
 .small-label {
@@ -220,8 +197,16 @@ body {
     display: flex;
     gap: 25px;
     padding: 14px 22px;
-    margin-top: -4px;
+    margin-top: 0;
     align-items: center;
+}
+
+.row2-separator,
+.row3-separator {
+    height: 10px;
+    background: #1a1f21;
+    border-top: 1px solid #2f3537;
+    border-bottom: 1px solid #2f3537;
 }
 
 .sub-item {
