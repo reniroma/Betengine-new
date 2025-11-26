@@ -37,6 +37,35 @@ body {
     border-bottom: 1px solid var(--border-neon);
 }
 
+/* ROW STRUCTURE — IDENTICAL TO ODSSPORTAL (STRICT) */
+
+/* Row 1 */
+.row1 {
+    height: 46px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-neon);
+}
+
+/* Row 2 */
+.row2 {
+    height: 50px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-neon);
+}
+
+/* Row 3 (sub-nav) */
+.sub-nav {
+    height: 44px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-neon);
+}
+
 .top-row {
     display: flex;
     align-items: center;
