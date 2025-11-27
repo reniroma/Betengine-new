@@ -345,6 +345,20 @@ body {
     font-weight: 700;
 }
 
+/* Row 3 visibility for Community tab */
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-community {
+    display: flex;
+}
+
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-home,
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-users,
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-feed,
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-bookmakers,
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-tools,
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-betting {
+    display: none;
+}
+
 .layout {
     display: grid;
     grid-template-columns: 240px 1fr 240px;
