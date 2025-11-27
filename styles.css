@@ -225,6 +225,7 @@ body {
     display: flex;
     align-items: center;
     gap: 24px;
+    width: 100%;
 }
 
 .row-3-group {
@@ -864,14 +865,7 @@ body {
 
 .modal-text a {
     text-decoration: underline;
-/* --- Hide other row-3 when Bookmakers active --- */
-.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-home,
-.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-users,
-.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-feed,
-.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-community,
-.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-tools,
-.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-betting {
-    display: none;
+    color: inherit;
 }
 
 @media (max-width: 900px) {
