@@ -39,6 +39,7 @@ body {
     padding: 0 24px;
     display: flex;
     align-items: center;
+    background-color: var(--bg-header);
     border-bottom: 1px solid var(--border-neon);
     justify-content: space-between;
     gap: 16px;
@@ -50,6 +51,7 @@ body {
     padding: 0 24px;
     display: flex;
     align-items: center;
+    background-color: var(--bg-header);
     border-bottom: 1px solid var(--border-neon);
     justify-content: space-between;
     gap: 16px;
@@ -224,7 +226,8 @@ body {
 .row-3 {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 16px;
+    width: 100%;
 }
 
 .row-3-group {
@@ -233,6 +236,8 @@ body {
 
 .row-3-group.active {
     display: flex;
+    align-items: center;
+    gap: 16px;
 }
 
 .row-3-group .sub-item {
@@ -445,9 +450,9 @@ body {
 
 .layout {
     display: grid;
-    grid-template-columns: 240px 1fr 240px;
-    gap: 18px;
-    padding: 18px 16px 32px;
+    grid-template-columns: 248px minmax(0, 1fr) 248px;
+    gap: 16px;
+    padding: 16px 24px 32px;
     max-width: 1280px;
     margin: 0 auto;
 }
@@ -455,12 +460,11 @@ body {
 .sidebar {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 .panel,
 .content-wrapper,
-.sidebar,
 .coupon-box,
 .top-events-box,
 .filter-bar {
@@ -481,14 +485,14 @@ body {
 .panel-head {
     background-color: var(--bg-header);
     color: var(--text-secondary);
-    padding: 10px 12px;
+    padding: 8px 12px;
     font-weight: 700;
     font-size: 13px;
     border-bottom: 1px solid var(--border-neon);
 }
 
 .panel-body {
-    padding: 10px 12px;
+    padding: 8px 10px;
 }
 
 .panel-toggle {
@@ -509,7 +513,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 7px 0;
+    padding: 6px 0;
     border-bottom: 1px solid var(--border-neon);
 }
 
@@ -534,7 +538,7 @@ body {
 }
 
 .coupon .panel-head {
-    color: #000000;
+    color: var(--text-secondary);
     background-color: var(--bg-button-primary);
     border-bottom-color: var(--border-neon);
 }
@@ -577,22 +581,27 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
+    align-items: stretch;
 }
 
 .banner-card {
     background-color: var(--bg-button-primary);
     border-radius: 4px;
-    padding: 10px 12px 12px;
+    padding: 12px;
     color: #000000;
     font-weight: 700;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
+    justify-content: space-between;
+    min-height: 130px;
+    height: 100%;
     border: 1px solid var(--border-neon);
 }
 
 .banner-title {
     font-size: 16px;
+    color: var(--text-secondary);
     letter-spacing: 0.3px;
 }
 
@@ -685,7 +694,7 @@ body {
 }
 
 .right .panel {
-    min-height: 320px;
+    min-height: auto;
 }
 
 .main-nav a,
@@ -779,6 +788,7 @@ body {
     margin: 0 0 16px;
     font-size: 20px;
     font-weight: 700;
+    color: var(--text-secondary);
 }
 
 .modal-close {
