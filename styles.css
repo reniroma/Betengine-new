@@ -162,6 +162,20 @@ body {
     gap: 6px;
 }
 
+/* Community tab row-3 visibility */
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-home,
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-users,
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-feed,
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-bookmakers,
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-tools,
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-betting {
+    display: none;
+}
+
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-community {
+    display: flex;
+}
+
 .premium-tag {
     display: inline-flex;
     align-items: center;
