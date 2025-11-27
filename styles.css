@@ -694,4 +694,38 @@ body {
 .nav-main a[data-tab="community"].active ~ .row-3 .row-3-tools,
 .nav-main a[data-tab="community"].active ~ .row-3 .row-3-betting {
     display: none;
+}/* --- ROW-3 SUB-NAV DEFAULT (fsheh të gjitha) --- */
+.row-3 > div {
+  display: none;
 }
+
+/* --- When Community tab active → show community group --- */
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-community {
+  display: flex;
+}
+
+/* --- Hide other row-3 when Community active --- */
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-home,
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-users,
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-feed,
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-bookmakers,
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-tools,
+.nav-main a[data-tab="community"].active ~ .row-3 .row-3-betting {
+  display: none;
+}
+
+/* --- When Bookmakers tab active → show bookmakers group --- */
+.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-bookmakers {
+  display: flex;
+}
+
+/* --- Hide other row-3 when Bookmakers active --- */
+.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-home,
+.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-users,
+.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-feed,
+.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-community,
+.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-tools,
+.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-betting {
+  display: none;
+}
+
