@@ -1,338 +1,847 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OddsPortal Replica</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+ 
 
-<body>
-<header class="top-bar header">
-    <!-- ROW 1 -->
-    <div class="row1">
-        <div class="left-block">
-            <div class="brand-area">
-                <div class="logo">BE</div>
-                <div class="brand">
-                    <span class="brand-name">BetEngine</span>
-                    <span class="brand-tagline">Smart betting tools</span>
-                </div>
-            </div>
-        </div>
+* {
+    box-sizing: border-box;
+}
 
-        <div class="center-block"></div>
+:root {
+    --bg-main: #0a0c12;
+    --bg-header: #0a0c12;
+    --bg-nav: #0a0c12;
+    --bg-panel: #11141d;
+    --bg-button-primary: #ff9d00;
+    --bg-button-primary-hover: #ffb733;
+    --text-primary: #ff9d00;
+    --text-secondary: #00eaff;
+    --text-muted: #b3b3b3;
+    --border-neon: #ff0000;
+}
 
-        <div class="right-block">
-            <div class="top-options">
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: var(--text-primary);
+    background-color: var(--bg-main);
+}
 
-                <!-- ODDS FORMAT DROPDOWN -->
-                <div class="odds-format" id="odds-format">
-                    <span class="small-label">Odds formats:</span>
-                    <button type="button" class="selector odds-toggle" id="odds-toggle">
-                        Decimal Odds ▾
-                    </button>
-                    <div class="odds-dropdown" id="odds-dropdown">
-                        <div class="odds-item active">Decimal Odds (1.50) ✔</div>
-                        <div class="odds-item">Fractional Odds (1/2)</div>
-                        <div class="odds-item">Money Line Odds (-200)</div>
-                        <div class="odds-item">Hong Kong Odds (0.50)</div>
-                        <div class="odds-item">Malay Odds (0.50)</div>
-                        <div class="odds-item">Indonesian Odds (-2.00)</div>
-                    </div>
-                </div>
+.header {
+    background-color: var(--bg-header);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-neon);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
 
-                <span class="small-label icon-globe">Language:</span>
-                <span class="selector">English ▾</span>
+/* ROW STRUCTURE — IDENTICAL TO ODSSPORTAL (STRICT) */
 
-                <button class="auth-btn login" type="button">LOGIN</button>
-                <button class="auth-btn register" type="button">REGISTER</button>
-            </div>
-        </div>
-    </div>
+/* Row 1 */
+.row1 {
+    height: 46px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-neon);
+    justify-content: space-between;
+    gap: 16px;
+}
 
-    <div class="row1-separator"></div>
+/* Row 2 */
+.row2 {
+    height: 50px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-neon);
+    justify-content: space-between;
+    gap: 16px;
+}
 
-    <!-- ROW 2 -->
-    <div class="row2">
-        <div class="left-block"></div>
+/* Row 3 (sub-nav) */
+.sub-nav {
+    height: 44px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-neon);
+    background-color: var(--bg-nav);
+    gap: 10px;
+}
 
-        <div class="center-block">
-            <nav class="main-nav nav-main" id="main-nav" aria-label="Primary navigation">
+.left-block,
+.center-block,
+.right-block {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
 
-                <!-- PRIMARY NAV -->
-                <a href="#" class="nav-item primary-link active" data-section="odds">ODDS COMPARISON</a>
-                <a href="#" class="nav-item primary-link" data-section="community">COMMUNITY</a>
+.left-block {
+    flex: 1;
+}
 
-                <a href="#" class="nav-item primary-link" data-section="bookmakers">
-                    BOOKMAKERS
-                    <span class="premium-tag" id="premium-toggle">
-                        PREMIUM <span class="premium-star">★</span>
-                    </span>
-                </a>
+.center-block {
+    flex: 2;
+    justify-content: center;
+}
 
-                <!-- ROW 3 (SUB NAV) -->
-                <div class="row-3" id="sub-nav">
+.right-block {
+    flex: 1;
+    justify-content: flex-end;
+}
 
-                    <!-- ODDS SUB NAV (default visible) -->
-                    <div class="row-3-group row-3-odds active" data-subnav="odds">
-                        <a href="#" class="sub-item">HOME</a>
-                        <a href="#" class="sub-item">NEXT MATCHES</a>
-                        <a href="#" class="sub-item">DROPPING ODDS</a>
-                        <a href="#" class="sub-item">SURE BETS</a>
-                        <a href="#" class="sub-item">IN PLAY ODDS</a>
-                        <a href="#" class="sub-item">ALL EVENTS</a>
-                        <a href="#" class="sub-item sub-item-tools" id="betting-tools-toggle">
-                            BETTING TOOLS ▾
-                        </a>
-                        <a href="#" class="sub-item">BETTING</a>
-                    </div>
+.brand-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-                    <!-- COMMUNITY SUB NAV -->
-                    <div class="row-3-group row-3-community" data-subnav="community">
-                        <a href="#" class="sub-item">HOME</a>
-                        <a href="#" class="sub-item">FEED</a>
-                        <a href="#" class="sub-item">USERS</a>
-                        <a href="#" class="sub-item">TOP PREDICTIONS</a>
-                        <a href="#" class="sub-item">MY STATISTICS</a>
-                        <a href="#" class="sub-item">MY PROFILE</a>
-                        <a href="#" class="sub-item">MY PREDICTIONS</a>
-                        <a href="#" class="sub-item">MY COUPONS</a>
-                    </div>
+.logo {
+    width: 36px;
+    height: 36px;
+    background: var(--bg-button-primary);
+    border-radius: 6px;
+    display: grid;
+    place-items: center;
+    color: #000000;
+    font-weight: 800;
+    border: 1px solid var(--border-neon);
+}
 
-                    <!-- BOOKMAKERS SUB NAV -->
-                    <div class="row-3-group row-3-bookmakers" data-subnav="bookmakers">
-                        <a href="#" class="sub-item">BOOKIE INFO</a>
-                        <a href="#" class="sub-item">BONUS OFFERS</a>
-                        <a href="#" class="sub-item">ODDS QUALITY</a>
-                        <a href="#" class="sub-item">BETTING APPS</a>
-                    </div>
+.brand {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
 
-                    <!-- PREMIUM SUB NAV -->
-                    <div class="row-3-group row-3-premium" data-subnav="premium">
-                        <a href="#" class="sub-item">BLOCKED ODDS</a>
-                        <a href="#" class="sub-item">VALUE BETS</a>
-                        <a href="#" class="sub-item">HOT MATCHES</a>
-                        <a href="#" class="sub-item">ARCHIVED RESULTS</a>
-                        <a href="#" class="sub-item">STANDINGS</a>
-                        <a href="#" class="sub-item">BET CALCULATOR</a>
-                    </div>
+.brand-name {
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--text-secondary);
+}
 
-                </div>
-            </nav>
-        </div>
+.brand-tagline {
+    font-size: 12px;
+    color: var(--text-muted);
+}
 
-        <!-- SEARCH -->
-        <div class="right-block">
-            <div class="search-box">
-                <input type="search" placeholder="Search (team / player)" aria-label="Search team or player"/>
-                <span class="search-icon">🔍</span>
-                <span class="gift-icon" aria-hidden="true">🎁</span>
-            </div>
-        </div>
-    </div>
+.top-options {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+}
 
-    <div class="row2-separator"></div>
+.small-label {
+    color: var(--text-muted);
+}
 
-    <!-- BETTING TOOLS DROPDOWN -->
-    <div class="betting-tools-dropdown" id="betting-tools-dropdown">
-        <div class="tools-item">BLOCKED ODDS</div>
-        <div class="tools-item">VALUE BETS</div>
-        <div class="tools-item">HOT MATCHES</div>
-        <div class="tools-item">ARCHIVED RESULTS</div>
-        <div class="tools-item">STANDINGS</div>
-        <div class="tools-item">BET CALCULATOR</div>
-    </div>
-</header>
+.selector {
+    color: var(--text-secondary);
+    font-weight: 700;
+}
 
-<!-- MAIN LAYOUT -->
-<main class="layout">
+.odds-format {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
 
-    <!-- LEFT SIDEBAR -->
-    <aside class="sidebar">
-        <section class="panel">
-            <header class="panel-head">MY LEAGUES</header>
-            <div class="panel-body">
-                <button class="panel-toggle" type="button">
-                    <span class="toggle-icon">▶</span>
-                    <span class="toggle-text">Manage my leagues</span>
-                </button>
+.odds-toggle {
+    border: none;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+}
 
-                <div class="list-item"><img src="images/football.svg" class="list-icon"><span class="list-text">Football</span></div>
-                <div class="list-item"><img src="images/baseball.svg" class="list-icon"><span class="list-text">Baseball</span></div>
-                <div class="list-item"><img src="images/rugby.svg" class="list-icon"><span class="list-text">Rugby League</span></div>
-                <div class="list-item"><img src="images/basketball.svg" class="list-icon"><span class="list-text">Basketball</span></div>
-                <div class="list-item"><img src="images/golf.svg" class="list-icon"><span class="list-text">Golf</span></div>
-            </div>
-        </section>
+.odds-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 4px;
+    padding: 8px 12px;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-neon);
+    display: none;
+    z-index: 80;
+}
 
-        <section class="panel coupon">
-            <header class="panel-head">MY COUPON</header>
-            <div class="panel-body coupon-body">
-                <div class="coupon-row coupon-leagues">
-                    <div class="coupon-label">All leagues</div>
-                    <div class="coupon-count">(0)</div>
-                </div>
-                <div class="coupon-row coupon-values">
-                    <div class="coupon-col">Total odds: 1.00</div>
-                    <div class="coupon-col">Stake:</div>
-                </div>
-                <div class="coupon-row">
-                    <div class="coupon-col">Max. stake:</div>
-                </div>
-                <div class="coupon-row">
-                    <div class="coupon-col">Total profit:</div>
-                </div>
-            </div>
-        </section>
-    </aside>
+.odds-item {
+    font-size: 13px;
+    padding: 3px 0;
+    white-space: nowrap;
+}
 
-    <!-- CENTER CONTENT -->
-    <section class="content-area">
+.odds-item.active {
+    font-weight: 700;
+}
 
-        <div class="banners">
-            <div class="banner-card">
-                <div class="banner-title">BETFURY</div>
-                <div class="banner-sub">Exclusive 250-450% Rakeback on Bingo</div>
-                <button class="banner-btn" type="button">CLAIM</button>
-            </div>
-            <div class="banner-card">
-                <div class="banner-title">betsson</div>
-                <div class="banner-sub">100% up to €100 + €25 if a bet loses!</div>
-                <button class="banner-btn" type="button">CLAIM</button>
-            </div>
-            <div class="banner-card">
-                <div class="banner-title">BC.GAME</div>
-                <div class="banner-sub">Up to 330% deposit bonus on your first deposit</div>
-                <button class="banner-btn" type="button">CLAIM</button>
-            </div>
-        </div>
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
 
-        <div class="page-header">
-            <div class="breadcrumb">Home &gt; Dropping Odds</div>
-            <h1 class="page-title">Dropping Odds</h1>
-            <p class="page-text">Dropping odds on OddsPortal enables you to find the online bookmakers that have the best odds right now and it helps you to place the most profitable bet!</p>
-            <p class="page-text">Odds could drop because of a player injury or illness throughout a team, or when bookmakers has intentionally decided to decrease their odds because they consider there has been a lot of betting on one team versus another, possibly because the public has placed too much money on a particular team with bookmaker.</p>
-            <p class="page-text">On this site you'll find a list of the best dropping odds across different sports, with several bookmakers, all tabularly presented for you to find the most profitable odds in the market.</p>
-        </div>
+.nav-item {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 700;
+    padding: 10px 0;
+    position: relative;
+}
 
-        <div class="filters">
-            <label class="filter-control">
-                <span class="filter-label">24 hours</span>
-                <img src="images/chevron.svg" class="filter-icon">
-            </label>
+.nav-item.active,
+.nav-item:hover {
+    color: var(--text-primary);
+}
 
-            <label class="filter-control">
-                <span class="filter-label">Dropping bookies</span>
-                <img src="images/chevron.svg" class="filter-icon">
-            </label>
+.nav-item.bookmakers {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
 
-            <label class="filter-control">
-                <span class="filter-label">1X2 FT Only</span>
-                <img src="images/chevron.svg" class="filter-icon">
-            </label>
+.row-3 {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
 
-            <label class="filter-check">
-                <input type="checkbox" checked>
-                Show additional matches of selected leagues only
-            </label>
-        </div>
+.row-3-group {
+    display: none;
+}
 
-    </section>
+.row-3-group.active {
+    display: flex;
+}
 
-    <!-- RIGHT SIDEBAR -->
-    <aside class="sidebar right">
-        <section class="panel">
-            <header class="panel-head">TOP EVENTS</header>
-            <div class="panel-body">
-                <div class="list-item"><img src="images/football.svg" class="list-icon"><div class="event-text">Champions League <span>↩</span></div></div>
-                <div class="list-item"><img src="images/basketball.svg" class="list-icon"><div class="event-text">BBL <span>↩</span></div></div>
-                <div class="list-item"><img src="images/tennis.svg" class="list-icon"><div class="event-text">ITF Men / ITF Women <span>↩</span></div></div>
-                <div class="list-item"><img src="images/football.svg" class="list-icon"><div class="event-text">Bundesliga <span>↩</span></div></div>
-                <div class="list-item"><img src="images/football.svg" class="list-icon"><div class="event-text">Premier League <span>↩</span></div></div>
-                <div class="list-item"><img src="images/football.svg" class="list-icon"><div class="event-text">Primera División <span>↩</span></div></div>
-                <div class="list-item"><img src="images/football.svg" class="list-icon"><div class="event-text">Serie A <span>↩</span></div></div>
-                <div class="list-item"><img src="images/football.svg" class="list-icon"><div class="event-text">Ligue 1 <span>↩</span></div></div>
-            </div>
-        </section>
-    </aside>
+.row-3-group .sub-item {
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.4px;
+}
 
-</main>
+.betting-tools-dropdown {
+    position: absolute;
+    display: none;
+    padding: 8px 12px;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-neon);
+    z-index: 50;
+}
 
-<!-- LOGIN MODAL -->
-<div class="modal-overlay" id="modal-overlay"></div>
+.betting-tools-dropdown .tools-item {
+    font-size: 13px;
+    padding: 4px 0;
+    white-space: nowrap;
+}
 
-<div class="modal" id="login-modal" aria-hidden="true">
-    <button class="modal-close" data-modal-close="login">×</button>
-    <h2 class="modal-title">Login</h2>
+.betting-tools-dropdown .tools-item:first-child {
+    font-weight: 700;
+}
 
-    <button class="modal-btn social facebook" type="button">SIGN IN WITH FACEBOOK</button>
-    <button class="modal-btn social apple" type="button">SIGN IN WITH APPLE</button>
+.premium-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background-color: var(--bg-button-primary);
+    color: #000000;
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-weight: 800;
+    border: 1px solid var(--border-neon);
+}
 
-    <div class="modal-or">OR</div>
+.premium-star {
+    font-size: 12px;
+}
 
-    <form class="modal-form">
-        <label class="modal-label">
-            Username <span class="required">*</span>
-            <input type="text" name="username">
-        </label>
-        <label class="modal-label">
-            Password <span class="required">*</span>
-            <div class="password-field">
-                <input type="password" name="password">
-                <button type="button" class="password-toggle">👁</button>
-            </div>
-        </label>
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-neon);
+    border-radius: 4px;
+    padding: 0 8px;
+    height: 34px;
+    gap: 6px;
+}
 
-        <label class="modal-remember">
-            <input type="checkbox" checked>
-            <span>Remember me</span>
-        </label>
+.search-box input {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    width: 180px;
+    font-size: 13px;
+}
 
-        <button class="modal-btn primary" type="submit">LOGIN</button>
+.search-box input:focus {
+    outline: none;
+}
 
-        <p class="modal-text">
-            Don't have an account yet?
-            <a href="#" id="open-register-from-login">Create one for free now!</a>
-        </p>
-        <p class="modal-text">
-            <a href="#">Forgot password</a>
-        </p>
-    </form>
-</div>
+.search-box input::placeholder {
+    color: var(--text-muted);
+}
 
-<!-- REGISTER MODAL -->
-<div class="modal" id="register-modal" aria-hidden="true">
-    <button class="modal-close" data-modal-close="register">×</button>
-    <h2 class="modal-title">Register</h2>
+.search-icon,
+.gift-icon {
+    font-size: 14px;
+}
 
-    <form class="modal-form">
-        <label class="modal-label">
-            Username <span class="required">*</span>
-            <input type="text" name="reg-username">
-        </label>
-        <label class="modal-label">
-            Email <span class="required">*</span>
-            <input type="email" name="reg-email">
-        </label>
-        <label class="modal-label">
-            Password <span class="required">*</span>
-            <input type="password" name="reg-password">
-        </label>
-        <label class="modal-label">
-            Confirm Password <span class="required">*</span>
-            <input type="password" name="reg-password-confirm">
-        </label>
+.row1-separator,
+.row2-separator {
+    height: 1px;
+    background-color: var(--border-neon);
+}
 
-        <button class="modal-btn primary" type="submit">CREATE ACCOUNT</button>
+.sub-item {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 13px;
+    padding: 8px 10px;
+    border-radius: 4px;
+}
 
-        <p class="modal-text">
-            Already have an account?
-            <a href="#" id="open-login-from-register">Login here</a>
-        </p>
-    </form>
-</div>
+.sub-item.active,
+.sub-item:hover {
+    background-color: var(--bg-button-primary);
+    color: #000000;
+    font-weight: 700;
+}
 
-<script src="scripts.js"></script>
-</body>
-</html>
+.top-bar {
+    background-color: var(--bg-header);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-neon);
+}
+
+.utility-area {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.meta-text {
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.meta-strong {
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.search-area {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-neon);
+    border-radius: 4px;
+    padding: 0 6px;
+    gap: 4px;
+    height: 32px;
+}
+
+.search-area input {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    width: 180px;
+    font-size: 13px;
+}
+
+.search-area input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-area input:focus {
+    outline: none;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    padding: 0 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.icon-btn img {
+    width: 16px;
+    height: 16px;
+}
+
+.auth-area {
+    display: flex;
+    gap: 8px;
+}
+
+.auth-btn {
+    padding: 8px 14px;
+    border-radius: 4px;
+    border: 1px solid var(--border-neon);
+    background-color: var(--bg-panel);
+    background: var(--bg-panel);
+    color: var(--text-primary);
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.auth-btn.register {
+    background-color: var(--bg-button-primary);
+    color: #000000;
+    border-color: var(--border-neon);
+}
+
+.secondary-nav {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-header);
+    padding-left: 14px;
+    border-top: 1px solid var(--border-neon);
+}
+
+.secondary-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 12px 16px 10px;
+    font-size: 13px;
+    border-left: 1px solid var(--border-neon);
+    background-color: var(--bg-nav);
+}
+
+.secondary-link:first-child {
+    border-left: none;
+}
+
+.secondary-link.active {
+    background-color: var(--bg-button-primary);
+    color: #000000;
+    font-weight: 700;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 240px 1fr 240px;
+    gap: 18px;
+    padding: 18px 16px 32px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.panel,
+.content-wrapper,
+.sidebar,
+.coupon-box,
+.top-events-box,
+.filter-bar {
+    background-color: var(--bg-panel);
+    color: var(--text-primary);
+    border: 1px solid var(--border-neon);
+}
+
+.panel {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-neon);
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+    color: var(--text-primary);
+}
+
+.panel-head {
+    background-color: var(--bg-header);
+    color: var(--text-secondary);
+    padding: 10px 12px;
+    font-weight: 700;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border-neon);
+}
+
+.panel-body {
+    padding: 10px 12px;
+}
+
+.panel-toggle {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 0 10px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    font-size: 13px;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border-neon);
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.list-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.list-text,
+.event-text {
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+.event-text span {
+    color: var(--text-secondary);
+    margin-left: 6px;
+}
+
+.coupon .panel-head {
+    color: #000000;
+    background-color: var(--bg-button-primary);
+    border-bottom-color: var(--border-neon);
+}
+
+.coupon-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.coupon-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+}
+
+.coupon-leagues {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.coupon-label {
+    color: var(--text-primary);
+}
+
+.coupon-values .coupon-col:first-child {
+    color: var(--text-primary);
+}
+
+.content-area {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    color: var(--text-primary);
+}
+
+.banners {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.banner-card {
+    background-color: var(--bg-button-primary);
+    border-radius: 4px;
+    padding: 10px 12px 12px;
+    color: #000000;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border: 1px solid var(--border-neon);
+}
+
+.banner-title {
+    font-size: 16px;
+    letter-spacing: 0.3px;
+}
+
+.banner-sub {
+    font-size: 13px;
+}
+
+.banner-btn {
+    align-self: flex-start;
+    background-color: var(--bg-header);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-neon);
+    border-radius: 4px;
+    padding: 6px 18px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.page-header {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-neon);
+    border-radius: 5px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+    color: var(--text-primary);
+}
+
+.breadcrumb {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.page-title {
+    margin: 0;
+    font-size: 22px;
+    color: var(--text-secondary);
+}
+
+.page-text {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.filters {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-neon);
+    border-radius: 5px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+    color: var(--text-primary);
+}
+
+.filter-control {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid var(--border-neon);
+    padding: 6px 10px;
+    border-radius: 4px;
+    background-color: var(--bg-panel);
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+.filter-icon {
+    width: 12px;
+    height: 12px;
+}
+
+.filter-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-left: auto;
+}
+
+.filter-check input {
+    accent-color: var(--bg-button-primary);
+}
+
+.right .panel {
+    min-height: 320px;
+}
+
+.main-nav a,
+.nav-bar a,
+.primary-link,
+.secondary-link,
+.banner-btn,
+.auth-btn,
+.filter-control,
+.filter-check,
+.panel-toggle {
+    transition: color 0.2s ease, background-color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.btn,
+.button,
+.claim-button,
+.filter-button {
+    background-color: var(--bg-button-primary);
+    color: #000000;
+    border: 1px solid var(--border-neon);
+}
+
+.btn:hover,
+.button:hover,
+.claim-button:hover,
+.filter-button:hover,
+.main-nav a:hover,
+.nav-bar a:hover,
+.primary-link:hover,
+.secondary-link:hover,
+.banner-btn:hover,
+.auth-btn:hover,
+.filter-control:hover {
+    text-shadow: 0 0 8px #00eaff;
+}
+
+.primary-link.active,
+.secondary-link.active,
+.auth-btn.register,
+.banner-card,
+.coupon .panel-head {
+    background-color: var(--bg-button-primary);
+}
+
+.primary-link.active,
+.secondary-link.active,
+.auth-btn.register,
+.banner-card,
+.coupon .panel-head,
+.btn,
+.button,
+.claim-button,
+.filter-button {
+    color: #000000;
+}
+
+.text-secondary,
+.link-secondary {
+    color: var(--text-secondary);
+}
+
+.text-muted {
+    color: var(--text-muted);
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    z-index: 90;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 360px;
+    max-width: 90vw;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    color: #000000;
+    padding: 24px 24px 32px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    display: none;
+    z-index: 100;
+}
+
+.modal-title {
+    margin: 0 0 16px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.modal-close {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.modal-btn {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 3px;
+    border: 1px solid #000000;
+    cursor: pointer;
+}
+
+.modal-btn.primary {
+    background-color: #ff9d00;
+    border-color: #ff9d00;
+    color: #000000;
+}
+
+.modal-or {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.modal-form {
+    margin-top: 4px;
+}
+
+.modal-label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.modal-label input {
+    width: 100%;
+    padding: 6px 8px;
+    margin-top: 4px;
+}
+
+.password-field {
+    position: relative;
+}
+
+.password-field input {
+    padding-right: 32px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.modal-remember {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    margin: 6px 0 10px;
+}
+
+.modal-text {
+    font-size: 13px;
+    margin: 4px 0;
+}
+
+.modal-text a {
+    text-decoration: underline;
+}
+
