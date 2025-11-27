@@ -31,9 +31,6 @@ body {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
 }
 
-/* ROW STRUCTURE — IDENTICAL TO ODSSPORTAL (STRICT) */
-
-/* Row 1 */
 .row1 {
     height: 46px;
     padding: 0 24px;
@@ -42,9 +39,9 @@ body {
     border-bottom: 1px solid var(--border-neon);
     justify-content: space-between;
     gap: 16px;
+    background-color: var(--bg-nav);
 }
 
-/* Row 2 */
 .row2 {
     height: 50px;
     padding: 0 24px;
@@ -53,9 +50,9 @@ body {
     border-bottom: 1px solid var(--border-neon);
     justify-content: space-between;
     gap: 16px;
+    background-color: var(--bg-nav);
 }
 
-/* Row 3 (sub-nav) */
 .sub-nav {
     height: 44px;
     padding: 0 24px;
@@ -200,14 +197,17 @@ body {
     display: flex;
     align-items: center;
     gap: 16px;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .nav-item {
     color: var(--text-secondary);
     text-decoration: none;
     font-weight: 700;
-    padding: 10px 0;
+    padding: 12px 0;
     position: relative;
+    white-space: nowrap;
 }
 
 .nav-item.active,
@@ -224,11 +224,19 @@ body {
 .row-3 {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 12px;
+    width: 100%;
+    height: 44px;
+    padding: 0 24px;
+    border-bottom: 1px solid var(--border-neon);
+    background-color: var(--bg-nav);
+    flex-basis: 100%;
 }
 
 .row-3-group {
     display: none;
+    align-items: center;
+    gap: 10px;
 }
 
 .row-3-group.active {
@@ -270,6 +278,7 @@ body {
     border-radius: 4px;
     font-weight: 800;
     border: 1px solid var(--border-neon);
+    flex-shrink: 0;
 }
 
 .premium-star {
@@ -445,10 +454,10 @@ body {
 
 .layout {
     display: grid;
-    grid-template-columns: 240px 1fr 240px;
-    gap: 18px;
-    padding: 18px 16px 32px;
-    max-width: 1280px;
+    grid-template-columns: 260px minmax(0, 760px) 260px;
+    gap: 16px;
+    padding: 18px 14px 32px;
+    max-width: 1300px;
     margin: 0 auto;
 }
 
@@ -460,7 +469,6 @@ body {
 
 .panel,
 .content-wrapper,
-.sidebar,
 .coupon-box,
 .top-events-box,
 .filter-bar {
@@ -488,7 +496,10 @@ body {
 }
 
 .panel-body {
-    padding: 10px 12px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
 }
 
 .panel-toggle {
@@ -498,18 +509,19 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 0 10px;
+    padding: 10px 12px;
     cursor: pointer;
     width: 100%;
     text-align: left;
     font-size: 13px;
+    border-bottom: 1px solid var(--border-neon);
 }
 
 .list-item {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 7px 0;
+    padding: 10px 12px;
     border-bottom: 1px solid var(--border-neon);
 }
 
@@ -534,17 +546,18 @@ body {
 }
 
 .coupon .panel-head {
-    color: #000000;
-    background-color: var(--bg-button-primary);
+    color: var(--text-secondary);
+    background-color: var(--bg-header);
     border-bottom-color: var(--border-neon);
 }
 
 .coupon-body {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
     color: var(--text-muted);
     font-size: 13px;
+    padding: 10px 12px 12px;
 }
 
 .coupon-row {
@@ -582,13 +595,15 @@ body {
 .banner-card {
     background-color: var(--bg-button-primary);
     border-radius: 4px;
-    padding: 10px 12px 12px;
+    padding: 12px 14px;
     color: #000000;
     font-weight: 700;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    justify-content: space-between;
+    gap: 8px;
     border: 1px solid var(--border-neon);
+    min-height: 116px;
 }
 
 .banner-title {
@@ -798,13 +813,13 @@ body {
     font-size: 14px;
     font-weight: 600;
     border-radius: 3px;
-    border: 1px solid #000000;
+    border: 1px solid var(--border-neon);
     cursor: pointer;
 }
 
 .modal-btn.primary {
     background-color: #ff9d00;
-    border-color: #ff9d00;
+    border-color: var(--border-neon);
     color: #000000;
 }
 
@@ -864,7 +879,8 @@ body {
 
 .modal-text a {
     text-decoration: underline;
-/* --- Hide other row-3 when Bookmakers active --- */
+}
+
 .nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-home,
 .nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-users,
 .nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-feed,
