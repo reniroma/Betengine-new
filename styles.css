@@ -24,6 +24,11 @@ body {
     background-color: var(--bg-main);
 }
 
+.header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
 .header {
     background-color: var(--bg-header);
     color: var(--text-secondary);
@@ -56,14 +61,14 @@ body {
 }
 
 /* Row 3 (sub-nav) */
-.sub-nav {
+.row3 {
     height: 44px;
     padding: 0 24px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid var(--border-neon);
     background-color: var(--bg-nav);
-    gap: 10px;
+    gap: 16px;
 }
 
 .left-block,
@@ -225,6 +230,7 @@ body {
     display: flex;
     align-items: center;
     gap: 24px;
+    width: 100%;
 }
 
 .row-3-group {
@@ -864,6 +870,8 @@ body {
 
 .modal-text a {
     text-decoration: underline;
+}
+
 /* --- Hide other row-3 when Bookmakers active --- */
 .nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-home,
 .nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-users,
@@ -913,7 +921,7 @@ body {
     }
 
     .main-nav,
-    .sub-nav {
+    .row-3 {
         width: 100%;
         display: none;
         flex-direction: column;
@@ -923,13 +931,13 @@ body {
         height: auto;
     }
 
-    .sub-nav {
+    .row-3 {
         padding: 8px 16px;
         border-top: 1px solid var(--border-neon);
     }
 
     .main-nav.is-open,
-    .sub-nav.is-open {
+    .row-3.is-open {
         display: flex;
     }
 
