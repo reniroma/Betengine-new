@@ -36,34 +36,37 @@ body {
 /* Row 1 */
 .row1 {
     height: 46px;
-    padding: 0 24px;
+    padding: 0 20px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid var(--border-neon);
     justify-content: space-between;
     gap: 16px;
+    background-color: var(--bg-nav);
 }
 
 /* Row 2 */
 .row2 {
     height: 50px;
-    padding: 0 24px;
+    padding: 0 20px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid var(--border-neon);
     justify-content: space-between;
     gap: 16px;
+    background-color: var(--bg-nav);
 }
 
 /* Row 3 (sub-nav) */
 .sub-nav {
     height: 44px;
-    padding: 0 24px;
+    padding: 0 20px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid var(--border-neon);
     background-color: var(--bg-nav);
     gap: 10px;
+    width: 100%;
 }
 
 .left-block,
@@ -198,8 +201,10 @@ body {
 
 .main-nav {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 16px;
+    width: 100%;
 }
 
 .nav-item {
@@ -224,11 +229,19 @@ body {
 .row-3 {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 16px;
+    width: 100%;
+    flex: 1 0 100%;
+    padding: 8px 0 0;
+    border-top: 1px solid var(--border-neon);
+    background-color: var(--bg-nav);
 }
 
 .row-3-group {
     display: none;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
 .row-3-group.active {
@@ -270,6 +283,8 @@ body {
     border-radius: 4px;
     font-weight: 800;
     border: 1px solid var(--border-neon);
+    line-height: 1;
+    white-space: nowrap;
 }
 
 .premium-star {
@@ -312,6 +327,8 @@ body {
 .row2-separator {
     height: 1px;
     background-color: var(--border-neon);
+    width: 100%;
+    margin: 0;
 }
 
 .sub-item {
@@ -420,14 +437,14 @@ body {
     display: flex;
     align-items: center;
     background-color: var(--bg-header);
-    padding-left: 14px;
+    padding-left: 12px;
     border-top: 1px solid var(--border-neon);
 }
 
 .secondary-link {
     color: var(--text-secondary);
     text-decoration: none;
-    padding: 12px 16px 10px;
+    padding: 12px 14px 10px;
     font-size: 13px;
     border-left: 1px solid var(--border-neon);
     background-color: var(--bg-nav);
@@ -445,17 +462,17 @@ body {
 
 .layout {
     display: grid;
-    grid-template-columns: 240px 1fr 240px;
-    gap: 18px;
-    padding: 18px 16px 32px;
-    max-width: 1280px;
+    grid-template-columns: 252px minmax(0, 1fr) 252px;
+    gap: 16px;
+    padding: 16px 14px 32px;
+    max-width: 1340px;
     margin: 0 auto;
 }
 
 .sidebar {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 .panel,
@@ -472,23 +489,23 @@ body {
 .panel {
     background-color: var(--bg-panel);
     border: 1px solid var(--border-neon);
-    border-radius: 5px;
+    border-radius: 4px;
     overflow: hidden;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
     color: var(--text-primary);
 }
 
 .panel-head {
     background-color: var(--bg-header);
     color: var(--text-secondary);
-    padding: 10px 12px;
+    padding: 9px 12px;
     font-weight: 700;
     font-size: 13px;
     border-bottom: 1px solid var(--border-neon);
 }
 
 .panel-body {
-    padding: 10px 12px;
+    padding: 8px 10px;
 }
 
 .panel-toggle {
@@ -498,7 +515,7 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 0 10px;
+    padding: 6px 0 8px;
     cursor: pointer;
     width: 100%;
     text-align: left;
@@ -509,7 +526,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 7px 0;
+    padding: 6px 0;
     border-bottom: 1px solid var(--border-neon);
 }
 
@@ -534,15 +551,15 @@ body {
 }
 
 .coupon .panel-head {
-    color: #000000;
-    background-color: var(--bg-button-primary);
+    color: var(--text-secondary);
+    background-color: var(--bg-header);
     border-bottom-color: var(--border-neon);
 }
 
 .coupon-body {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     color: var(--text-muted);
     font-size: 13px;
 }
@@ -569,31 +586,35 @@ body {
 .content-area {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 16px;
     color: var(--text-primary);
 }
 
 .banners {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    gap: 12px;
+    align-items: stretch;
 }
 
 .banner-card {
     background-color: var(--bg-button-primary);
     border-radius: 4px;
-    padding: 10px 12px 12px;
+    padding: 12px 14px;
     color: #000000;
     font-weight: 700;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
     border: 1px solid var(--border-neon);
+    min-height: 140px;
+    justify-content: space-between;
 }
 
 .banner-title {
     font-size: 16px;
     letter-spacing: 0.3px;
+    color: var(--text-secondary);
 }
 
 .banner-sub {
@@ -682,10 +703,6 @@ body {
 
 .filter-check input {
     accent-color: var(--bg-button-primary);
-}
-
-.right .panel {
-    min-height: 320px;
 }
 
 .main-nav a,
@@ -798,7 +815,7 @@ body {
     font-size: 14px;
     font-weight: 600;
     border-radius: 3px;
-    border: 1px solid #000000;
+    border: 1px solid var(--border-neon);
     cursor: pointer;
 }
 
@@ -863,8 +880,10 @@ body {
 }
 
 .modal-text a {
+    color: var(--text-secondary);
     text-decoration: underline;
-/* --- Hide other row-3 when Bookmakers active --- */
+}
+
 .nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-home,
 .nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-users,
 .nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-feed,
