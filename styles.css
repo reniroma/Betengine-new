@@ -1,3 +1,5 @@
+ 
+
 * {
     box-sizing: border-box;
 }
@@ -158,6 +160,42 @@ body {
     font-weight: 700;
 }
 
+.odds-format {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.odds-toggle {
+    border: none;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+}
+
+.odds-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 4px;
+    padding: 8px 12px;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-neon);
+    display: none;
+    z-index: 80;
+}
+
+.odds-item {
+    font-size: 13px;
+    padding: 3px 0;
+    white-space: nowrap;
+}
+
+.odds-item.active {
+    font-weight: 700;
+}
+
 .main-nav {
     display: flex;
     align-items: center;
@@ -183,18 +221,43 @@ body {
     gap: 6px;
 }
 
-/* Community tab row-3 visibility */
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-home,
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-users,
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-feed,
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-bookmakers,
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-tools,
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-betting {
+.row-3 {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.row-3-group {
     display: none;
 }
 
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-community {
+.row-3-group.active {
     display: flex;
+}
+
+.row-3-group .sub-item {
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.4px;
+}
+
+.betting-tools-dropdown {
+    position: absolute;
+    display: none;
+    padding: 8px 12px;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-neon);
+    z-index: 50;
+}
+
+.betting-tools-dropdown .tools-item {
+    font-size: 13px;
+    padding: 4px 0;
+    white-space: nowrap;
+}
+
+.betting-tools-dropdown .tools-item:first-child {
+    font-weight: 700;
 }
 
 .premium-tag {
@@ -378,20 +441,6 @@ body {
     background-color: var(--bg-button-primary);
     color: #000000;
     font-weight: 700;
-}
-
-/* Row 3 visibility for Community tab */
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-community {
-    display: flex;
-}
-
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-home,
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-users,
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-feed,
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-bookmakers,
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-tools,
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-betting {
-    display: none;
 }
 
 .layout {
@@ -703,43 +752,118 @@ body {
     color: var(--text-muted);
 }
 
-/* Row 3 tab visibility */
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-community {
-    display: flex;
-}
-
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-home,
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-users,
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-feed,
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-bookmakers,
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-tools,
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-betting {
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
     display: none;
-}/* --- ROW-3 SUB-NAV DEFAULT (fsheh të gjitha) --- */
-.row-3 > div {
-  display: none;
+    z-index: 90;
 }
 
-/* --- When Community tab active → show community group --- */
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-community {
-  display: flex;
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 360px;
+    max-width: 90vw;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    color: #000000;
+    padding: 24px 24px 32px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    display: none;
+    z-index: 100;
 }
 
-/* --- Hide other row-3 when Community active --- */
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-home,
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-users,
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-feed,
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-bookmakers,
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-tools,
-.nav-main a[data-tab="community"].active ~ .row-3 .row-3-betting {
-  display: none;
+.modal-title {
+    margin: 0 0 16px;
+    font-size: 20px;
+    font-weight: 700;
 }
 
-/* --- When Bookmakers tab active → show bookmakers group --- */
-.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-bookmakers {
-  display: flex;
+.modal-close {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    cursor: pointer;
 }
 
+.modal-btn {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 3px;
+    border: 1px solid #000000;
+    cursor: pointer;
+}
+
+.modal-btn.primary {
+    background-color: #ff9d00;
+    border-color: #ff9d00;
+    color: #000000;
+}
+
+.modal-or {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.modal-form {
+    margin-top: 4px;
+}
+
+.modal-label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.modal-label input {
+    width: 100%;
+    padding: 6px 8px;
+    margin-top: 4px;
+}
+
+.password-field {
+    position: relative;
+}
+
+.password-field input {
+    padding-right: 32px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.modal-remember {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    margin: 6px 0 10px;
+}
+
+.modal-text {
+    font-size: 13px;
+    margin: 4px 0;
+}
+
+.modal-text a {
+    text-decoration: underline;
 /* --- Hide other row-3 when Bookmakers active --- */
 .nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-home,
 .nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-users,
