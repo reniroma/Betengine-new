@@ -63,7 +63,6 @@ body {
     align-items: center;
     border-bottom: 1px solid var(--border-neon);
     background-color: var(--bg-nav);
-    gap: 10px;
 }
 
 .left-block,
@@ -221,17 +220,14 @@ body {
     gap: 6px;
 }
 
-.row-3 {
-    display: flex;
+.sub-nav .row-3-group {
+    display: none;
+    width: 100%;
     align-items: center;
     gap: 24px;
 }
 
-.row-3-group {
-    display: none;
-}
-
-.row-3-group.active {
+.sub-nav .row-3-group.active {
     display: flex;
 }
 
@@ -864,14 +860,6 @@ body {
 
 .modal-text a {
     text-decoration: underline;
-/* --- Hide other row-3 when Bookmakers active --- */
-.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-home,
-.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-users,
-.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-feed,
-.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-community,
-.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-tools,
-.nav-main a[data-tab="bookmakers"].active ~ .row-3 .row-3-betting {
-    display: none;
 }
 
 @media (max-width: 900px) {
