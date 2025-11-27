@@ -23,8 +23,20 @@
 
             <div class="right-block">
                 <div class="top-options">
-                    <span class="small-label">Odds formats:</span>
-                    <span class="selector">Decimal Odds ▾</span>
+                    <div class="odds-format" id="odds-format">
+                        <span class="small-label">Odds formats:</span>
+                        <button type="button" class="selector odds-toggle" id="odds-toggle">
+                            Decimal Odds ▾
+                        </button>
+                        <div class="odds-dropdown" id="odds-dropdown">
+                            <div class="odds-item active">Decimal Odds (1.50) ✔</div>
+                            <div class="odds-item">Fractional Odds (1/2)</div>
+                            <div class="odds-item">Money Line Odds (-200)</div>
+                            <div class="odds-item">Hong Kong Odds (0.50)</div>
+                            <div class="odds-item">Malay Odds (0.50)</div>
+                            <div class="odds-item">Indonesian Odds (-2.00)</div>
+                        </div>
+                    </div>
                     <span class="small-label icon-globe">Language:</span>
                     <span class="selector">English ▾</span>
                     <button class="auth-btn login" type="button">LOGIN</button>
@@ -39,16 +51,62 @@
             <div class="left-block"></div>
 
             <div class="center-block">
-                <nav class="main-nav" id="main-nav" aria-label="Primary navigation">
-                    <a href="#" class="nav-item">ODDS COMPARISON</a>
-                    <a href="#" class="nav-item active">COMMUNITY</a>
-                    <a href="#" class="nav-item bookmakers">
+                <nav class="main-nav nav-main" id="main-nav" aria-label="Primary navigation">
+                    <a href="#" class="nav-item primary-link active" data-section="odds">ODDS COMPARISON</a>
+                    <a href="#" class="nav-item primary-link" data-section="community">COMMUNITY</a>
+                    <a href="#" class="nav-item primary-link" data-section="bookmakers">
                         BOOKMAKERS
-                        <span class="premium-tag">
+                        <span class="premium-tag" id="premium-toggle">
                             PREMIUM
                             <span class="premium-star">★</span>
                         </span>
                     </a>
+
+                    <div class="row-3" id="sub-nav">
+                        <!-- ODDS COMPARISON SUB NAV -->
+                        <div class="row-3-group row-3-odds active" data-subnav="odds">
+                            <a href="#" class="sub-item" data-odds-tab="home">HOME</a>
+                            <a href="#" class="sub-item" data-odds-tab="next-matches">NEXT MATCHES</a>
+                            <a href="#" class="sub-item" data-odds-tab="dropping-odds">DROPPING ODDS</a>
+                            <a href="#" class="sub-item" data-odds-tab="sure-bets">SURE BETS</a>
+                            <a href="#" class="sub-item" data-odds-tab="in-play-odds">IN PLAY ODDS</a>
+                            <a href="#" class="sub-item" data-odds-tab="all-events">ALL EVENTS</a>
+                            <a href="#" class="sub-item sub-item-tools" id="betting-tools-toggle">
+                                BETTING TOOLS ▾
+                            </a>
+                            <a href="#" class="sub-item" data-odds-tab="betting">BETTING</a>
+                        </div>
+
+                        <!-- COMMUNITY SUB NAV -->
+                        <div class="row-3-group row-3-community" data-subnav="community">
+                            <a href="#" class="sub-item">HOME</a>
+                            <a href="#" class="sub-item">FEED</a>
+                            <a href="#" class="sub-item">USERS</a>
+                            <a href="#" class="sub-item">TOP PREDICTIONS</a>
+                            <a href="#" class="sub-item">MY STATISTICS</a>
+                            <a href="#" class="sub-item">MY PROFILE</a>
+                            <a href="#" class="sub-item">MY PREDICTIONS</a>
+                            <a href="#" class="sub-item">MY COUPONS</a>
+                        </div>
+
+                        <!-- BOOKMAKERS SUB NAV -->
+                        <div class="row-3-group row-3-bookmakers" data-subnav="bookmakers">
+                            <a href="#" class="sub-item">BOOKIE INFO</a>
+                            <a href="#" class="sub-item">BONUS OFFERS</a>
+                            <a href="#" class="sub-item">ODDS QUALITY</a>
+                            <a href="#" class="sub-item">BETTING APPS</a>
+                        </div>
+
+                        <!-- PREMIUM SUB NAV (triggered from PREMIUM tag) -->
+                        <div class="row-3-group row-3-premium" data-subnav="premium">
+                            <a href="#" class="sub-item">BLOCKED ODDS</a>
+                            <a href="#" class="sub-item">VALUE BETS</a>
+                            <a href="#" class="sub-item">HOT MATCHES</a>
+                            <a href="#" class="sub-item">ARCHIVED RESULTS</a>
+                            <a href="#" class="sub-item">STANDINGS</a>
+                            <a href="#" class="sub-item">BET CALCULATOR</a>
+                        </div>
+                    </div>
                 </nav>
             </div>
 
@@ -62,18 +120,16 @@
         </div>
 
         <div class="row2-separator"></div>
-    </header>
 
-    <nav class="sub-nav" id="sub-nav" aria-label="Secondary navigation">
-        <a href="#" class="sub-item">HOME</a>
-        <a href="#" class="sub-item">NEXT MATCHES</a>
-        <a href="#" class="sub-item active">DROPPING ODDS</a>
-        <a href="#" class="sub-item">SURE BETS</a>
-        <a href="#" class="sub-item">IN PLAY ODDS</a>
-        <a href="#" class="sub-item">ALL EVENTS</a>
-        <a href="#" class="sub-item">BETTING TOOLS ▾</a>
-        <a href="#" class="sub-item">BETTING</a>
-    </nav>
+        <div class="betting-tools-dropdown" id="betting-tools-dropdown">
+            <div class="tools-item">BLOCKED ODDS</div>
+            <div class="tools-item">VALUE BETS</div>
+            <div class="tools-item">HOT MATCHES</div>
+            <div class="tools-item">ARCHIVED RESULTS</div>
+            <div class="tools-item">STANDINGS</div>
+            <div class="tools-item">BET CALCULATOR</div>
+        </div>
+    </header>
 
     <main class="layout">
         <aside class="sidebar">
@@ -215,5 +271,79 @@
             </section>
         </aside>
     </main>
+
+    <div class="modal-overlay" id="modal-overlay"></div>
+
+    <div class="modal" id="login-modal" aria-hidden="true">
+        <button class="modal-close" data-modal-close="login">×</button>
+        <h2 class="modal-title">Login</h2>
+
+        <button class="modal-btn social facebook" type="button">SIGN IN WITH FACEBOOK</button>
+        <button class="modal-btn social apple" type="button">SIGN IN WITH APPLE</button>
+
+        <div class="modal-or">OR</div>
+
+        <form class="modal-form">
+            <label class="modal-label">
+                Username <span class="required">*</span>
+                <input type="text" name="username">
+            </label>
+            <label class="modal-label">
+                Password <span class="required">*</span>
+                <div class="password-field">
+                    <input type="password" name="password">
+                    <button type="button" class="password-toggle" aria-label="Toggle password visibility">👁</button>
+                </div>
+            </label>
+
+            <label class="modal-remember">
+                <input type="checkbox" checked>
+                <span>Remember me</span>
+            </label>
+
+            <button class="modal-btn primary" type="submit">LOGIN</button>
+
+            <p class="modal-text">
+                Don't have an account yet?
+                <a href="#" id="open-register-from-login">Create one for free now!</a>
+            </p>
+            <p class="modal-text">
+                <a href="#">Forgot password</a>
+            </p>
+        </form>
+    </div>
+
+    <div class="modal" id="register-modal" aria-hidden="true">
+        <button class="modal-close" data-modal-close="register">×</button>
+        <h2 class="modal-title">Register</h2>
+
+        <form class="modal-form">
+            <label class="modal-label">
+                Username <span class="required">*</span>
+                <input type="text" name="reg-username">
+            </label>
+            <label class="modal-label">
+                Email <span class="required">*</span>
+                <input type="email" name="reg-email">
+            </label>
+            <label class="modal-label">
+                Password <span class="required">*</span>
+                <input type="password" name="reg-password">
+            </label>
+            <label class="modal-label">
+                Confirm Password <span class="required">*</span>
+                <input type="password" name="reg-password-confirm">
+            </label>
+
+            <button class="modal-btn primary" type="submit">CREATE ACCOUNT</button>
+
+            <p class="modal-text">
+                Already have an account?
+                <a href="#" id="open-login-from-register">Login here</a>
+            </p>
+        </form>
+    </div>
+
+    <script src="scripts.js"></script>
 </body>
 </html>
