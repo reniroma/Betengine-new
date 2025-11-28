@@ -198,7 +198,7 @@ body {
 .main-nav {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 32px;
 }
 
 .nav-item {
@@ -207,6 +207,8 @@ body {
     font-weight: 700;
     padding: 10px 0;
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .nav-item.active,
@@ -261,11 +263,15 @@ body {
     align-items: baseline;
     gap: 4px;
     background-color: transparent;
-    color: inherit;
+    color: var(--text-secondary);
     padding: 6px 8px;
     border-radius: 4px;
     font-weight: inherit;
     border: none;
+}
+
+.premium-tag.active {
+    color: var(--text-primary);
 }
 
 .premium-star {

@@ -36,6 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
     item.addEventListener('click', (event) => {
       event.preventDefault();
       navItems.forEach((link) => link.classList.remove('active'));
+      if (premiumToggle) {
+        premiumToggle.classList.remove('active');
+      }
       item.classList.add('active');
       setActiveSection(item.dataset.section);
     });
@@ -46,12 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();
       event.stopPropagation();
       navItems.forEach((link) => link.classList.remove('active'));
-      bookmakersNav.classList.add('active');
-      hideAllRowGroups();
-      const premiumGroup = document.querySelector('.row-3-premium');
-      if (premiumGroup) {
-        premiumGroup.classList.add('active');
-      }
+      premiumToggle.classList.add('active');
+      setActiveSection('premium');
     });
   }
 
