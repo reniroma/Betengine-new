@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const navItems = document.querySelectorAll('.nav-main .nav-item');
+  /* REMOVE PREMIUM & BOOKMAKERS from global navItems */
+  const navItems = document.querySelectorAll('.nav-main .nav-item[data-section]');
   const rowGroups = document.querySelectorAll('.row-3-group');
   const premiumToggle = document.getElementById('premium-toggle');
   const bettingToggle = document.getElementById('betting-tools-toggle');
@@ -41,19 +42,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  if (premiumToggle && bookmakersNav) {
-    premiumToggle.addEventListener('click', (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      navItems.forEach((link) => link.classList.remove('active'));
-      bookmakersNav.classList.add('active');
-      hideAllRowGroups();
-      const premiumGroup = document.querySelector('.row-3-premium');
-      if (premiumGroup) {
-        premiumGroup.classList.add('active');
-      }
-    });
-  }
+  /* ISOLATE PREMIUM click */
+  premiumToggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    navItems.forEach((i) => i.classList.remove('active'));
+    premiumToggle.classList.add('active');
+
+    setActiveSection('premium');
+  });
+
+  /* ISOLATE BOOKMAKERS click */
+  bookmakersNav.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    navItems.forEach((i) => i.classList.remove('active'));
+    bookmakersNav.classList.add('active');
+
+    setActiveSection('bookmakers');
+  });
 
   const closeBettingDropdown = () => {
     if (bettingDropdown) {

@@ -209,9 +209,44 @@ body {
     position: relative;
 }
 
-.nav-item.active,
+/* REMOVE GLOBAL HOVER that affects ALL nav-items (this is the main bug) */
 .nav-item:hover {
-    color: var(--text-primary);
+    color: inherit !important;
+}
+
+/* ACTIVE state only applies when JS sets .active */
+.nav-item.active {
+    color: var(--text-primary) !important;
+}
+
+/* ISOLATE HOVER FOR NORMAL NAV ITEMS */
+.nav-item[data-section]:not([data-section="premium"]):not([data-section="bookmakers"]):hover {
+    color: var(--text-primary) !important;
+}
+
+/* PREMIUM isolation */
+#premium-toggle:hover .premium-tag {
+    color: inherit !important;
+}
+
+#premium-toggle:hover .premium-star {
+    color: #ff9d00 !important;
+    filter: drop-shadow(0 0 4px #ff9d00);
+}
+
+/* PREMIUM active only when clicked */
+#premium-toggle.active .premium-tag {
+    color: var(--text-primary) !important;
+}
+
+#premium-toggle.active .premium-star {
+    color: #ff9d00 !important;
+    filter: drop-shadow(0 0 6px #ff9d00);
+}
+
+/* BOOKMAKERS isolation */
+.nav-item[data-section="bookmakers"]:hover {
+    color: var(--text-primary) !important;
 }
 
 .nav-item.bookmakers {
