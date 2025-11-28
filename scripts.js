@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const navItems = document.querySelectorAll('.nav-main .nav-item');
+  const navItems = document.querySelectorAll('.nav-main .nav-item[data-section]');
   const rowGroups = document.querySelectorAll('.row-3-group');
   const premiumToggle = document.getElementById('premium-toggle');
   const bettingToggle = document.getElementById('betting-tools-toggle');
@@ -24,6 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
     rowGroups.forEach((group) => group.classList.remove('active'));
   };
 
+  const clearActive = () => {
+    navItems.forEach((item) => item.classList.remove('active'));
+  };
+
   const setActiveSection = (section) => {
     hideAllRowGroups();
     const targetGroup = Array.from(rowGroups).find((group) => group.dataset.subnav === section);
@@ -32,26 +36,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  /* Regular nav items (exclude premium + bookmakers) */
   navItems.forEach((item) => {
+    if (item === premiumToggle || item === bookmakersNav) return;
+
     item.addEventListener('click', (event) => {
       event.preventDefault();
-      navItems.forEach((link) => link.classList.remove('active'));
+      clearActive();
       item.classList.add('active');
       setActiveSection(item.dataset.section);
     });
   });
 
-  if (premiumToggle && bookmakersNav) {
+  /* PREMIUM isolated */
+  if (premiumToggle) {
     premiumToggle.addEventListener('click', (event) => {
       event.preventDefault();
       event.stopPropagation();
-      navItems.forEach((link) => link.classList.remove('active'));
+      clearActive();
+      premiumToggle.classList.add('active');
+      setActiveSection('premium');
+    });
+  }
+
+  /* BOOKMAKERS isolated */
+  if (bookmakersNav) {
+    bookmakersNav.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      clearActive();
       bookmakersNav.classList.add('active');
-      hideAllRowGroups();
-      const premiumGroup = document.querySelector('.row-3-premium');
-      if (premiumGroup) {
-        premiumGroup.classList.add('active');
-      }
+      setActiveSection('bookmakers');
     });
   }
 

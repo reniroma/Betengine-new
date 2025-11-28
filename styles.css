@@ -209,8 +209,18 @@ body {
     position: relative;
 }
 
-.nav-item.active,
+/* --- FIX: Disable global hover that affects ALL nav-items --- */
 .nav-item:hover {
+    color: inherit;
+}
+
+/* --- FIX: Active state is the ONLY one that changes color --- */
+.nav-item.active {
+    color: var(--text-primary);
+}
+
+/* --- FIX: Hover only for regular nav items (NOT premium, NOT bookmakers) --- */
+.nav-item[data-section]:not([data-section="premium"]):not([data-section="bookmakers"]):hover {
     color: var(--text-primary);
 }
 
@@ -260,7 +270,7 @@ body {
     display: inline-flex;
     align-items: baseline;
     gap: 4px;
-    background-color: transparent;
+    background: transparent;
     color: inherit;
     padding: 6px 8px;
     border-radius: 4px;
@@ -268,10 +278,21 @@ body {
     border: none;
 }
 
+/* --- PREMIUM star always neon yellow --- */
 .premium-star {
     font-size: 1em;
     color: #ff9d00;
     font-weight: inherit;
+}
+
+/* --- ACTIVE state for PREMIUM (click only) --- */
+#premium-toggle.active .premium-tag {
+    color: var(--text-primary);
+}
+
+#premium-toggle.active .premium-star {
+    color: #ff9d00;
+    filter: drop-shadow(0 0 4px #ff9d00);
 }
 
 .search-box {
