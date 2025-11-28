@@ -201,17 +201,44 @@ body {
     gap: 16px;
 }
 
+/* FIX: Prevent hover on ALL nav-items from affecting PREMIUM and BOOKMAKERS */
 .nav-item {
     color: var(--text-secondary);
     text-decoration: none;
     font-weight: 700;
     padding: 10px 0;
     position: relative;
+    pointer-events: auto;
 }
 
-.nav-item.active,
-.nav-item:hover {
+/* Limit hover highlight ONLY to items that are NOT premium and NOT bookmakers */
+.nav-item:not([data-section="premium"]):not([data-section="bookmakers"]):hover {
     color: var(--text-primary);
+}
+
+/* PREMIUM hover ONLY changes star, NOT text */
+.premium-tag:hover {
+    color: inherit !important;
+}
+
+.premium-star:hover {
+    color: #ff9d00 !important;
+    filter: drop-shadow(0 0 4px #ff9d00);
+}
+
+/* ACTIVE STATES (when clicked) */
+.nav-item.active {
+    color: var(--text-primary);
+}
+
+/* PREMIUM ACTIVE (text + star only on click) */
+.premium-tag.active {
+    color: var(--text-primary) !important;
+}
+
+.premium-star.active {
+    color: #ff9d00 !important;
+    filter: drop-shadow(0 0 5px #ff9d00);
 }
 
 .nav-item.bookmakers {
