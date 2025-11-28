@@ -258,18 +258,20 @@ body {
 
 .premium-tag {
     display: inline-flex;
-    align-items: center;
+    align-items: baseline;
     gap: 4px;
-    background-color: var(--bg-button-primary);
-    color: #000000;
+    background-color: transparent;
+    color: inherit;
     padding: 6px 8px;
     border-radius: 4px;
-    font-weight: 800;
-    border: 1px solid var(--border-neon);
+    font-weight: inherit;
+    border: none;
 }
 
 .premium-star {
-    font-size: 12px;
+    font-size: 1em;
+    color: #ff9d00;
+    font-weight: inherit;
 }
 
 .search-box {
