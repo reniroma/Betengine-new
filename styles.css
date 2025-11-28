@@ -256,23 +256,21 @@ body {
     font-weight: 700;
 }
 
-.premium-tag {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 4px;
-    background-color: transparent;
-    color: inherit;
-    padding: 6px 8px;
-    border-radius: 4px;
-    font-weight: inherit;
-    border: none;
-}
+  .premium-tag {
+      display: inline-block;
+      padding: 6px 10px;
+      line-height: 1;
+      border: none;
+      background-color: transparent;
+      color: inherit;
+  }
 
-.premium-star {
-    font-size: 1em;
-    color: #ff9d00;
-    font-weight: inherit;
-}
+  .premium-star {
+      font-size: 1em;
+      color: #ff9d00;
+      font-weight: inherit;
+      margin-left: 4px;
+  }
 
 .search-box {
     display: flex;
@@ -930,5 +928,10 @@ body {
     .sidebar.right {
         order: 3;
     }
+}
+
+.nav-main .nav-item,
+.premium-tag {
+    margin-right: 22px;
 }
 

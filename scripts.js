@@ -35,23 +35,23 @@ document.addEventListener('DOMContentLoaded', () => {
   navItems.forEach((item) => {
     item.addEventListener('click', (event) => {
       event.preventDefault();
-      navItems.forEach((link) => link.classList.remove('active'));
+      [...navItems, premiumToggle].forEach((link) => {
+        if (link) link.classList.remove('active');
+      });
       item.classList.add('active');
       setActiveSection(item.dataset.section);
     });
   });
 
-  if (premiumToggle && bookmakersNav) {
+  if (premiumToggle) {
     premiumToggle.addEventListener('click', (event) => {
       event.preventDefault();
       event.stopPropagation();
-      navItems.forEach((link) => link.classList.remove('active'));
-      bookmakersNav.classList.add('active');
-      hideAllRowGroups();
-      const premiumGroup = document.querySelector('.row-3-premium');
-      if (premiumGroup) {
-        premiumGroup.classList.add('active');
-      }
+      [...navItems, premiumToggle].forEach((link) => {
+        if (link) link.classList.remove('active');
+      });
+      premiumToggle.classList.add('active');
+      setActiveSection('premium');
     });
   }
 
