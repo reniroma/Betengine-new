@@ -209,15 +209,27 @@ body {
     position: relative;
 }
 
-.nav-item.active,
-.nav-item:hover {
-    color: var(--text-primary);
-}
-
 .nav-item.bookmakers {
     display: flex;
     align-items: center;
     gap: 6px;
+}
+
+/* Fix hover bug and limit highlight ONLY to the real active item */
+.nav-item:hover,
+.premium-tag:hover,
+.premium-star:hover {
+    color: var(--text-primary); /* neon orange */
+}
+
+.nav-item.active,
+.premium-tag.active {
+    color: var(--text-primary); /* neon orange */
+}
+
+.premium-star.active {
+    color: #ff9d00; /* neon orange for star */
+    filter: drop-shadow(0 0 4px #ff9d00);
 }
 
 .sub-nav .row-3-group {
