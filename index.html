@@ -54,29 +54,17 @@
             <div class="left-block"></div>
 
             <div class="center-block">
-
-                <!-- ✅ NAV FINAL I SAKTË -->
                 <nav class="main-nav nav-main" id="main-nav" aria-label="Primary navigation">
-
-                    <a href="#" class="nav-item primary-link active" data-section="odds">
-                        ODDS COMPARISON
-                    </a>
-
-                    <a href="#" class="nav-item primary-link" data-section="community">
-                        COMMUNITY
-                    </a>
-
-                    <a href="#" class="nav-item primary-link" data-section="bookmakers" id="bookmakers-nav">
+                    <a href="#" class="nav-item primary-link active" data-section="odds">ODDS COMPARISON</a>
+                    <a href="#" class="nav-item primary-link" data-section="community">COMMUNITY</a>
+                    <a href="#" class="nav-item primary-link" data-section="bookmakers">
                         BOOKMAKERS
+                        <span class="premium-tag" id="premium-toggle">
+                            PREMIUM
+                            <span class="premium-star">★</span>
+                        </span>
                     </a>
-
-                    <a href="#" class="nav-item primary-link premium-link" id="premium-toggle" data-section="premium">
-                        PREMIUM <span class="premium-star">★</span>
-                    </a>
-
                 </nav>
-                <!-- ⬆️ NAV U VENDOS SAKTË -->
-
             </div>
 
             <div class="right-block">
@@ -126,7 +114,7 @@
             <a href="#" class="sub-item">BETTING APPS</a>
         </div>
 
-        <!-- PREMIUM SUB NAV -->
+        <!-- PREMIUM SUB NAV (triggered from PREMIUM tag) -->
         <div class="row-3-group row-3-premium" data-subnav="premium">
             <a href="#" class="sub-item">Premium Dashboard</a>
             <a href="#" class="sub-item">Market Insights</a>
@@ -151,10 +139,217 @@
     </div>
 
     <main class="layout">
-        <!-- CONTENT (unchanged) -->
+        <aside class="sidebar">
+            <section class="panel">
+                <header class="panel-head">MY LEAGUES</header>
+                <div class="panel-body">
+                    <button class="panel-toggle" type="button">
+                        <span class="toggle-icon">▶</span>
+                        <span class="toggle-text">Manage my leagues</span>
+                    </button>
+                    <div class="list-item">
+                        <img src="images/football.svg" alt="Football icon" class="list-icon">
+                        <span class="list-text">Football</span>
+                    </div>
+                    <div class="list-item">
+                        <img src="images/baseball.svg" alt="Baseball icon" class="list-icon">
+                        <span class="list-text">Baseball</span>
+                    </div>
+                    <div class="list-item">
+                        <img src="images/rugby.svg" alt="Rugby icon" class="list-icon">
+                        <span class="list-text">Rugby League</span>
+                    </div>
+                    <div class="list-item">
+                        <img src="images/basketball.svg" alt="Basketball icon" class="list-icon">
+                        <span class="list-text">Basketball</span>
+                    </div>
+                    <div class="list-item">
+                        <img src="images/golf.svg" alt="Golf icon" class="list-icon">
+                        <span class="list-text">Golf</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel coupon">
+                <header class="panel-head">MY COUPON</header>
+                <div class="panel-body coupon-body">
+                    <div class="coupon-row coupon-leagues">
+                        <div class="coupon-label">All leagues</div>
+                        <div class="coupon-count">(0)</div>
+                    </div>
+                    <div class="coupon-row coupon-values">
+                        <div class="coupon-col">Total odds: 1.00</div>
+                        <div class="coupon-col">Stake:</div>
+                    </div>
+                    <div class="coupon-row">
+                        <div class="coupon-col">Max. stake:</div>
+                    </div>
+                    <div class="coupon-row">
+                        <div class="coupon-col">Total profit:</div>
+                    </div>
+                </div>
+            </section>
+        </aside>
+
+        <section class="content-area">
+            <div class="banners">
+                <div class="banner-card">
+                    <div class="banner-title">BETFURY</div>
+                    <div class="banner-sub">Exclusive 250-450% Rakeback on Bingo</div>
+                    <button class="banner-btn" type="button">CLAIM</button>
+                </div>
+                <div class="banner-card">
+                    <div class="banner-title">betsson</div>
+                    <div class="banner-sub">100% up to €100 + €25 if a bet loses!</div>
+                    <button class="banner-btn" type="button">CLAIM</button>
+                </div>
+                <div class="banner-card">
+                    <div class="banner-title">BC.GAME</div>
+                    <div class="banner-sub">Up to 330% deposit bonus on your first deposit</div>
+                    <button class="banner-btn" type="button">CLAIM</button>
+                </div>
+            </div>
+
+            <div class="page-header">
+                <div class="breadcrumb">Home &gt; Dropping Odds</div>
+                <h1 class="page-title">Dropping Odds</h1>
+                <p class="page-text">Dropping odds on OddsPortal enables you to find the online bookmakers that have the best odds right now and it helps you to place the most profitable bet!</p>
+                <p class="page-text">Odds could drop because of a player injury or illness throughout a team, or when bookmakers has intentionally decided to decrease their odds because they consider there has been a lot of betting on one team versus another, possibly because the public has placed too much money on a particular team with bookmaker.</p>
+                <p class="page-text">On this site you'll find a list of the best dropping odds across different sports, with several bookmakers, all tabularly presented for you to find the most profitable odds in the market.</p>
+            </div>
+
+            <div class="filters">
+                <label class="filter-control">
+                    <span class="filter-label">24 hours</span>
+                    <img src="images/chevron.svg" alt="" aria-hidden="true" class="filter-icon">
+                </label>
+                <label class="filter-control">
+                    <span class="filter-label">Dropping bookies</span>
+                    <img src="images/chevron.svg" alt="" aria-hidden="true" class="filter-icon">
+                </label>
+                <label class="filter-control">
+                    <span class="filter-label">1X2 FT Only</span>
+                    <img src="images/chevron.svg" alt="" aria-hidden="true" class="filter-icon">
+                </label>
+                <label class="filter-check">
+                    <input type="checkbox" checked>
+                    Show additional matches of selected leagues only
+                </label>
+            </div>
+        </section>
+
+        <aside class="sidebar right">
+            <section class="panel">
+                <header class="panel-head">TOP EVENTS</header>
+                <div class="panel-body">
+                    <div class="list-item">
+                        <img src="images/football.svg" alt="Football icon" class="list-icon">
+                        <div class="event-text">Champions League <span>↩</span></div>
+                    </div>
+                    <div class="list-item">
+                        <img src="images/basketball.svg" alt="Basketball icon" class="list-icon">
+                        <div class="event-text">BBL <span>↩</span></div>
+                    </div>
+                    <div class="list-item">
+                        <img src="images/tennis.svg" alt="Tennis icon" class="list-icon">
+                        <div class="event-text">ITF Men / ITF Women <span>↩</span></div>
+                    </div>
+                    <div class="list-item">
+                        <img src="images/football.svg" alt="Football icon" class="list-icon">
+                        <div class="event-text">Bundesliga <span>↩</span></div>
+                    </div>
+                    <div class="list-item">
+                        <img src="images/football.svg" alt="Football icon" class="list-icon">
+                        <div class="event-text">Premier League <span>↩</span></div>
+                    </div>
+                    <div class="list-item">
+                        <img src="images/football.svg" alt="Football icon" class="list-icon">
+                        <div class="event-text">Primera División <span>↩</span></div>
+                    </div>
+                    <div class="list-item">
+                        <img src="images/football.svg" alt="Football icon" class="list-icon">
+                        <div class="event-text">Serie A <span>↩</span></div>
+                    </div>
+                    <div class="list-item">
+                        <img src="images/football.svg" alt="Football icon" class="list-icon">
+                        <div class="event-text">Ligue 1 <span>↩</span></div>
+                    </div>
+                </div>
+            </section>
+        </aside>
     </main>
 
     <div class="modal-overlay" id="modal-overlay"></div>
+
+    <div class="modal" id="login-modal" aria-hidden="true">
+        <button class="modal-close" data-modal-close="login">×</button>
+        <h2 class="modal-title">Login</h2>
+
+        <button class="modal-btn social facebook" type="button">SIGN IN WITH FACEBOOK</button>
+        <button class="modal-btn social apple" type="button">SIGN IN WITH APPLE</button>
+
+        <div class="modal-or">OR</div>
+
+        <form class="modal-form">
+            <label class="modal-label">
+                Username <span class="required">*</span>
+                <input type="text" name="username">
+            </label>
+            <label class="modal-label">
+                Password <span class="required">*</span>
+                <div class="password-field">
+                    <input type="password" name="password">
+                    <button type="button" class="password-toggle" aria-label="Toggle password visibility">👁</button>
+                </div>
+            </label>
+
+            <label class="modal-remember">
+                <input type="checkbox" checked>
+                <span>Remember me</span>
+            </label>
+
+            <button class="modal-btn primary" type="submit">LOGIN</button>
+
+            <p class="modal-text">
+                Don't have an account yet?
+                <a href="#" id="open-register-from-login">Create one for free now!</a>
+            </p>
+            <p class="modal-text">
+                <a href="#">Forgot password</a>
+            </p>
+        </form>
+    </div>
+
+    <div class="modal" id="register-modal" aria-hidden="true">
+        <button class="modal-close" data-modal-close="register">×</button>
+        <h2 class="modal-title">Register</h2>
+
+        <form class="modal-form">
+            <label class="modal-label">
+                Username <span class="required">*</span>
+                <input type="text" name="reg-username">
+            </label>
+            <label class="modal-label">
+                Email <span class="required">*</span>
+                <input type="email" name="reg-email">
+            </label>
+            <label class="modal-label">
+                Password <span class="required">*</span>
+                <input type="password" name="reg-password">
+            </label>
+            <label class="modal-label">
+                Confirm Password <span class="required">*</span>
+                <input type="password" name="reg-password-confirm">
+            </label>
+
+            <button class="modal-btn primary" type="submit">CREATE ACCOUNT</button>
+
+            <p class="modal-text">
+                Already have an account?
+                <a href="#" id="open-login-from-register">Login here</a>
+            </p>
+        </form>
+    </div>
 
     <script src="scripts.js"></script>
 </body>
