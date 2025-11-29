@@ -930,22 +930,4 @@ body {
     .sidebar.right {
         order: 3;
     }
-}.premium-link {
-    display: flex;
-    align-items: center;
-    gap: 4px;
 }
-
-.premium-link.active {
-    color: var(--text-primary) !important;
-}
-
-.premium-star {
-    color: #ff9d00;
-}
-
-.premium-link.active .premium-star {
-    filter: drop-shadow(0 0 6px #ff9d00);
-}
-
-
