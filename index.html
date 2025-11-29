@@ -289,12 +289,19 @@
 
     <div class="modal-overlay" id="modal-overlay"></div>
 
-    <div class="modal" id="login-modal" aria-hidden="true">
+    <div class="modal login-center" id="login-modal" aria-hidden="true">
         <button class="modal-close" data-modal-close="login">×</button>
-        <h2 class="modal-title">Login</h2>
 
-        <button class="modal-btn social facebook" type="button">SIGN IN WITH FACEBOOK</button>
-        <button class="modal-btn social apple" type="button">SIGN IN WITH APPLE</button>
+        <div class="login-header">
+            <div class="login-icon">👤</div>
+            <h2 class="modal-title">Login</h2>
+        </div>
+
+        <div class="login-options">
+            <button class="modal-btn social facebook" type="button">SIGN IN WITH FACEBOOK</button>
+            <button class="modal-btn social apple" type="button">SIGN IN WITH APPLE</button>
+            <button class="modal-btn social google" type="button">SIGN IN WITH GOOGLE</button>
+        </div>
 
         <div class="modal-or">OR</div>
 
@@ -303,6 +310,7 @@
                 Username <span class="required">*</span>
                 <input type="text" name="username">
             </label>
+
             <label class="modal-label">
                 Password <span class="required">*</span>
                 <div class="password-field">
@@ -319,9 +327,10 @@
             <button class="modal-btn primary" type="submit">LOGIN</button>
 
             <p class="modal-text">
-                Don't have an account yet?
+                Don’t have an account?
                 <a href="#" id="open-register-from-login">Create one for free now!</a>
             </p>
+
             <p class="modal-text">
                 <a href="#">Forgot password</a>
             </p>

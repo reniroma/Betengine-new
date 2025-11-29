@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const rowGroups = document.querySelectorAll('.row-3-group');
     const bookmakersNav = document.getElementById("bookmakers-nav");
     const premiumToggle = document.getElementById("premium-toggle");
+    const loginButton = document.querySelector('.auth-btn.login');
+    const overlay = document.getElementById('modal-overlay');
+    const loginModal = document.getElementById('login-modal');
+    const loginClose = document.querySelector('#login-modal .modal-close');
 
     function clearActive() {
         navItems.forEach(i => i.classList.remove("active"));
@@ -41,6 +45,22 @@ document.addEventListener("DOMContentLoaded", () => {
         clearActive();
         premiumToggle.classList.add("active");
         setSection("premium");
+    });
+
+    loginButton.addEventListener('click', () => {
+        overlay.style.display = 'block';
+        loginModal.style.display = 'block';
+        loginModal.classList.add('login-center');
+    });
+
+    loginClose.addEventListener('click', () => {
+        overlay.style.display = 'none';
+        loginModal.style.display = 'none';
+    });
+
+    overlay.addEventListener('click', () => {
+        overlay.style.display = 'none';
+        loginModal.style.display = 'none';
     });
 
 });
