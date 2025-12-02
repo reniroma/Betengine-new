@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const oddsToggle = document.getElementById("odds-toggle");
     const oddsDropdown = document.getElementById("odds-dropdown");
 
+    const langToggle = document.querySelector(".language-toggle");
+    const langDropdown = document.getElementById("lang-dropdown");
+
     const loginButton = document.querySelector(".auth-btn.login");
     const registerButton = document.querySelector(".auth-btn.register");
 
@@ -31,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let activeModal = null;
     let bettingToolsOpen = false;
     let oddsDropdownOpen = false;
+    let langDropdownOpen = false;
 
     // Utility: clear active nav
     function clearActiveNav() {
@@ -140,6 +144,45 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // LANGUAGE DROPDOWN
+    function openLangDropdown() {
+        if (!langToggle || !langDropdown) return;
+        const rect = langToggle.getBoundingClientRect();
+        langDropdown.style.display = "block";
+        langDropdown.style.top = rect.bottom + window.scrollY + 4 + "px";
+        langDropdown.style.left = rect.left + window.scrollX + "px";
+        langDropdownOpen = true;
+    }
+
+    function closeLangDropdown() {
+        if (!langDropdown) return;
+        langDropdown.style.display = "none";
+        langDropdownOpen = false;
+    }
+
+    if (langToggle && langDropdown) {
+        langToggle.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if (langDropdownOpen) {
+                closeLangDropdown();
+            } else {
+                openLangDropdown();
+            }
+        });
+
+        langDropdown.addEventListener("click", (e) => {
+            const item = e.target.closest(".lang-item");
+            if (!item) return;
+            const label = (item.textContent || "").trim();
+            const allItems = langDropdown.querySelectorAll(".lang-item");
+            allItems.forEach(i => i.classList.remove("active"));
+            item.classList.add("active");
+            langToggle.textContent = label + " ▾";
+            closeLangDropdown();
+        });
+    }
+
     // MODALS
     function openModal(modal) {
         if (!modal || !overlay) return;
@@ -220,6 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
             closeAnyModal();
             closeBettingToolsDropdown();
             closeOddsDropdown();
+            closeLangDropdown();
         }
     });
 
@@ -260,6 +304,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const insideDropdown = oddsDropdown && oddsDropdown.contains(target);
             if (!insideToggle && !insideDropdown) {
                 closeOddsDropdown();
+            }
+        }
+
+        if (langDropdownOpen) {
+            const insideToggle = langToggle && langToggle.contains(target);
+            const insideDropdown = langDropdown && langDropdown.contains(target);
+            if (!insideToggle && !insideDropdown) {
+                closeLangDropdown();
             }
         }
     });
