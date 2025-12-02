@@ -168,9 +168,8 @@ body {
     padding-left: 8px;
 }
 
-/* LANGUAGE TOGGLE FIX — R1-1 */
-.language-toggle,
-.selector {
+/* LANGUAGE TOGGLE – vetem ky ka cursor pointer */
+.language-toggle {
     cursor: pointer;
 }
 
