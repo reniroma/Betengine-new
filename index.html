@@ -1,395 +1,854 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BetEngine</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header class="top-bar header">
-        <div class="row1">
-            <div class="left-block">
-                <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
-                    ☰
-                </button>
-            </div>
+* {
+    box-sizing: border-box;
+}
 
-            <div class="center-block"></div>
+:root {
+    --bg-main: #0a0c12;
+    --bg-header: #0a0c12;
+    --bg-nav: #0a0c12;
+    --bg-panel: #11141d;
+    --bg-button-primary: #ff9d00;
+    --bg-button-primary-hover: #ffb733;
+    --text-primary: #ff9d00;
+    --text-secondary: #00eaff;
+    --text-muted: #b3b3b3;
+    --border-neon: #ff0000;
+}
 
-            <div class="right-block">
-                <div class="top-options">
-                    <div class="odds-format" id="odds-format">
-                        <span class="small-label">Odds formats:</span>
-                        <button type="button" class="selector odds-toggle" id="odds-toggle">
-                            Decimal Odds ▾
-                        </button>
-                        <div class="odds-dropdown" id="odds-dropdown">
-                            <div class="odds-item active">Decimal Odds (1.50) ✔</div>
-                            <div class="odds-item">Fractional Odds (1/2)</div>
-                            <div class="odds-item">Money Line Odds (-200)</div>
-                            <div class="odds-item">Hong Kong Odds (0.50)</div>
-                            <div class="odds-item">Malay Odds (0.50)</div>
-                            <div class="odds-item">Indonesian Odds (-2.00)</div>
-                        </div>
-                    </div>
-                    <span class="small-label icon-globe">Language:</span>
-                    <span class="selector language-toggle">English ▾</span>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: var(--text-primary);
+    background-color: var(--bg-main);
+}
 
-                    <!-- LANGUAGE DROPDOWN -->
-                    <div class="lang-dropdown" id="lang-dropdown">
-                        <div class="lang-item active" data-lang="en">English</div>
-                        <div class="lang-item" data-lang="de">German</div>
-                        <div class="lang-item" data-lang="nl">Dutch</div>
-                        <div class="lang-item" data-lang="fr">French</div>
-                        <div class="lang-item" data-lang="it">Italian</div>
-                        <div class="lang-item" data-lang="es">Spanish</div>
-                        <div class="lang-item" data-lang="pt">Portuguese</div>
-                        <div class="lang-item" data-lang="tr">Turkish</div>
-                        <div class="lang-item" data-lang="pl">Polish</div>
-                        <div class="lang-item" data-lang="sr">Serbian</div>
-                        <div class="lang-item" data-lang="hr">Croatian</div>
-                        <div class="lang-item" data-lang="ro">Romanian</div>
-                        <div class="lang-item" data-lang="el">Greek</div>
-                        <div class="lang-item" data-lang="ru">Russian</div>
-                        <div class="lang-item" data-lang="uk">Ukrainian</div>
-                        <div class="lang-item" data-lang="ar">Arabic</div>
-                        <div class="lang-item" data-lang="zh">Chinese</div>
-                        <div class="lang-item" data-lang="ja">Japanese</div>
-                        <div class="lang-item" data-lang="ko">Korean</div>
-                        <div class="lang-item" data-lang="id">Indonesian</div>
-                        <div class="lang-item" data-lang="in">Indian</div>
-                        <div class="lang-item" data-lang="al">Albanian</div>
-                    </div>
-                    <!-- END LANGUAGE DROPDOWN -->
+/* HEADER / TOP BAR */
 
-                    <button class="auth-btn login" type="button">LOGIN</button>
-                    <button class="auth-btn register" type="button">REGISTER</button>
-                </div>
-            </div>
-        </div>
+.top-bar {
+    background-color: var(--bg-header);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-neon);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+}
 
-        <div class="row1-separator"></div>
+.header {
+    width: 100%;
+}
 
-        <div class="row2">
-            <div class="left-block">
-                <div class="brand-area">
-                    <div class="logo">BE</div>
-                    <div class="brand">
-                        <span class="brand-name">BetEngine</span>
-                        <span class="brand-tagline">Smart betting tools</span>
-                    </div>
-                </div>
-            </div>
+/* ROWS */
 
-            <div class="center-block">
-                <!-- MAIN NAV -->
-                <nav class="main-nav nav-main" id="main-nav" aria-label="Primary navigation">
-                    <a href="#" class="nav-item primary-link active" data-section="odds">
-                        ODDS COMPARISON
-                    </a>
-                    <a href="#" class="nav-item primary-link" data-section="community">
-                        COMMUNITY
-                    </a>
-                    <a href="#" class="nav-item primary-link" data-section="bookmakers" id="bookmakers-nav">
-                        BOOKMAKERS
-                    </a>
-                    <a href="#" class="nav-item primary-link premium-link" id="premium-toggle" data-section="premium">
-                        PREMIUM <span class="premium-star">★</span>
-                    </a>
-                </nav>
-                <!-- END MAIN NAV -->
-            </div>
+.row1,
+.row2 {
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
 
-            <div class="right-block">
-                <div class="search-box">
-                    <input type="search" placeholder="Search (team / player)" aria-label="Search team or player" />
-                    <span class="search-icon">🔍</span>
-                    <span class="gift-icon" aria-hidden="true">🎁</span>
-                </div>
-            </div>
-        </div>
+.row1 {
+    height: 46px;
+    border-bottom: 1px solid var(--border-neon);
+}
 
-        <div class="row2-separator"></div>
-    </header>
+.row2 {
+    height: 50px;
+    border-bottom: 1px solid var(--border-neon);
+}
 
-    <nav class="sub-nav" id="sub-nav" aria-label="Secondary navigation">
-        <div class="row-3-group row-3-odds active" data-subnav="odds">
-            <a href="#" class="sub-item" data-odds-tab="home">HOME</a>
-            <a href="#" class="sub-item" data-odds-tab="next-matches">NEXT MATCHES</a>
-            <a href="#" class="sub-item" data-odds-tab="dropping-odds">DROPPING ODDS</a>
-            <a href="#" class="sub-item" data-odds-tab="sure-bets">SURE BETS</a>
-            <a href="#" class="sub-item" data-odds-tab="in-play-odds">IN PLAY ODDS</a>
-            <a href="#" class="sub-item" data-odds-tab="all-events">ALL EVENTS</a>
-            <a href="#" class="sub-item sub-item-tools" id="betting-tools-toggle">
-                BETTING TOOLS ▾
-            </a>
-            <a href="#" class="sub-item" data-odds-tab="betting">BETTING</a>
-        </div>
+.row1-separator,
+.row2-separator {
+    height: 1px;
+    background-color: var(--border-neon);
+}
 
-        <div class="row-3-group row-3-community" data-subnav="community">
-            <a href="#" class="sub-item">HOME</a>
-            <a href="#" class="sub-item">FEED</a>
-            <a href="#" class="sub-item">USERS</a>
-            <a href="#" class="sub-item">TOP PREDICTIONS</a>
-            <a href="#" class="sub-item">MY STATISTICS</a>
-            <a href="#" class="sub-item">MY PROFILE</a>
-            <a href="#" class="sub-item">MY PREDICTIONS</a>
-            <a href="#" class="sub-item">MY COUPONS</a>
-        </div>
+/* FLEX BLOCKS */
 
-        <div class="row-3-group row-3-bookmakers" data-subnav="bookmakers">
-            <a href="#" class="sub-item">BOOKIE INFO</a>
-            <a href="#" class="sub-item">BONUS OFFERS</a>
-            <a href="#" class="sub-item">ODDS QUALITY</a>
-            <a href="#" class="sub-item">BETTING APPS</a>
-        </div>
+.left-block,
+.center-block,
+.right-block {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
 
-        <div class="row-3-group row-3-premium" data-subnav="premium">
-            <a href="#" class="sub-item">Premium Dashboard</a>
-            <a href="#" class="sub-item">Market Insights</a>
-            <a href="#" class="sub-item">Fair Odds Engine</a>
-            <a href="#" class="sub-item">AI Predictions</a>
-            <a href="#" class="sub-item">Smart H2H Insights</a>
-            <a href="#" class="sub-item">Value Finder</a>
-            <a href="#" class="sub-item">Sharp vs Public Money</a>
-            <a href="#" class="sub-item">Shock Alerts</a>
-            <a href="#" class="sub-item">AI Live Momentum</a>
-            <a href="#" class="sub-item">Fake Trend Detector</a>
-        </div>
-    </nav>
+.left-block {
+    flex: 1;
+}
 
-    <div class="betting-tools-dropdown" id="betting-tools-dropdown">
-        <div class="tools-item">BLOCKED ODDS</div>
-        <div class="tools-item">VALUE BETS</div>
-        <div class="tools-item">HOT MATCHES</div>
-        <div class="tools-item">ARCHIVED RESULTS</div>
-        <div class="tools-item">STANDINGS</div>
-        <div class="tools-item">BET CALCULATOR</div>
-    </div>
+.center-block {
+    flex: 2;
+    justify-content: center;
+}
 
-    <main class="layout">
-        <aside class="sidebar">
-            <section class="panel">
-                <header class="panel-head">MY LEAGUES</header>
-                <div class="panel-body">
-                    <button class="panel-toggle" type="button">
-                        <span class="toggle-icon">▶</span>
-                        <span class="toggle-text">Manage my leagues</span>
-                    </button>
-                    <div class="list-item">
-                        <img src="images/football.svg" alt="Football icon" class="list-icon">
-                        <span class="list-text">Football</span>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/baseball.svg" alt="Baseball icon" class="list-icon">
-                        <span class="list-text">Baseball</span>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/rugby.svg" alt="Rugby icon" class="list-icon">
-                        <span class="list-text">Rugby League</span>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/basketball.svg" alt="Basketball icon" class="list-icon">
-                        <span class="list-text">Basketball</span>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/golf.svg" alt="Golf icon" class="list-icon">
-                        <span class="list-text">Golf</span>
-                    </div>
-                </div>
-            </section>
+.right-block {
+    flex: 1;
+    justify-content: flex-end;
+}
 
-            <section class="panel coupon">
-                <header class="panel-head">MY COUPON</header>
-                <div class="panel-body coupon-body">
-                    <div class="coupon-row coupon-leagues">
-                        <div class="coupon-label">All leagues</div>
-                        <div class="coupon-count">(0)</div>
-                    </div>
-                    <div class="coupon-row coupon-values">
-                        <div class="coupon-col">Total odds: 1.00</div>
-                        <div class="coupon-col">Stake:</div>
-                    </div>
-                    <div class="coupon-row">
-                        <div class="coupon-col">Max. stake:</div>
-                    </div>
-                    <div class="coupon-row">
-                        <div class="coupon-col">Total profit:</div>
-                    </div>
-                </div>
-            </section>
-        </aside>
+/* MENU TOGGLE (MOBILE) */
 
-        <section class="content-area">
-            <div class="banners">
-                <div class="banner-card">
-                    <div class="banner-title">BETFURY</div>
-                    <div class="banner-sub">Exclusive 250-450% Rakeback on Bingo</div>
-                    <button class="banner-btn" type="button">CLAIM</button>
-                </div>
-                <div class="banner-card">
-                    <div class="banner-title">betsson</div>
-                    <div class="banner-sub">100% up to €100 + €25 if a bet loses!</div>
-                    <button class="banner-btn" type="button">CLAIM</button>
-                </div>
-                <div class="banner-card">
-                    <div class="banner-title">BC.GAME</div>
-                    <div class="banner-sub">Up to 330% deposit bonus on your first deposit</div>
-                    <button class="banner-btn" type="button">CLAIM</button>
-                </div>
-            </div>
+.menu-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--bg-panel);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-neon);
+    border-radius: 4px;
+    font-weight: 800;
+    font-size: 18px;
+    cursor: pointer;
+}
 
-            <div class="page-header">
-                <div class="breadcrumb">Home &gt; Dropping Odds</div>
-                <h1 class="page-title">Dropping Odds</h1>
-                <p class="page-text">Dropping odds on OddsPortal enables you to find the online bookmakers that have the best odds right now and it helps you to place the most profitable bet!</p>
-                <p class="page-text">Odds could drop because of a player injury or illness throughout a team, or when bookmakers has intentionally decided to decrease their odds because they consider there has been a lot of betting on one team versus another, possibly because the public has placed too much money on a particular team with bookmaker.</p>
-                <p class="page-text">On this site you'll find a list of the best dropping odds across different sports, with several bookmakers, all tabularly presented for you to find the most profitable odds in the market.</p>
-            </div>
+.menu-toggle:hover,
+.menu-toggle:focus-visible {
+    background: var(--bg-button-primary);
+    color: #000000;
+}
 
-            <div class="filters">
-                <label class="filter-control">
-                    <span class="filter-label">24 hours</span>
-                    <img src="images/chevron.svg" alt="" aria-hidden="true" class="filter-icon">
-                </label>
-                <label class="filter-control">
-                    <span class="filter-label">Dropping bookies</span>
-                    <img src="images/chevron.svg" alt="" aria-hidden="true" class="filter-icon">
-                </label>
-                <label class="filter-control">
-                    <span class="filter-label">1X2 FT Only</span>
-                    <img src="images/chevron.svg" alt="" aria-hidden="true" class="filter-icon">
-                </label>
-                <label class="filter-check">
-                    <input type="checkbox" checked>
-                    Show additional matches of selected leagues only
-                </label>
-            </div>
-        </section>
+/* BRAND AREA */
 
-        <aside class="sidebar right">
-            <section class="panel">
-                <header class="panel-head">TOP EVENTS</header>
-                <div class="panel-body">
-                    <div class="list-item">
-                        <img src="images/football.svg" alt="Football icon" class="list-icon">
-                        <div class="event-text">Champions League <span>↩</span></div>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/basketball.svg" alt="Basketball icon" class="list-icon">
-                        <div class="event-text">BBL <span>↩</span></div>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/tennis.svg" alt="Tennis icon" class="list-icon">
-                        <div class="event-text">ITF Men / ITF Women <span>↩</span></div>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/football.svg" alt="Football icon" class="list-icon">
-                        <div class="event-text">Bundesliga <span>↩</span></div>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/football.svg" alt="Football icon" class="list-icon">
-                        <div class="event-text">Premier League <span>↩</span></div>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/football.svg" alt="Football icon" class="list-icon">
-                        <div class="event-text">Primera División <span>↩</span></div>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/football.svg" alt="Football icon" class="list-icon">
-                        <div class="event-text">Serie A <span>↩</span></div>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/football.svg" alt="Football icon" class="list-icon">
-                        <div class="event-text">Ligue 1 <span>↩</span></div>
-                    </div>
-                </div>
-            </section>
-        </aside>
-    </main>
+.brand-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-    <div class="modal-overlay" id="modal-overlay"></div>
+.logo {
+    width: 36px;
+    height: 36px;
+    background: var(--bg-button-primary);
+    border-radius: 6px;
+    display: grid;
+    place-items: center;
+    color: #000000;
+    font-weight: 800;
+    border: 1px solid var(--border-neon);
+}
 
-    <div class="modal login-center" id="login-modal" aria-hidden="true">
-        <button class="modal-close" data-modal-close="login">×</button>
+.brand {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
 
-        <div class="login-header">
-            <div class="login-icon">👤</div>
-            <h2 class="modal-title">Login</h2>
-        </div>
+.brand-name {
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--text-secondary);
+}
 
-        <div class="login-options">
-            <button class="modal-btn social facebook" type="button">SIGN IN WITH FACEBOOK</button>
-            <button class="modal-btn social apple" type="button">SIGN IN WITH APPLE</button>
-            <button class="modal-btn social google" type="button">SIGN IN WITH GOOGLE</button>
-        </div>
+.brand-tagline {
+    font-size: 12px;
+    color: var(--text-muted);
+}
 
-        <div class="modal-or">OR</div>
+/* TOP OPTIONS (ROW 1 RIGHT) */
 
-        <form class="modal-form">
-            <label class="modal-label">
-                Username <span class="required">*</span>
-                <input type="text" name="username">
-            </label>
+.top-options {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+}
 
-            <label class="modal-label">
-                Password <span class="required">*</span>
-                <div class="password-field">
-                    <input type="password" name="password">
-                    <button type="button" class="password-toggle" aria-label="Toggle password visibility">👁</button>
-                </div>
-            </label>
+.small-label {
+    color: var(--text-muted);
+}
 
-            <label class="modal-remember">
-                <input type="checkbox" checked>
-                <span>Remember me</span>
-            </label>
+.selector {
+    color: var(--text-secondary);
+    font-weight: 700;
+}
 
-            <button class="modal-btn primary" type="submit">LOGIN</button>
+.icon-globe {
+    padding-left: 8px;
+}
 
-            <p class="modal-text">
-                Don’t have an account?
-                <a href="#" id="open-register-from-login">Create one for free now!</a>
-            </p>
+/* LANGUAGE TOGGLE – vetem ky ka cursor pointer */
+.language-toggle {
+    cursor: pointer;
+}
 
-            <p class="modal-text">
-                <a href="#">Forgot password</a>
-            </p>
-        </form>
-    </div>
+/* ODDS FORMAT DROPDOWN */
 
-    <div class="modal" id="register-modal" aria-hidden="true">
-        <button class="modal-close" data-modal-close="register">×</button>
-        <h2 class="modal-title">Register</h2>
+.odds-format {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
 
-        <form class="modal-form">
-            <label class="modal-label">
-                Username <span class="required">*</span>
-                <input type="text" name="reg-username">
-            </label>
-            <label class="modal-label">
-                Email <span class="required">*</span>
-                <input type="email" name="reg-email">
-            </label>
-            <label class="modal-label">
-                Password <span class="required">*</span>
-                <input type="password" name="reg-password">
-            </label>
-            <label class="modal-label">
-                Confirm Password <span class="required">*</span>
-                <input type="password" name="reg-password-confirm">
-            </label>
+.odds-toggle {
+    border: none;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    font-weight: 700;
+}
 
-            <button class="modal-btn primary" type="submit">CREATE ACCOUNT</button>
+.odds-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 4px;
+    padding: 8px 12px;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-neon);
+    display: none;
+    z-index: 80;
+}
 
-            <p class="modal-text">
-                Already have an account?
-                <a href="#" id="open-login-from-register">Login here</a>
-            </p>
-        </form>
-    </div>
+.odds-item {
+    font-size: 13px;
+    padding: 3px 0;
+    white-space: nowrap;
+    color: var(--text-secondary);
+}
 
-    <script src="scripts.js"></script>
-</body>
-</html>
+.odds-item.active {
+    font-weight: 700;
+}
+
+/* AUTH BUTTONS */
+
+.auth-btn {
+    padding: 8px 14px;
+    border-radius: 4px;
+    border: 1px solid var(--border-neon);
+    background-color: var(--bg-panel);
+    color: var(--text-primary);
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.auth-btn.register {
+    background-color: var(--bg-button-primary);
+    color: #000000;
+    border-color: var(--border-neon);
+}
+
+/* MAIN NAV (ROW 2 CENTER) */
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.nav-item {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 700;
+    padding: 10px 0;
+    position: relative;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+}
+
+.nav-item.active,
+.nav-item:hover {
+    color: var(--text-primary);
+    text-shadow: 0 0 8px #00eaff;
+}
+
+.premium-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.premium-star {
+    font-size: 1em;
+    color: #ff9d00;
+}
+
+/* SEARCH BOX (ROW 2 RIGHT) */
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-neon);
+    border-radius: 4px;
+    padding: 0 8px;
+    height: 34px;
+    gap: 6px;
+}
+
+.search-box input {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    width: 180px;
+    font-size: 13px;
+}
+
+.search-box input:focus {
+    outline: none;
+}
+
+.search-box input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-icon,
+.gift-icon {
+    font-size: 14px;
+}
+
+/* SUB NAV (ROW 3) */
+
+.sub-nav {
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-neon);
+    background-color: var(--bg-nav);
+}
+
+.sub-nav .row-3-group {
+    display: none;
+    width: 100%;
+    align-items: center;
+    gap: 24px;
+}
+
+.sub-nav .row-3-group.active {
+    display: flex;
+}
+
+.sub-item {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 13px;
+    padding: 8px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.sub-item.active,
+.sub-item:hover {
+    background-color: var(--bg-button-primary);
+    color: #000000;
+    font-weight: 700;
+}
+
+.sub-item-tools {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* BETTING TOOLS DROPDOWN */
+
+.betting-tools-dropdown {
+    position: absolute;
+    display: none;
+    padding: 8px 12px;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-neon);
+    z-index: 50;
+}
+
+.betting-tools-dropdown .tools-item {
+    font-size: 13px;
+    padding: 4px 0;
+    white-space: nowrap;
+    color: var(--text-secondary);
+}
+
+.betting-tools-dropdown .tools-item:first-child {
+    font-weight: 700;
+}
+
+/* LAYOUT GRID */
+
+.layout {
+    display: grid;
+    grid-template-columns: 240px 1fr 240px;
+    gap: 18px;
+    padding: 18px 16px 32px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+/* SIDEBARS & PANELS */
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.sidebar.right .panel {
+    min-height: 320px;
+}
+
+.panel {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-neon);
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+    color: var(--text-primary);
+}
+
+.panel-head {
+    background-color: var(--bg-header);
+    color: var(--text-secondary);
+    padding: 10px 12px;
+    font-weight: 700;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border-neon);
+}
+
+.panel-body {
+    padding: 10px 12px;
+}
+
+.panel-toggle {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 0 10px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    font-size: 13px;
+}
+
+/* LIST ITEMS */
+
+.list-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border-neon);
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.list-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.list-text,
+.event-text {
+    color: var(--text-primary);
+    font-size: 13px;
+}
+
+.event-text span {
+    color: var(--text-secondary);
+    margin-left: 6px;
+}
+
+/* COUPON PANEL */
+
+.coupon .panel-head {
+    color: #000000;
+    background-color: var(--bg-button-primary);
+    border-bottom-color: var(--border-neon);
+}
+
+.coupon-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.coupon-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+}
+
+.coupon-leagues {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.coupon-label {
+    color: var(--text-primary);
+}
+
+.coupon-values .coupon-col:first-child {
+    color: var(--text-primary);
+}
+
+/* CONTENT AREA */
+
+.content-area {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    color: var(--text-primary);
+}
+
+/* BANNERS */
+
+.banners {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.banner-card {
+    background-color: var(--bg-button-primary);
+    border-radius: 4px;
+    padding: 10px 12px 12px;
+    color: #000000;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border: 1px solid var(--border-neon);
+}
+
+.banner-title {
+    font-size: 16px;
+    letter-spacing: 0.3px;
+}
+
+.banner-sub {
+    font-size: 13px;
+}
+
+.banner-btn {
+    align-self: flex-start;
+    background-color: var(--bg-header);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-neon);
+    border-radius: 4px;
+    padding: 6px 18px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+/* PAGE HEADER / TEXT */
+
+.page-header {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-neon);
+    border-radius: 5px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+    color: var(--text-primary);
+}
+
+.breadcrumb {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.page-title {
+    margin: 0;
+    font-size: 22px;
+    color: var(--text-secondary);
+}
+
+.page-text {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* FILTER BAR */
+
+.filters {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-neon);
+    border-radius: 5px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+    color: var(--text-primary);
+}
+
+.filter-control {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid var(--border-neon);
+    padding: 6px 10px;
+    border-radius: 4px;
+    background-color: var(--bg-panel);
+    color: var(--text-primary);
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.filter-icon {
+    width: 12px;
+    height: 12px;
+}
+
+.filter-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-left: auto;
+}
+
+.filter-check input {
+    accent-color: var(--bg-button-primary);
+}
+
+/* TRANSITIONS / HOVERS */
+
+.main-nav a,
+.sub-nav a,
+.banner-btn,
+.auth-btn,
+.filter-control,
+.panel-toggle {
+    transition: color 0.2s ease, background-color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.banner-card,
+.coupon .panel-head,
+.auth-btn.register {
+    background-color: var(--bg-button-primary);
+    color: #000000;
+}
+
+/* TEXT HELPERS */
+
+.text-secondary,
+.link-secondary {
+    color: var(--text-secondary);
+}
+
+.text-muted {
+    color: var(--text-muted);
+}
+
+/* MODALS */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    z-index: 90;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 360px;
+    max-width: 90vw;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    color: #000000;
+    padding: 24px 24px 32px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    display: none;
+    z-index: 100;
+}
+
+.modal.login-center {
+    width: 420px;
+    background: #11141d;
+    border: 1px solid #ff0000;
+    color: #ffffff;
+}
+
+.modal-title {
+    margin: 0 0 16px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.modal-close {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.login-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.login-icon {
+    font-size: 52px;
+    margin-bottom: 6px;
+}
+
+.login-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.modal-btn {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 3px;
+    border: 1px solid #000000;
+    cursor: pointer;
+}
+
+.modal-btn.primary {
+    background-color: #ff9d00;
+    border-color: #ff9d00;
+    color: #000000;
+}
+
+.modal-or {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #ff9d00;
+}
+
+.modal-form {
+    margin-top: 4px;
+}
+
+.modal-label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.modal-label input {
+    width: 100%;
+    padding: 6px 8px;
+    margin-top: 4px;
+}
+
+.password-field {
+    position: relative;
+}
+
+.password-field input {
+    padding-right: 32px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #333333;
+}
+
+.modal-remember {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    margin: 6px 0 10px;
+}
+
+.modal-text {
+    font-size: 13px;
+    margin: 4px 0;
+}
+
+.modal-text a {
+    text-decoration: underline;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+    .row1,
+    .row2 {
+        padding: 8px 16px;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .menu-toggle {
+        display: inline-flex;
+    }
+
+    .left-block,
+    .center-block,
+    .right-block {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .right-block {
+        order: 2;
+        justify-content: flex-start;
+    }
+
+    .center-block {
+        order: 3;
+        justify-content: flex-start;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .search-box input {
+        width: 100%;
+    }
+
+    .main-nav,
+    .sub-nav .row-3-group {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar.right {
+        order: 3;
+    }
+
+    .banners {
+        grid-template-columns: 1fr;
+    }
+}
