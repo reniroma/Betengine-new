@@ -208,6 +208,34 @@ body {
     font-weight: 700;
 }
 
+/* LANGUAGE DROPDOWN */
+
+.lang-dropdown {
+    position: absolute;
+    display: none;
+    padding: 8px 12px;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-neon);
+    z-index: 80;
+}
+
+.lang-item {
+    font-size: 13px;
+    padding: 3px 0;
+    white-space: nowrap;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.lang-item.active {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.lang-item:hover {
+    text-shadow: 0 0 8px #00eaff;
+}
+
 /* AUTH BUTTONS */
 
 .auth-btn {
