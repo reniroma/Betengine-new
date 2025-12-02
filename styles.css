@@ -874,4 +874,7 @@ body {
     .banners {
         grid-template-columns: 1fr;
     }
+}.language-toggle {
+    cursor: pointer;
 }
+
