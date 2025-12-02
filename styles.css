@@ -168,6 +168,39 @@ body {
     padding-left: 8px;
 }
 
+/* LANGUAGE DROPDOWN */
+
+.language-toggle {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+}
+
+.lang-dropdown {
+    position: absolute;
+    display: none;
+    padding: 6px 10px;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-neon);
+    z-index: 80;
+    max-height: 220px;
+    overflow-y: auto;
+    min-width: 150px;
+}
+
+.lang-item {
+    font-size: 13px;
+    padding: 4px 0;
+    white-space: nowrap;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.lang-item.active,
+.lang-item:hover {
+    color: var(--text-primary);
+}
+
 /* ODDS FORMAT DROPDOWN */
 
 .odds-format {
@@ -233,7 +266,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 32px; /* R1-2: spacing rritur */
+    gap: 32px;
 }
 
 .nav-item {
@@ -242,15 +275,11 @@ body {
     font-weight: 700;
     padding: 10px 0;
     position: relative;
-    font-size: 16px; /* R1-2 font-size 16px */
+    font-size: 16px;
     letter-spacing: 0.3px;
 }
 
-.nav-item.active {
-    color: var(--text-primary);
-    text-shadow: none; /* R1-2 heqja glow nga active */
-}
-
+.nav-item.active,
 .nav-item:hover {
     color: var(--text-primary);
     text-shadow: 0 0 8px #00eaff;
@@ -263,7 +292,7 @@ body {
 }
 
 .premium-star {
-    font-size: 16px;  /* R1-2: star size 16px */
+    font-size: 16px;
     color: #ff9d00;
 }
 
