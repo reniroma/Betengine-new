@@ -162,16 +162,10 @@ body {
 .selector {
     color: var(--text-secondary);
     font-weight: 700;
-    cursor: pointer;
 }
 
 .icon-globe {
     padding-left: 8px;
-}
-
-/* LANGUAGE FIX */
-.language-toggle {
-    cursor: pointer;
 }
 
 /* ODDS FORMAT DROPDOWN */
@@ -239,7 +233,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 24px;
+    gap: 32px; /* R1-2: spacing rritur */
 }
 
 .nav-item {
@@ -248,12 +242,15 @@ body {
     font-weight: 700;
     padding: 10px 0;
     position: relative;
-    font-size: 14px;
+    font-size: 16px; /* R1-2 font-size 16px */
     letter-spacing: 0.3px;
-    cursor: pointer;
 }
 
-.nav-item.active,
+.nav-item.active {
+    color: var(--text-primary);
+    text-shadow: none; /* R1-2 heqja glow nga active */
+}
+
 .nav-item:hover {
     color: var(--text-primary);
     text-shadow: 0 0 8px #00eaff;
@@ -266,7 +263,7 @@ body {
 }
 
 .premium-star {
-    font-size: 1em;
+    font-size: 16px;  /* R1-2: star size 16px */
     color: #ff9d00;
 }
 
@@ -333,7 +330,6 @@ body {
     border-radius: 4px;
     text-transform: uppercase;
     letter-spacing: 0.4px;
-    cursor: pointer;
 }
 
 .sub-item.active,
