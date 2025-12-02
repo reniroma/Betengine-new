@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const langToggle = document.querySelector(".language-toggle");
     const langDropdown = document.getElementById("lang-dropdown");
+    const LANGUAGE_STORAGE_KEY = "be_language";
 
     const loginButton = document.querySelector(".auth-btn.login");
     const registerButton = document.querySelector(".auth-btn.register");
@@ -161,6 +162,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (langToggle && langDropdown) {
+        // Initialize language label from localStorage, if available
+        let savedLangCode = null;
+        try {
+            savedLangCode = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
+        } catch (e) {
+            savedLangCode = null;
+        }
+        if (savedLangCode) {
+            const savedItem = langDropdown.querySelector(`.lang-item[data-lang="${savedLangCode}"]`);
+            if (savedItem) {
+                const allItems = langDropdown.querySelectorAll(".lang-item");
+                allItems.forEach(i => i.classList.remove("active"));
+                savedItem.classList.add("active");
+                const label = (savedItem.textContent || "").trim();
+                langToggle.textContent = label + " ▾";
+            }
+        }
+
         langToggle.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -174,12 +193,25 @@ document.addEventListener("DOMContentLoaded", () => {
         langDropdown.addEventListener("click", (e) => {
             const item = e.target.closest(".lang-item");
             if (!item) return;
+
             const label = (item.textContent || "").trim();
             const allItems = langDropdown.querySelectorAll(".lang-item");
             allItems.forEach(i => i.classList.remove("active"));
             item.classList.add("active");
             langToggle.textContent = label + " ▾";
+
+            // Persist chosen language and reload the page
+            const code = item.getAttribute("data-lang") || "";
+            if (code) {
+                try {
+                    window.localStorage.setItem(LANGUAGE_STORAGE_KEY, code);
+                } catch (e) {
+                    // ignore storage errors
+                }
+            }
+
             closeLangDropdown();
+            window.location.reload();
         });
     }
 
