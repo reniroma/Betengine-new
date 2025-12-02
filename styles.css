@@ -279,21 +279,23 @@ body {
     letter-spacing: 0.3px;
 }
 
+/* ACTIVE & HOVER – UPDATED TO #FFEC00 + STRONG GLOW */
 .nav-item.active,
 .nav-item:hover {
-    color: var(--text-primary);
-    text-shadow: 0 0 8px #00eaff;
+    color: #FFEC00;
+    text-shadow: 0 0 12px #FFEC00;
 }
 
+/* PREMIUM LINK + STAR – UPDATED */
 .premium-link {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: 8px;
 }
 
 .premium-star {
-    font-size: 16px;
-    color: #ff9d00;
+    font-size: 20px;
+    color: #FFEC00;
 }
 
 /* SEARCH BOX (ROW 2 RIGHT) */
@@ -307,6 +309,7 @@ body {
     padding: 0 8px;
     height: 34px;
     gap: 6px;
+    margin-right: 15px; /* moved slightly left */
 }
 
 .search-box input {
@@ -328,6 +331,15 @@ body {
 .search-icon,
 .gift-icon {
     font-size: 14px;
+}
+
+/* NEW NOTIFICATION ICON */
+
+.notif-icon {
+    color: #FFEC00;
+    font-size: 20px;
+    margin-left: 10px;
+    cursor: pointer;
 }
 
 /* SUB NAV (ROW 3) */
@@ -856,6 +868,7 @@ body {
 
     .search-box {
         width: 100%;
+        margin-right: 0;
     }
 
     .search-box input {
