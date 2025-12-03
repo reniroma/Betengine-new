@@ -20,9 +20,10 @@
             <div class="right-block">
                 <div class="top-options">
                     <div class="odds-format" id="odds-format">
-                        <span class="small-label">Odds formats:</span>
                         <button type="button" class="selector odds-toggle" id="odds-toggle">
-                            Decimal Odds ▾
+                            <span class="small-label">Odds format:</span>
+                            <span class="odds-label">Decimal Odds</span>
+                            <img src="assets/icons/caret-down.svg" alt="" class="icon icon-glow icon-caret">
                         </button>
                         <div class="odds-dropdown" id="odds-dropdown">
                             <div class="odds-item active">Decimal Odds (1.50) ✔</div>
@@ -34,8 +35,11 @@
                         </div>
                     </div>
 
-                    <span class="small-label icon-globe">Language:</span>
-                    <span class="selector language-toggle">English ▾</span>
+                    <button type="button" class="language-toggle" aria-label="Change language">
+                        <img src="assets/icons/language.svg" alt="" class="icon icon-glow icon-language">
+                        <span class="language-code">EN</span>
+                        <img src="assets/icons/caret-down.svg" alt="" class="icon icon-glow icon-caret">
+                    </button>
 
                     <!-- LANGUAGE DROPDOWN -->
                     <div class="lang-dropdown" id="lang-dropdown">
@@ -62,10 +66,15 @@
                         <div class="lang-item" data-lang="in">Indian</div>
                         <div class="lang-item" data-lang="al">Albanian</div>
                     </div>
-                    <!-- END LANGUAGE DROPDOWN -->
 
-                    <button class="auth-btn login" type="button">LOGIN</button>
-                    <button class="auth-btn register" type="button">REGISTER</button>
+                    <button class="auth-btn login" type="button">
+                        <img src="assets/icons/login.svg" alt="" class="icon icon-glow icon-auth">
+                        <span>LOGIN</span>
+                    </button>
+                    <button class="auth-btn register" type="button">
+                        <img src="assets/icons/register.svg" alt="" class="icon icon-glow icon-auth">
+                        <span>REGISTER</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -104,13 +113,15 @@
 
             <div class="right-block">
                 <div class="search-box">
+                    <span class="search-icon">
+                        <img src="assets/icons/search.svg" alt="" class="icon icon-glow icon-search">
+                    </span>
                     <input type="search" placeholder="Search (team / player)" aria-label="Search team or player" />
-                    <span class="search-icon">🔍</span>
                 </div>
-                <span class="notif-icon">🔔</span>
+                <button type="button" class="notif-button" aria-label="Notifications">
+                    <img src="assets/icons/notification.svg" alt="" class="icon icon-glow icon-notification">
+                </button>
             </div>
-        </div>
-
         <div class="row2-separator"></div>
     </header>
 
