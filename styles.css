@@ -943,6 +943,46 @@ body {
     transform: translateY(-1px);
 }
 
+/* PREMIUM LANGUAGE DROPDOWN — BetEngine */
+
+.lang-dropdown {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #11141d;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 6px 0;
+    width: 180px;
+    display: none;
+    flex-direction: column;
+    z-index: 200;
+}
+
+.lang-dropdown.active {
+    display: flex;
+}
+
+.lang-item {
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.lang-item:hover {
+    background-color: rgba(255,236,0,0.15);
+    color: #ffec00;
+}
+
+.lang-item.active {
+    background-color: rgba(255,236,0,0.25);
+    color: #ffec00;
+    font-weight: 600;
+}
+
+
 /* RESPONSIVE */
 
 @media (max-width: 900px) {
