@@ -783,7 +783,7 @@ body {
 
 .modal.active {
     display: block !important;
-
+}    
 
 .modal.login-center {
     width: 420px;
