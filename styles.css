@@ -924,6 +924,25 @@ body {
     gap: 8px;
 }
 
+/* PREMIUM HOVER GLOW FOR ROW1 ICONS */
+
+.row1 .icon,
+.row1 .auth-btn,
+.row1 .search-trigger,
+.row1 .notif-button,
+.row1 .lang-toggle {
+    transition: filter 0.25s ease, transform 0.25s ease;
+}
+
+.row1 .icon:hover,
+.row1 .auth-btn:hover,
+.row1 .search-trigger:hover,
+.row1 .notif-button:hover,
+.row1 .lang-toggle:hover {
+    filter: drop-shadow(0 0 6px rgba(255, 236, 0, 0.25));
+    transform: translateY(-1px);
+}
+
 /* RESPONSIVE */
 
 @media (max-width: 900px) {
