@@ -778,6 +778,7 @@ body {
     background-color: #11141d;
     border: 1px solid #ff0000;
     color: #ffffff;
+    z-index: 200;
 }
 
 .modal.active {
