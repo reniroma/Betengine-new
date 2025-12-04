@@ -774,6 +774,13 @@ body {
     z-index: 100;
 }
 
+#register-modal {
+    background-color: #11141d;
+    border: 1px solid #ff0000;
+    color: #ffffff;
+}
+
+
 .modal.login-center {
     width: 420px;
     background: #11141d;
