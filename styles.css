@@ -1,10 +1,12 @@
-/* =========================================
-   RESET + VARIABLES
-========================================= */
+/* ===========================
+   RESET & VARIABLES
+=========================== */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 :root {
@@ -22,19 +24,21 @@
     --border-color: #1e222d;
 }
 
-/* =========================================
+/* ===========================
    BODY
-========================================= */
+=========================== */
+
 body {
     background: var(--bg-dark);
     color: var(--text-light);
-    padding-top: 120px; 
-    /* header total height: Row1 (44) + Row2 (70) ≈ 114px */
+    /* header heights: row1 (44) + row2 (70) = 114 + subnav (46) ~ 160 */
+    padding-top: 160px;
 }
 
-/* =========================================
-   HEADER CONTAINER (FIXED ROW1 + ROW2)
-========================================= */
+/* ===========================
+   HEADER (FIXED ROW1 + ROW2)
+=========================== */
+
 .header {
     width: 100%;
     position: fixed;
@@ -47,9 +51,10 @@ body {
     border-bottom: 1px solid var(--border-color);
 }
 
-/* =========================================
-   ROW 1 — TOP BAR
-========================================= */
+/* ===========================
+   ROW 1
+=========================== */
+
 .row1 {
     width: 100%;
     height: 44px;
@@ -61,14 +66,14 @@ body {
     padding: 0 14px;
 }
 
-/* Left block */
+/* Left block Row1 */
 .left-block {
     display: flex;
     align-items: center;
     gap: 14px;
 }
 
-/* Hamburger */
+/* Hamburger menu */
 .menu-toggle {
     width: 26px;
     height: 18px;
@@ -85,7 +90,7 @@ body {
     background: var(--text-light);
 }
 
-/* Odds Format */
+/* Odds format buttons */
 .odds-format {
     display: flex;
     gap: 6px;
@@ -101,32 +106,33 @@ body {
 }
 .format-btn.active {
     background: var(--neon-orange);
-    color: #000;
     border-color: var(--neon-orange);
+    color: #000;
 }
 
-/* Right block */
+/* Right block Row1 */
 .right-block {
     display: flex;
     align-items: center;
     gap: 14px;
 }
 
-/* Language */
-.language-toggle {
+/* Language select */
+.language-select .language-toggle {
     background: none;
     border: none;
     display: flex;
     align-items: center;
     gap: 6px;
     cursor: pointer;
+    color: var(--text-light);
 }
 .language-toggle img {
     width: 20px;
     height: 14px;
 }
 
-/* Login / Register */
+/* Auth buttons */
 .auth-btn {
     padding: 5px 12px;
     font-size: 12px;
@@ -141,9 +147,10 @@ body {
     border-color: var(--neon-blue);
 }
 
-/* =========================================
-   ROW 2 — MAIN NAV BAR
-========================================= */
+/* ===========================
+   ROW 2
+=========================== */
+
 .row2 {
     width: 100%;
     height: 70px;
@@ -154,7 +161,7 @@ body {
     padding: 0 18px;
 }
 
-/* Logo (Left) */
+/* Logo (left) */
 .logo-area {
     display: flex;
     align-items: center;
@@ -163,7 +170,7 @@ body {
     height: 40px;
 }
 
-/* Main Navigation (Center) */
+/* Main navigation (center) */
 .nav-main {
     display: flex;
     align-items: center;
@@ -184,7 +191,7 @@ body {
     border-bottom: 2px solid var(--neon-orange);
 }
 
-/* Search (Right) */
+/* Search (right) */
 .search-area {
     display: flex;
     align-items: center;
@@ -211,14 +218,15 @@ body {
     height: 18px;
 }
 
-/* =========================================
-   ROW 3 — SUBNAV (STICKY)
-========================================= */
+/* ===========================
+   ROW 3 (SUBNAV - STICKY)
+=========================== */
+
 .sub-nav {
     width: 100%;
     height: 46px;
     position: sticky;
-    top: 114px; /* row1 (44px) + row2 (70px) */
+    top: 114px; /* row1 + row2 */
     background: var(--bg-dark3);
     display: flex;
     align-items: center;
@@ -242,7 +250,7 @@ body {
     color: var(--neon-blue);
 }
 
-/* Betting Tools Dropdown */
+/* Betting Tools dropdown */
 .betting-tools-dropdown {
     position: relative;
 }
