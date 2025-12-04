@@ -905,6 +905,21 @@ body {
     text-decoration: underline;
 }
 
+/* SOCIAL LOGIN BUTTON ICONS (BetEngine Professional UI) */
+.social-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.modal-btn.social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
 /* RESPONSIVE */
 
 @media (max-width: 900px) {
