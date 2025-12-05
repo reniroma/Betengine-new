@@ -20,6 +20,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const LANGUAGE_STORAGE_KEY = "be_language";
     const languageCodeLabel = langToggle ? langToggle.querySelector(".language-code") : null;
 
+    // --- AUTO-CLOSE BETWEEN ODDS & LANGUAGE DROPDOWNS --- //
+    function closeOddsDropdown() {
+        if (oddsDropdown) {
+            oddsDropdown.style.display = "none";
+            oddsToggle.classList.remove("active");
+    }
+}
+
+    function closeLangDropdown() {
+        if (langDropdown) {
+            langDropdown.style.display = "none";
+            langToggle.classList.remove("active");
+    }
+}
+
+    // When opening Odds → close Language
+    oddsToggle.addEventListener("click", () => {
+        closeLangDropdown();
+});
+
+    // When opening Language → close Odds
+    langToggle.addEventListener("click", () => {
+        closeOddsDropdown();
+});
+
     const loginButton = document.querySelector(".auth-btn.login");
     const registerButton = document.querySelector(".auth-btn.register");
 
