@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Primary elements
+    /* ============================
+       ELEMENT REFERENCES
+    ============================ */
     const navMain = document.getElementById("main-nav");
     const subNav = document.getElementById("sub-nav");
     const navItems = navMain ? navMain.querySelectorAll(".nav-item[data-section]") : [];
     const rowGroups = subNav ? subNav.querySelectorAll(".row-3-group") : [];
 
-    const bookmakersNav = document.getElementById("bookmakers-nav");
-    const premiumToggle = document.getElementById("premium-toggle");
     const bettingToolsToggle = document.getElementById("betting-tools-toggle");
     const bettingToolsDropdown = document.getElementById("betting-tools-dropdown");
 
@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const langToggle = document.querySelector(".language-toggle");
     const langDropdown = document.getElementById("lang-dropdown");
-    const LANGUAGE_STORAGE_KEY = "be_language";
 
     const loginButton = document.querySelector(".auth-btn.login");
     const registerButton = document.querySelector(".auth-btn.register");
@@ -32,256 +31,183 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const menuToggle = document.querySelector(".menu-toggle");
 
-    let activeModal = null;
     let bettingToolsOpen = false;
     let oddsDropdownOpen = false;
     let langDropdownOpen = false;
+    let activeModal = null;
 
-    // Utility: clear active nav
+    const LANGUAGE_STORAGE_KEY = "be_language";
+
+
+    /* ============================
+       NAVIGATION SWITCHING
+    ============================ */
     function clearActiveNav() {
         navItems.forEach(item => item.classList.remove("active"));
     }
 
-    // Utility: set visible row-3 group
     function setSection(section) {
-        if (!rowGroups) return;
         rowGroups.forEach(group => {
-            const subnav = group.getAttribute("data-subnav");
-            if (subnav === section) {
-                group.classList.add("active");
-            } else {
-                group.classList.remove("active");
-            }
+            group.classList.toggle("active", group.getAttribute("data-subnav") === section);
         });
     }
 
-    // Initialize default section
     function initDefaultSection() {
-        const activeNav = Array.from(navItems).find(item =>
-            item.classList.contains("active")
-        );
-        if (activeNav) {
-            const section = activeNav.getAttribute("data-section");
-            setSection(section || "odds");
-        } else {
-            setSection("odds");
-        }
+        const activeNav = Array.from(navItems).find(item => item.classList.contains("active"));
+        const section = activeNav ? activeNav.getAttribute("data-section") : "odds";
+        setSection(section);
     }
 
-    // Primary navigation click handling
     navItems.forEach(item => {
         item.addEventListener("click", (e) => {
             e.preventDefault();
-            const section = item.getAttribute("data-section");
-            if (!section) return;
             clearActiveNav();
             item.classList.add("active");
-            setSection(section);
+            setSection(item.getAttribute("data-section"));
         });
     });
 
-    // BETTING TOOLS DROPDOWN
+
+    /* ============================
+       DROPDOWN HANDLERS
+    ============================ */
+
+    // BETTING TOOLS
     function openBettingToolsDropdown() {
-        if (!bettingToolsToggle || !bettingToolsDropdown) return;
-        const rect = bettingToolsToggle.getBoundingClientRect();
         bettingToolsDropdown.style.display = "block";
-        bettingToolsDropdown.style.top = rect.bottom + window.scrollY + "px";
-        bettingToolsDropdown.style.left = rect.left + window.scrollX + "px";
         bettingToolsOpen = true;
     }
-
     function closeBettingToolsDropdown() {
-        if (!bettingToolsDropdown) return;
         bettingToolsDropdown.style.display = "none";
         bettingToolsOpen = false;
     }
 
-    if (bettingToolsToggle && bettingToolsDropdown) {
+    if (bettingToolsToggle) {
         bettingToolsToggle.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
-            if (bettingToolsOpen) {
-                closeBettingToolsDropdown();
-            } else {
-                openBettingToolsDropdown();
-            }
+            bettingToolsOpen ? closeBettingToolsDropdown() : openBettingToolsDropdown();
         });
     }
 
-    // ODDS FORMAT DROPDOWN
+
+    // ODDS FORMAT
     function openOddsDropdown() {
-        if (!oddsToggle || !oddsDropdown) return;
         oddsDropdown.style.display = "block";
         oddsDropdownOpen = true;
     }
-
     function closeOddsDropdown() {
-        if (!oddsDropdown) return;
         oddsDropdown.style.display = "none";
         oddsDropdownOpen = false;
     }
 
-    if (oddsToggle && oddsDropdown) {
+    if (oddsToggle) {
         oddsToggle.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
-            if (oddsDropdownOpen) {
-                closeOddsDropdown();
-            } else {
-                openOddsDropdown();
-            }
+            oddsDropdownOpen ? closeOddsDropdown() : openOddsDropdown();
         });
+    }
 
+    if (oddsDropdown) {
         oddsDropdown.addEventListener("click", (e) => {
             const item = e.target.closest(".odds-item");
             if (!item) return;
-            const text = item.textContent || "";
-            const label = text.split("(")[0].trim();
-            const allItems = oddsDropdown.querySelectorAll(".odds-item");
-            allItems.forEach(i => i.classList.remove("active"));
+
+            const label = (item.textContent || "").split("(")[0].trim();
+            oddsToggle.querySelector(".odds-label").textContent = label;
+
+            oddsDropdown.querySelectorAll(".odds-item").forEach(i => i.classList.remove("active"));
             item.classList.add("active");
-            oddsToggle.textContent = label + " ▾";
+
             closeOddsDropdown();
         });
     }
 
+
     // LANGUAGE DROPDOWN
     function openLangDropdown() {
-        if (!langToggle || !langDropdown) return;
-        const rect = langToggle.getBoundingClientRect();
         langDropdown.style.display = "block";
-        langDropdown.style.top = rect.bottom + window.scrollY + 4 + "px";
-        langDropdown.style.left = rect.left + window.scrollX + "px";
         langDropdownOpen = true;
     }
-
     function closeLangDropdown() {
-        if (!langDropdown) return;
         langDropdown.style.display = "none";
         langDropdownOpen = false;
     }
 
-    if (langToggle && langDropdown) {
-        // Initialize language label from localStorage, if available
-        let savedLangCode = null;
-        try {
-            savedLangCode = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
-        } catch (e) {
-            savedLangCode = null;
-        }
-        if (savedLangCode) {
-            const savedItem = langDropdown.querySelector(`.lang-item[data-lang="${savedLangCode}"]`);
-            if (savedItem) {
-                const allItems = langDropdown.querySelectorAll(".lang-item");
-                allItems.forEach(i => i.classList.remove("active"));
-                savedItem.classList.add("active");
-                const label = (savedItem.textContent || "").trim();
-                langToggle.textContent = label + " ▾";
+    if (langToggle) {
+        // Load saved language
+        let savedLang = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+        if (savedLang) {
+            const saved = langDropdown.querySelector(`[data-lang="${savedLang}"]`);
+            if (saved) {
+                langDropdown.querySelectorAll(".lang-item").forEach(i => i.classList.remove("active"));
+                saved.classList.add("active");
+                langToggle.querySelector(".language-code").textContent = saved.textContent.trim();
             }
         }
 
         langToggle.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
-            if (langDropdownOpen) {
-                closeLangDropdown();
-            } else {
-                openLangDropdown();
-            }
+            langDropdownOpen ? closeLangDropdown() : openLangDropdown();
         });
+    }
 
+    if (langDropdown) {
         langDropdown.addEventListener("click", (e) => {
             const item = e.target.closest(".lang-item");
             if (!item) return;
 
-            const label = (item.textContent || "").trim();
-            const allItems = langDropdown.querySelectorAll(".lang-item");
-            allItems.forEach(i => i.classList.remove("active"));
+            langDropdown.querySelectorAll(".lang-item").forEach(i => i.classList.remove("active"));
             item.classList.add("active");
-            langToggle.textContent = label + " ▾";
 
-            // Persist chosen language and reload the page
-            const code = item.getAttribute("data-lang") || "";
-            if (code) {
-                try {
-                    window.localStorage.setItem(LANGUAGE_STORAGE_KEY, code);
-                } catch (e) {
-                    // ignore storage errors
-                }
-            }
+            langToggle.querySelector(".language-code").textContent = item.textContent.trim();
+            localStorage.setItem(LANGUAGE_STORAGE_KEY, item.getAttribute("data-lang"));
 
             closeLangDropdown();
-            window.location.reload();
+            location.reload();
         });
     }
 
-    // MODALS
+
+    /* ============================
+       MODALS (LOGIN / REGISTER)
+    ============================ */
     function openModal(modal) {
-        if (!modal || !overlay) return;
         overlay.style.display = "block";
         modal.style.display = "block";
         activeModal = modal;
     }
-
     function closeModal(modal) {
-        if (!modal || !overlay) return;
         modal.style.display = "none";
         overlay.style.display = "none";
-        if (activeModal === modal) {
-            activeModal = null;
-        }
+        if (activeModal === modal) activeModal = null;
     }
-
     function closeAnyModal() {
-        if (!activeModal) return;
-        closeModal(activeModal);
+        if (activeModal) closeModal(activeModal);
     }
 
-    if (loginButton && loginModal) {
-        loginButton.addEventListener("click", (e) => {
-            e.preventDefault();
-            closeAnyModal();
-            openModal(loginModal);
-        });
+    if (loginButton) {
+        loginButton.addEventListener("click", () => openModal(loginModal));
+    }
+    if (registerButton) {
+        registerButton.addEventListener("click", () => openModal(registerModal));
     }
 
-    if (registerButton && registerModal) {
-        registerButton.addEventListener("click", (e) => {
-            e.preventDefault();
-            closeAnyModal();
-            openModal(registerModal);
-        });
-    }
+    if (loginClose) loginClose.addEventListener("click", () => closeModal(loginModal));
+    if (registerClose) registerClose.addEventListener("click", () => closeModal(registerModal));
 
-    if (loginClose && loginModal) {
-        loginClose.addEventListener("click", (e) => {
-            e.preventDefault();
-            closeModal(loginModal);
-        });
-    }
+    if (overlay) overlay.addEventListener("click", () => closeAnyModal());
 
-    if (registerClose && registerModal) {
-        registerClose.addEventListener("click", (e) => {
-            e.preventDefault();
-            closeModal(registerModal);
-        });
-    }
-
-    if (overlay) {
-        overlay.addEventListener("click", () => {
-            closeAnyModal();
-        });
-    }
-
-    if (openRegisterFromLogin && loginModal && registerModal) {
+    if (openRegisterFromLogin) {
         openRegisterFromLogin.addEventListener("click", (e) => {
             e.preventDefault();
             closeModal(loginModal);
             openModal(registerModal);
         });
     }
-
-    if (openLoginFromRegister && loginModal && registerModal) {
+    if (openLoginFromRegister) {
         openLoginFromRegister.addEventListener("click", (e) => {
             e.preventDefault();
             closeModal(registerModal);
@@ -289,7 +215,46 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ESC key closes modal and dropdowns
+
+    /* ============================
+       MOBILE MENU
+    ============================ */
+    function toggleMobileNav() {
+        navMain.classList.toggle("is-open");
+        subNav.classList.toggle("is-open");
+    }
+
+    if (menuToggle) {
+        menuToggle.addEventListener("click", (e) => {
+            e.preventDefault();
+            toggleMobileNav();
+        });
+    }
+
+
+    /* ============================
+       GLOBAL CLICK (close dropdowns)
+    ============================ */
+    document.addEventListener("click", (e) => {
+        const t = e.target;
+
+        if (bettingToolsOpen && !bettingToolsToggle.contains(t) && !bettingToolsDropdown.contains(t)) {
+            closeBettingToolsDropdown();
+        }
+
+        if (oddsDropdownOpen && !oddsToggle.contains(t) && !oddsDropdown.contains(t)) {
+            closeOddsDropdown();
+        }
+
+        if (langDropdownOpen && !langToggle.contains(t) && !langDropdown.contains(t)) {
+            closeLangDropdown();
+        }
+    });
+
+
+    /* ============================
+       ESC KEY CLOSE
+    ============================ */
     window.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
             closeAnyModal();
@@ -299,55 +264,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // MOBILE MENU
-    function toggleMobileNav() {
-        if (!navMain || !subNav) return;
-        const isOpen = navMain.classList.contains("is-open");
-        if (isOpen) {
-            navMain.classList.remove("is-open");
-            subNav.classList.remove("is-open");
-        } else {
-            navMain.classList.add("is-open");
-            subNav.classList.add("is-open");
-        }
-    }
 
-    if (menuToggle && navMain && subNav) {
-        menuToggle.addEventListener("click", (e) => {
-            e.preventDefault();
-            toggleMobileNav();
-        });
-    }
-
-    // Global click handler to close dropdowns when clicking outside
-    document.addEventListener("click", (e) => {
-        const target = e.target;
-
-        if (bettingToolsOpen) {
-            const insideToggle = bettingToolsToggle && bettingToolsToggle.contains(target);
-            const insideDropdown = bettingToolsDropdown && bettingToolsDropdown.contains(target);
-            if (!insideToggle && !insideDropdown) {
-                closeBettingToolsDropdown();
-            }
-        }
-
-        if (oddsDropdownOpen) {
-            const insideToggle = oddsToggle && oddsToggle.contains(target);
-            const insideDropdown = oddsDropdown && oddsDropdown.contains(target);
-            if (!insideToggle && !insideDropdown) {
-                closeOddsDropdown();
-            }
-        }
-
-        if (langDropdownOpen) {
-            const insideToggle = langToggle && langToggle.contains(target);
-            const insideDropdown = langDropdown && langDropdown.contains(target);
-            if (!insideToggle && !insideDropdown) {
-                closeLangDropdown();
-            }
-        }
-    });
-
-    // Initialize initial state
+    /* ============================
+       INIT
+    ============================ */
     initDefaultSection();
 });
