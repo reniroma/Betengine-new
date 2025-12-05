@@ -180,6 +180,7 @@ body {
     background: transparent;
     color: var(--text-secondary);
     font-size: 13px;
+    position: relative !important;
 }
 
 .lang-dropdown {
@@ -192,6 +193,9 @@ body {
     max-height: 220px;
     overflow-y: auto;
     min-width: 150px;
+    left: 0 !important;
+    top: 100% !important;
+    margin-top: 4px;
 }
 
 .lang-item {
