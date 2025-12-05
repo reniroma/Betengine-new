@@ -352,13 +352,17 @@ body {
 
 .premium-link {
     display: inline-flex;
-    align-items: center;
+    align-items: center; /* FIX: centralizim vertikal */
     gap: 8px;
 }
 
 .premium-star {
     font-size: 20px;
     color: #FFEC00;
+    line-height: 1;          /* FIX 2 */
+    display: flex;           /* FIX 3 */
+    align-items: center;     /* FIX 4: centron plotësisht */
+    justify-content: center;
 }
 
 /* SEARCH BOX (ROW 2 RIGHT) */
