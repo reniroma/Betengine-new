@@ -10,40 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const bettingToolsToggle = document.getElementById("betting-tools-toggle");
     const bettingToolsDropdown = document.getElementById("betting-tools-dropdown");
 
-    const oddsFormat = document.querySelector(".odds-format");
     const oddsToggle = document.getElementById("odds-toggle");
     const oddsDropdown = document.getElementById("odds-dropdown");
-    const oddsLabel = oddsToggle ? oddsToggle.querySelector(".odds-label") : null;
 
     const langToggle = document.querySelector(".language-toggle");
     const langDropdown = document.getElementById("lang-dropdown");
     const LANGUAGE_STORAGE_KEY = "be_language";
-    const languageCodeLabel = langToggle ? langToggle.querySelector(".language-code") : null;
-
-    // --- AUTO-CLOSE BETWEEN ODDS & LANGUAGE DROPDOWNS --- //
-    function closeOddsDropdown() {
-        if (oddsDropdown) {
-            oddsDropdown.style.display = "none";
-            oddsToggle.classList.remove("active");
-    }
-}
-
-    function closeLangDropdown() {
-        if (langDropdown) {
-            langDropdown.style.display = "none";
-            langToggle.classList.remove("active");
-    }
-}
-
-    // When opening Odds → close Language
-    oddsToggle.addEventListener("click", () => {
-        closeLangDropdown();
-});
-
-    // When opening Language → close Odds
-    langToggle.addEventListener("click", () => {
-        closeOddsDropdown();
-});
 
     const loginButton = document.querySelector(".auth-btn.login");
     const registerButton = document.querySelector(".auth-btn.register");
@@ -59,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const openLoginFromRegister = document.getElementById("open-login-from-register");
 
     const menuToggle = document.querySelector(".menu-toggle");
-    const passwordToggles = document.querySelectorAll(".password-toggle");
 
     let activeModal = null;
     let bettingToolsOpen = false;
@@ -112,7 +83,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // BETTING TOOLS DROPDOWN
     function openBettingToolsDropdown() {
         if (!bettingToolsToggle || !bettingToolsDropdown) return;
+        const rect = bettingToolsToggle.getBoundingClientRect();
         bettingToolsDropdown.style.display = "block";
+        bettingToolsDropdown.style.top = rect.bottom + window.scrollY + "px";
+        bettingToolsDropdown.style.left = rect.left + window.scrollX + "px";
         bettingToolsOpen = true;
     }
 
@@ -136,14 +110,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ODDS FORMAT DROPDOWN
     function openOddsDropdown() {
-        if (!oddsFormat || !oddsDropdown) return;
-        oddsFormat.classList.add("open");
+        if (!oddsToggle || !oddsDropdown) return;
+        oddsDropdown.style.display = "block";
         oddsDropdownOpen = true;
     }
 
     function closeOddsDropdown() {
-        if (!oddsFormat || !oddsDropdown) return;
-        oddsFormat.classList.remove("open");
+        if (!oddsDropdown) return;
+        oddsDropdown.style.display = "none";
         oddsDropdownOpen = false;
     }
 
@@ -166,9 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const allItems = oddsDropdown.querySelectorAll(".odds-item");
             allItems.forEach(i => i.classList.remove("active"));
             item.classList.add("active");
-            if (oddsLabel) {
-                oddsLabel.textContent = label;
-            }
+            oddsToggle.textContent = label + " ▾";
             closeOddsDropdown();
         });
     }
@@ -176,13 +148,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // LANGUAGE DROPDOWN
     function openLangDropdown() {
         if (!langToggle || !langDropdown) return;
-        langDropdown.classList.add("open");
+        const rect = langToggle.getBoundingClientRect();
+        langDropdown.style.display = "block";
+        langDropdown.style.top = rect.bottom + window.scrollY + 4 + "px";
+        langDropdown.style.left = rect.left + window.scrollX + "px";
         langDropdownOpen = true;
     }
 
     function closeLangDropdown() {
         if (!langDropdown) return;
-        langDropdown.classList.remove("open");
+        langDropdown.style.display = "none";
         langDropdownOpen = false;
     }
 
@@ -201,9 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 allItems.forEach(i => i.classList.remove("active"));
                 savedItem.classList.add("active");
                 const label = (savedItem.textContent || "").trim();
-                if (languageCodeLabel) {
-                    languageCodeLabel.textContent = label;
-                }
+                langToggle.textContent = label + " ▾";
             }
         }
 
@@ -225,16 +198,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const allItems = langDropdown.querySelectorAll(".lang-item");
             allItems.forEach(i => i.classList.remove("active"));
             item.classList.add("active");
+            langToggle.textContent = label + " ▾";
 
-            if (languageCodeLabel) {
-                languageCodeLabel.textContent = label;
-            }
-
+            // Persist chosen language and reload the page
             const code = item.getAttribute("data-lang") || "";
             if (code) {
                 try {
                     window.localStorage.setItem(LANGUAGE_STORAGE_KEY, code);
-                } catch (err) {
+                } catch (e) {
                     // ignore storage errors
                 }
             }
@@ -247,15 +218,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // MODALS
     function openModal(modal) {
         if (!modal || !overlay) return;
-        overlay.classList.add("active");
-        modal.setAttribute("aria-hidden", "false");
+        overlay.style.display = "block";
+        modal.style.display = "block";
         activeModal = modal;
     }
 
     function closeModal(modal) {
         if (!modal || !overlay) return;
-        modal.setAttribute("aria-hidden", "true");
-        overlay.classList.remove("active");
+        modal.style.display = "none";
+        overlay.style.display = "none";
         if (activeModal === modal) {
             activeModal = null;
         }
@@ -315,19 +286,6 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             closeModal(registerModal);
             openModal(loginModal);
-        });
-    }
-
-    // PASSWORD TOGGLE
-    if (passwordToggles && passwordToggles.length > 0) {
-        passwordToggles.forEach((btn) => {
-            btn.addEventListener("click", (e) => {
-                e.preventDefault();
-                const wrapper = btn.closest(".password-field");
-                const input = wrapper ? wrapper.querySelector("input") : null;
-                if (!input) return;
-                input.type = input.type === "password" ? "text" : "password";
-            });
         });
     }
 
