@@ -74,15 +74,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // BETTING TOOLS
     function openBettingToolsDropdown() {
+        if (!bettingToolsDropdown) return;
         bettingToolsDropdown.style.display = "block";
         bettingToolsOpen = true;
     }
     function closeBettingToolsDropdown() {
+        if (!bettingToolsDropdown) return;
         bettingToolsDropdown.style.display = "none";
         bettingToolsOpen = false;
     }
 
-    if (bettingToolsToggle) {
+    if (bettingToolsToggle && bettingToolsDropdown) {
         bettingToolsToggle.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -93,15 +95,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ODDS FORMAT
     function openOddsDropdown() {
+        if (!oddsDropdown) return;
         oddsDropdown.style.display = "block";
         oddsDropdownOpen = true;
     }
     function closeOddsDropdown() {
+        if (!oddsDropdown) return;
         oddsDropdown.style.display = "none";
         oddsDropdownOpen = false;
     }
 
-    if (oddsToggle) {
+    if (oddsToggle && oddsDropdown) {
         oddsToggle.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -109,13 +113,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    if (oddsDropdown) {
+    if (oddsDropdown && oddsToggle) {
         oddsDropdown.addEventListener("click", (e) => {
             const item = e.target.closest(".odds-item");
             if (!item) return;
 
             const label = (item.textContent || "").split("(")[0].trim();
-            oddsToggle.querySelector(".odds-label").textContent = label;
+            const labelSpan = oddsToggle.querySelector(".odds-label");
+            if (labelSpan) {
+                labelSpan.textContent = label;
+            }
 
             oddsDropdown.querySelectorAll(".odds-item").forEach(i => i.classList.remove("active"));
             item.classList.add("active");
@@ -127,23 +134,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // LANGUAGE DROPDOWN
     function openLangDropdown() {
+        if (!langDropdown) return;
         langDropdown.style.display = "block";
         langDropdownOpen = true;
     }
     function closeLangDropdown() {
+        if (!langDropdown) return;
         langDropdown.style.display = "none";
         langDropdownOpen = false;
     }
 
-    if (langToggle) {
+    if (langToggle && langDropdown) {
         // Load saved language
-        let savedLang = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+        let savedLang = null;
+        try {
+            savedLang = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+        } catch (e) {
+            savedLang = null;
+        }
+
         if (savedLang) {
             const saved = langDropdown.querySelector(`[data-lang="${savedLang}"]`);
             if (saved) {
                 langDropdown.querySelectorAll(".lang-item").forEach(i => i.classList.remove("active"));
                 saved.classList.add("active");
-                langToggle.querySelector(".language-code").textContent = saved.textContent.trim();
+                const codeSpan = langToggle.querySelector(".language-code");
+                if (codeSpan) {
+                    codeSpan.textContent = saved.textContent.trim();
+                }
             }
         }
 
@@ -154,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    if (langDropdown) {
+    if (langDropdown && langToggle) {
         langDropdown.addEventListener("click", (e) => {
             const item = e.target.closest(".lang-item");
             if (!item) return;
@@ -162,8 +180,19 @@ document.addEventListener("DOMContentLoaded", () => {
             langDropdown.querySelectorAll(".lang-item").forEach(i => i.classList.remove("active"));
             item.classList.add("active");
 
-            langToggle.querySelector(".language-code").textContent = item.textContent.trim();
-            localStorage.setItem(LANGUAGE_STORAGE_KEY, item.getAttribute("data-lang"));
+            const codeSpan = langToggle.querySelector(".language-code");
+            if (codeSpan) {
+                codeSpan.textContent = item.textContent.trim();
+            }
+
+            const langCode = item.getAttribute("data-lang");
+            if (langCode) {
+                try {
+                    localStorage.setItem(LANGUAGE_STORAGE_KEY, langCode);
+                } catch (err) {
+                    // ignore storage error
+                }
+            }
 
             closeLangDropdown();
             location.reload();
@@ -175,39 +204,72 @@ document.addEventListener("DOMContentLoaded", () => {
        MODALS (LOGIN / REGISTER)
     ============================ */
     function openModal(modal) {
+        if (!modal || !overlay) return;
         overlay.style.display = "block";
         modal.style.display = "block";
         activeModal = modal;
     }
+
     function closeModal(modal) {
+        if (!modal || !overlay) return;
         modal.style.display = "none";
         overlay.style.display = "none";
-        if (activeModal === modal) activeModal = null;
+        if (activeModal === modal) {
+            activeModal = null;
+        }
     }
+
     function closeAnyModal() {
-        if (activeModal) closeModal(activeModal);
+        if (activeModal) {
+            closeModal(activeModal);
+        }
     }
 
-    if (loginButton) {
-        loginButton.addEventListener("click", () => openModal(loginModal));
+    if (loginButton && loginModal) {
+        loginButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            closeAnyModal();
+            openModal(loginModal);
+        });
     }
-    if (registerButton) {
-        registerButton.addEventListener("click", () => openModal(registerModal));
+
+    if (registerButton && registerModal) {
+        registerButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            closeAnyModal();
+            openModal(registerModal);
+        });
     }
 
-    if (loginClose) loginClose.addEventListener("click", () => closeModal(loginModal));
-    if (registerClose) registerClose.addEventListener("click", () => closeModal(registerModal));
+    if (loginClose && loginModal) {
+        loginClose.addEventListener("click", (e) => {
+            e.preventDefault();
+            closeModal(loginModal);
+        });
+    }
 
-    if (overlay) overlay.addEventListener("click", () => closeAnyModal());
+    if (registerClose && registerModal) {
+        registerClose.addEventListener("click", (e) => {
+            e.preventDefault();
+            closeModal(registerModal);
+        });
+    }
 
-    if (openRegisterFromLogin) {
+    if (overlay) {
+        overlay.addEventListener("click", () => {
+            closeAnyModal();
+        });
+    }
+
+    if (openRegisterFromLogin && loginModal && registerModal) {
         openRegisterFromLogin.addEventListener("click", (e) => {
             e.preventDefault();
             closeModal(loginModal);
             openModal(registerModal);
         });
     }
-    if (openLoginFromRegister) {
+
+    if (openLoginFromRegister && loginModal && registerModal) {
         openLoginFromRegister.addEventListener("click", (e) => {
             e.preventDefault();
             closeModal(registerModal);
@@ -220,11 +282,12 @@ document.addEventListener("DOMContentLoaded", () => {
        MOBILE MENU
     ============================ */
     function toggleMobileNav() {
+        if (!navMain || !subNav) return;
         navMain.classList.toggle("is-open");
         subNav.classList.toggle("is-open");
     }
 
-    if (menuToggle) {
+    if (menuToggle && navMain && subNav) {
         menuToggle.addEventListener("click", (e) => {
             e.preventDefault();
             toggleMobileNav();
@@ -238,16 +301,28 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", (e) => {
         const t = e.target;
 
-        if (bettingToolsOpen && !bettingToolsToggle.contains(t) && !bettingToolsDropdown.contains(t)) {
-            closeBettingToolsDropdown();
+        if (bettingToolsOpen && bettingToolsToggle && bettingToolsDropdown) {
+            const insideToggle = bettingToolsToggle.contains(t);
+            const insideDropdown = bettingToolsDropdown.contains(t);
+            if (!insideToggle && !insideDropdown) {
+                closeBettingToolsDropdown();
+            }
         }
 
-        if (oddsDropdownOpen && !oddsToggle.contains(t) && !oddsDropdown.contains(t)) {
-            closeOddsDropdown();
+        if (oddsDropdownOpen && oddsToggle && oddsDropdown) {
+            const insideToggle = oddsToggle.contains(t);
+            const insideDropdown = oddsDropdown.contains(t);
+            if (!insideToggle && !insideDropdown) {
+                closeOddsDropdown();
+            }
         }
 
-        if (langDropdownOpen && !langToggle.contains(t) && !langDropdown.contains(t)) {
-            closeLangDropdown();
+        if (langDropdownOpen && langToggle && langDropdown) {
+            const insideToggle = langToggle.contains(t);
+            const insideDropdown = langDropdown.contains(t);
+            if (!insideToggle && !insideDropdown) {
+                closeLangDropdown();
+            }
         }
     });
 
