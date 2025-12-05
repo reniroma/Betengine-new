@@ -102,6 +102,12 @@ document.addEventListener("DOMContentLoaded", () => {
             closeAll("betting");
             bettingToolsOpen ? closeBettingTools() : openBettingTools();
         });
+
+        // Prevent closing when clicking inside dropdown
+        bettingToolsDropdown.addEventListener("click", (e) => {
+            e.stopPropagation();
+        });
+
     }
 
     /* ============================
