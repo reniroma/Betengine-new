@@ -352,7 +352,7 @@ body {
 
 .premium-link {
     display: inline-flex;
-    align-items: baseline;
+    align-items: center;
     gap: 8px;
 }
 
