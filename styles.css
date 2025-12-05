@@ -428,6 +428,10 @@ body {
     gap: 24px;
 }
 
+.sub-item-tools {
+    position: relative;
+}
+
 .sub-nav .row-3-group.active {
     display: flex;
 }
@@ -461,6 +465,7 @@ body {
     position: absolute;
     display: none;
     top: 100%;
+    left: 0;
     padding: 8px 12px;
     background-color: var(--bg-panel);
     border: 1px solid var(--border-neon);
