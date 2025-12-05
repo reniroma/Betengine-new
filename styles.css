@@ -278,6 +278,11 @@ body {
     color: #000000;
     border-color: var(--border-neon);
 }
+/* Make only REGISTER icon black */
+.auth-btn.register .icon-auth {
+    filter: brightness(0);
+    
+}
 
 /* ICONS BASE & GLOW */
 
