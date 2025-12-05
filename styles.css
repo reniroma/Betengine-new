@@ -302,7 +302,6 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 14px;
-    position: relative;
 }
 
 /* Language toggle */
@@ -318,6 +317,7 @@ a:hover {
     cursor: pointer;
     font-size: 12px;
     color: var(--text-primary);
+    position: relative;
 }
 
 .language-code {
