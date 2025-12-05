@@ -298,6 +298,32 @@ body {
     filter: drop-shadow(0 0 12px #FFEC00);
 }
 
+/* ========================== */
+/* DROPDOWN ALIGNMENT PATCH   */
+/* ========================== */
+
+.language-toggle {
+    position: relative;
+}
+
+.language-toggle .lang-dropdown {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 4px);
+    margin-top: 0 !important;
+}
+
+.odds-toggle {
+    position: relative;
+}
+
+.odds-toggle .odds-dropdown {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 4px);
+    margin-top: 0 !important;
+}
+
 .icon-auth {
     margin-right: 6px;
 }
