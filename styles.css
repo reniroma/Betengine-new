@@ -460,12 +460,12 @@ body {
 .betting-tools-dropdown {
     position: absolute;
     display: none;
+    top: 100%;
     padding: 8px 12px;
     background-color: var(--bg-panel);
     border: 1px solid var(--border-neon);
     z-index: 50;
-    top: 100%;
-
+    
 }
 
 .betting-tools-dropdown .tools-item {
