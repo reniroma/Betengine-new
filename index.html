@@ -121,6 +121,7 @@
 
     <!-- ROW 3 / SUB NAV -->
     <nav class="sub-nav" id="sub-nav" aria-label="Secondary navigation">
+
         <div class="row-3-group row-3-odds active" data-subnav="odds">
             <a href="#" class="sub-item" data-odds-tab="home">HOME</a>
             <a href="#" class="sub-item" data-odds-tab="next-matches">NEXT MATCHES</a>
@@ -128,7 +129,20 @@
             <a href="#" class="sub-item" data-odds-tab="sure-bets">SURE BETS</a>
             <a href="#" class="sub-item" data-odds-tab="in-play-odds">IN PLAY ODDS</a>
             <a href="#" class="sub-item" data-odds-tab="all-events">ALL EVENTS</a>
-            <a href="#" class="sub-item sub-item-tools" id="betting-tools-toggle">BETTING TOOLS ▾</a>
+
+            <!-- 🔥 FIXED: BETTING TOOLS WITH DROPDOWN INSIDE -->
+            <div class="sub-item sub-item-tools" id="betting-tools-toggle">
+                BETTING TOOLS ▾
+                <div class="betting-tools-dropdown" id="betting-tools-dropdown">
+                    <div class="tools-item">BLOCKED ODDS</div>
+                    <div class="tools-item">VALUE BETS</div>
+                    <div class="tools-item">HOT MATCHES</div>
+                    <div class="tools-item">ARCHIVED RESULTS</div>
+                    <div class="tools-item">STANDINGS</div>
+                    <div class="tools-item">BET CALCULATOR</div>
+                </div>
+            </div>
+
             <a href="#" class="sub-item" data-odds-tab="betting">BETTING</a>
         </div>
 
@@ -163,16 +177,6 @@
             <a href="#" class="sub-item">Fake Trend Detector</a>
         </div>
     </nav>
-
-    <!-- BETTING TOOLS DROPDOWN -->
-    <div class="betting-tools-dropdown" id="betting-tools-dropdown">
-        <div class="tools-item">BLOCKED ODDS</div>
-        <div class="tools-item">VALUE BETS</div>
-        <div class="tools-item">HOT MATCHES</div>
-        <div class="tools-item">ARCHIVED RESULTS</div>
-        <div class="tools-item">STANDINGS</div>
-        <div class="tools-item">BET CALCULATOR</div>
-    </div>
 
     <!-- MODALS -->
     <div class="modal-overlay" id="modal-overlay"></div>
