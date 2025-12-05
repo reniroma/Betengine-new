@@ -165,10 +165,6 @@ body {
     font-weight: 700;
 }
 
-.icon-globe {
-    padding-left: 8px;
-}
-
 /* LANGUAGE DROPDOWN */
 
 .language-toggle {
@@ -180,25 +176,19 @@ body {
     background: transparent;
     color: var(--text-secondary);
     font-size: 13px;
-
-    /* PATCH FIX */
-    position: relative;
+    position: relative; /* PATCH ADDED */
 }
 
-.lang-dropdown {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    margin-top: 6px;
-
+#lang-dropdown {
+    position: absolute; /* PATCH ADDED */
+    top: 100%;          /* PATCH ADDED */
+    right: 0;           /* PATCH ADDED */
+    margin-top: 6px;    /* PATCH ADDED */
+    z-index: 9999;      /* PATCH ADDED */
     display: none;
     padding: 6px 10px;
-
     background-color: var(--bg-panel);
     border: 1px solid var(--border-neon);
-
-    z-index: 9999;
-
     max-height: 220px;
     overflow-y: auto;
     min-width: 150px;
@@ -299,6 +289,7 @@ body {
     transition: filter 0.2s ease;
 }
 
+/* Glow stronger on hover containers */
 .language-toggle:hover .icon-glow,
 .odds-toggle:hover .icon-glow,
 .auth-btn:hover .icon-glow,
@@ -318,16 +309,6 @@ body {
 .icon-caret {
     width: 14px;
     height: 14px;
-}
-
-.icon-search {
-    width: 18px;
-    height: 18px;
-}
-
-.icon-notification {
-    width: 20px;
-    height: 20px;
 }
 
 /* MAIN NAV (ROW 2 CENTER) */
@@ -366,7 +347,7 @@ body {
     color: #FFEC00;
 }
 
-/* SEARCH BOX */
+/* SEARCH BOX (ROW 2 RIGHT) */
 
 .search-box {
     display: flex;
@@ -456,7 +437,7 @@ body {
     gap: 4px;
 }
 
-/* DROPDOWN — BETTING TOOLS */
+/* BETTING TOOLS DROPDOWN */
 
 .betting-tools-dropdown {
     position: absolute;
@@ -478,7 +459,7 @@ body {
     font-weight: 700;
 }
 
-/* TRANSITIONS */
+/* TRANSITIONS / HOVERS */
 
 .main-nav a,
 .sub-nav a,
@@ -489,6 +470,17 @@ body {
 .auth-btn.register {
     background-color: var(--bg-button-primary);
     color: #000000;
+}
+
+/* TEXT HELPERS */
+
+.text-secondary,
+.link-secondary {
+    color: var(--text-secondary);
+}
+
+.text-muted {
+    color: var(--text-muted);
 }
 
 /* MODALS */
@@ -539,162 +531,4 @@ body {
     font-size: 20px;
     font-weight: 700;
     text-align: center;
-}
 
-.modal-close {
-    position: absolute;
-    top: 8px;
-    right: 10px;
-    border: none;
-    background: transparent;
-    font-size: 22px;
-    cursor: pointer;
-    color: #ffffff;
-}
-
-.login-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 16px;
-}
-
-.login-icon {
-    font-size: 52px;
-    margin-bottom: 6px;
-}
-
-.login-options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 18px;
-}
-
-.modal-btn {
-    width: 100%;
-    padding: 10px 12px;
-    margin-bottom: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    border-radius: 3px;
-    border: 1px solid #000000;
-    cursor: pointer;
-}
-
-.modal-btn.primary {
-    background-color: #ff9d00;
-    border-color: #ff9d00;
-    color: #000000;
-}
-
-.modal-or {
-    text-align: center;
-    margin: 10px 0;
-    font-size: 12px;
-    text-transform: uppercase;
-    color: #ff9d00;
-}
-
-.modal-form {
-    margin-top: 4px;
-}
-
-.modal-label {
-    display: block;
-    font-size: 13px;
-    margin-bottom: 8px;
-    color: #ffffff;
-}
-
-.modal-label input {
-    width: 100%;
-    padding: 6px 8px;
-    margin-top: 4px;
-    color: #ffffff;
-}
-
-.password-field {
-    position: relative;
-}
-
-.password-field input {
-    padding-right: 32px;
-    color: #ffffff;
-}
-
-.password-toggle {
-    position: absolute;
-    right: 6px;
-    top: 50%;
-    transform: translateY(-50%);
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    color: #ffffff;
-}
-
-.modal-remember {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    margin: 6px 0 10px;
-}
-
-.modal-text {
-    font-size: 13px;
-    margin: 4px 0;
-}
-
-.modal-text a {
-    text-decoration: underline;
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 900px) {
-    .row1,
-    .row2 {
-        padding: 8px 16px;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        gap: 12px;
-    }
-
-    .menu-toggle {
-        display: inline-flex;
-    }
-
-    .left-block,
-    .center-block,
-    .right-block {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .right-block {
-        order: 2;
-        justify-content: flex-start;
-    }
-
-    .center-block {
-        order: 3;
-        justify-content: flex-start;
-    }
-
-    .search-box {
-        width: 100%;
-    }
-
-    .main-nav,
-    .sub-nav .row-3-group {
-        flex-wrap: wrap;
-        justify-content: flex-start;
-    }
-}
-
-.language-code {
-    font-weight: 700;
-    letter-spacing: 0.3px;
-}
