@@ -557,4 +557,183 @@ body {
     font-size: 20px;
     font-weight: 700;
     text-align: center;
+}
+
+/* ========================================================= */
+/* MODAL CLEAN VERSION A — PREMIUM CENTERED UI               */
+/* (Overrides only modal styling, nothing else is changed)   */
+/* ========================================================= */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    display: none;
+    z-index: 9000;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 420px;
+    max-width: 92vw;
+    background: #11141d;
+    border: 1px solid #ff0000;
+    color: #ffffff;
+    padding: 28px 30px 36px;
+    border-radius: 6px;
+    display: none;
+    z-index: 9100;
+    box-shadow: 0 12px 45px rgba(0, 0, 0, 0.70);
+}
+
+/* Modal title */
+.modal-title {
+    margin: 0 0 22px;
+    font-size: 22px;
+    font-weight: 800;
+    text-align: center;
+    color: #ff9d00;
+}
+
+/* Close button */
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    background: transparent;
+    color: #ffffff;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* Login/Register Header Icon */
+.login-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.login-icon {
+    font-size: 54px;
+    margin-bottom: 8px;
+    color: #ff9d00;
+}
+
+/* Social login buttons */
+.modal-btn.social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    height: 38px;
+    background: #ffffff;
+    color: #000000;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.15);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+.modal-btn.social:hover {
+    background: #f5f5f7;
+}
+.social-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Divider */
+.modal-or {
+    text-align: center;
+    margin: 14px 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #ff9d00;
+    letter-spacing: 1px;
+}
+
+/* Form elements */
+.modal-form {
+    margin-top: 10px;
+}
+.modal-label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+.modal-label input {
+    width: 100%;
+    background: #1a1d28;
+    border: 1px solid #333;
+    padding: 8px 10px;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 14px;
+}
+.modal-label input:focus {
+    outline: none;
+    border-color: #ff9d00;
+}
+
+/* Password field */
+.password-field {
+    position: relative;
+}
+.password-field input {
+    padding-right: 36px !important;
+}
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Remember me + forgot */
+.modal-remember {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    margin: 12px 0 14px;
+}
+
+.modal-text {
+    font-size: 13px;
+    margin-top: 8px;
+    text-align: center;
+}
+.modal-text a {
+    color: #ff9d00;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Submit buttons */
+.modal-btn.primary {
+    width: 100%;
+    background: #ff9d00;
+    border: 1px solid #ff9d00;
+    color: #000000;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 10px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.modal-btn.primary:hover {
+    background: #ffb733;
+}
+
 
