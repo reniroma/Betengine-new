@@ -552,7 +552,7 @@ a:hover {
     border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.search-icon img.icon-search {
+.search-icon img {
     width: 16px;
     height: 16px;
 }
@@ -1033,7 +1033,7 @@ a:hover {
     margin-bottom: 8px;
 }
 
-/* LANGUAGE DROPDOWN (original implementation kept) */
+/* LANGUAGE DROPDOWN */
 
 .lang-dropdown {
     position: absolute;
@@ -1067,8 +1067,6 @@ a:hover {
 .lang-dropdown .lang-item.active {
     color: var(--text-secondary);
 }
-
-/* SHOW LANGUAGE DROPDOWN WHEN OPEN (JS toggles) */
 
 .lang-dropdown.open {
     display: block;
@@ -1124,6 +1122,11 @@ a:hover {
 
     .main-nav {
         display: none;
+    }
+
+    .main-nav.is-open {
+        display: inline-flex;
+        margin-top: 8px;
     }
 
     .sub-nav {
