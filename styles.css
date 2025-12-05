@@ -180,15 +180,25 @@ body {
     background: transparent;
     color: var(--text-secondary);
     font-size: 13px;
+
+    /* PATCH FIX */
+    position: relative;
 }
 
 .lang-dropdown {
     position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 6px;
+
     display: none;
     padding: 6px 10px;
+
     background-color: var(--bg-panel);
     border: 1px solid var(--border-neon);
-    z-index: 80;
+
+    z-index: 9999;
+
     max-height: 220px;
     overflow-y: auto;
     min-width: 150px;
@@ -289,7 +299,6 @@ body {
     transition: filter 0.2s ease;
 }
 
-/* Glow stronger on hover containers */
 .language-toggle:hover .icon-glow,
 .odds-toggle:hover .icon-glow,
 .auth-btn:hover .icon-glow,
@@ -357,7 +366,7 @@ body {
     color: #FFEC00;
 }
 
-/* SEARCH BOX (ROW 2 RIGHT) */
+/* SEARCH BOX */
 
 .search-box {
     display: flex;
@@ -447,7 +456,7 @@ body {
     gap: 4px;
 }
 
-/* BETTING TOOLS DROPDOWN */
+/* DROPDOWN — BETTING TOOLS */
 
 .betting-tools-dropdown {
     position: absolute;
@@ -469,7 +478,7 @@ body {
     font-weight: 700;
 }
 
-/* TRANSITIONS / HOVERS */
+/* TRANSITIONS */
 
 .main-nav a,
 .sub-nav a,
@@ -480,17 +489,6 @@ body {
 .auth-btn.register {
     background-color: var(--bg-button-primary);
     color: #000000;
-}
-
-/* TEXT HELPERS */
-
-.text-secondary,
-.link-secondary {
-    color: var(--text-secondary);
-}
-
-.text-muted {
-    color: var(--text-muted);
 }
 
 /* MODALS */
@@ -653,41 +651,6 @@ body {
     text-decoration: underline;
 }
 
-/* SOCIAL LOGIN BUTTON ICONS (BetEngine Professional UI) */
-
-.social-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
-    flex-shrink: 0;
-}
-
-.modal-btn.social {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
-
-/* PREMIUM HOVER GLOW FOR ROW1 ICONS */
-
-.row1 .icon,
-.row1 .auth-btn,
-.row1 .search-trigger,
-.row1 .notif-button,
-.row1 .lang-toggle {
-    transition: filter 0.25s ease, transform 0.25s ease;
-}
-
-.row1 .icon:hover,
-.row1 .auth-btn:hover,
-.row1 .search-trigger:hover,
-.row1 .notif-button:hover,
-.row1 .lang-toggle:hover {
-    filter: drop-shadow(0 0 6px rgba(255, 236, 0, 0.25));
-    transform: translateY(-1px);
-}
-
 /* RESPONSIVE */
 
 @media (max-width: 900px) {
@@ -724,10 +687,6 @@ body {
         width: 100%;
     }
 
-    .search-box input {
-        width: 100%;
-    }
-
     .main-nav,
     .sub-nav .row-3-group {
         flex-wrap: wrap;
@@ -738,315 +697,4 @@ body {
 .language-code {
     font-weight: 700;
     letter-spacing: 0.3px;
-}
-
-/* ========================================================= */
-/* NEW BETENGINE HEADER LAYOUT OVERRIDES (ROW1, ROW2, ROW3) */
-/* ========================================================= */
-
-.header {
-    width: 100%;
-    background-color: var(--bg-header);
-    color: var(--text-secondary);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
-}
-
-/* ROW CONTAINERS */
-
-.row1,
-.row2 {
-    padding: 8px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    background-color: var(--bg-header);
-    border-bottom: 1px solid var(--border-neon);
-}
-
-.row3 {
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    background-color: var(--bg-nav);
-    border-bottom: 1px solid var(--border-neon);
-}
-
-/* thin separators (used between row1/row2) */
-
-.row-separator {
-    height: 1px;
-    width: 100%;
-    background-color: var(--border-neon);
-}
-
-/* LOGO AREA */
-
-.logo-area {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.logo-icon {
-    width: 40px;
-    height: 40px;
-    flex-shrink: 0;
-}
-
-.logo-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-}
-
-.brand-name {
-    font-size: 18px;
-    font-weight: 800;
-    color: var(--text-secondary);
-}
-
-.brand-sub {
-    font-size: 12px;
-    color: var(--text-muted);
-}
-
-/* ROW1 RIGHT SIDE */
-
-.row1-right {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-}
-
-/* LANGUAGE TOGGLE (override spacing) */
-
-.language-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    border: none;
-    background: transparent;
-    color: var(--text-secondary);
-    font-size: 13px;
-    cursor: pointer;
-    white-space: nowrap;
-}
-
-/* ODDS FORMAT TOGGLE (override spacing) */
-
-.odds-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    border: none;
-    background: transparent;
-    color: var(--text-secondary);
-    font-size: 13px;
-    cursor: pointer;
-    white-space: nowrap;
-}
-
-.format-value {
-    font-weight: 700;
-    color: var(--text-secondary);
-}
-
-/* AUTH LINKS (alternative style, used by modal area) */
-
-.auth-links {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-}
-
-.auth-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 10px;
-    border-radius: 4px;
-    border: 1px solid var(--border-neon);
-    background-color: var(--bg-panel);
-    color: var(--text-primary);
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.auth-item.register-btn {
-    background-color: var(--bg-button-primary);
-    color: #000000;
-}
-
-/* ICONS BASE (override with glow) */
-
-.icon {
-    width: 22px;
-    height: 22px;
-    display: block;
-    flex-shrink: 0;
-    filter: drop-shadow(0 0 6px #FFEC00);
-    transition: filter 0.2s ease;
-}
-
-.language-toggle:hover .icon,
-.odds-toggle:hover .icon,
-.auth-item:hover .icon,
-.notif-button:hover .icon,
-.search-box:focus-within .search-icon {
-    filter: drop-shadow(0 0 12px #FFEC00);
-}
-
-.icon-caret {
-    width: 14px;
-    height: 14px;
-}
-
-/* ROW2: NAV + SEARCH (alternative layout) */
-
-.nav-row2 {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-}
-
-.nav-row2 a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-weight: 700;
-    padding: 6px 0;
-    font-size: 15px;
-    letter-spacing: 0.3px;
-}
-
-.nav-row2 a:hover,
-.nav-row2 a:focus-visible {
-    color: #FFEC00;
-    text-shadow: 0 0 12px #FFEC00;
-}
-
-/* PREMIUM LINK ALIGNMENT */
-
-.premium-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.premium-star {
-    width: 22px;
-    height: 22px;
-}
-
-/* SEARCH + NOTIFICATION WRAPPER */
-
-.search-notify {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
-/* SEARCH BOX (icon inside override) */
-
-.search-box {
-    position: relative;
-    width: 380px;
-    height: 36px;
-}
-
-.search-box input {
-    width: 100%;
-    height: 100%;
-    padding: 8px 10px 8px 38px;
-    border-radius: 4px;
-    border: 1px solid var(--border-neon);
-    background-color: var(--bg-panel);
-    color: var(--text-primary);
-    font-size: 13px;
-}
-
-.search-box input::placeholder {
-    color: var(--text-muted);
-}
-
-.search-box input:focus {
-    outline: none;
-}
-
-/* search icon over input */
-
-.search-icon {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    filter: drop-shadow(0 0 6px #FFEC00);
-}
-
-/* NOTIFICATION BUTTON */
-
-.notif-button {
-    border: none;
-    background: transparent;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-/* ROW3 SUB NAV (reuses .sub-item from existing CSS) */
-
-.row3 .sub-item {
-    text-decoration: none;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-    padding: 6px 10px;
-    border-radius: 4px;
-    color: var(--text-secondary);
-}
-
-.row3 .sub-item:hover,
-.row3 .sub-item:focus-visible {
-    background-color: var(--bg-button-primary);
-    color: #000000;
-}
-
-/* SOCIAL LOGIN BUTTONS – PROFESSIONAL UI */
-
-.social-btn {
-    width: 100%;
-    height: 34px;
-    border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: #FFFFFF;
-    color: #000000;
-    font-size: 14px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    cursor: pointer;
-    margin-bottom: 8px;
-}
-
-.social-btn.apple {
-    background: #FFFFFF;
-    border: 1px solid #D2D2D7;
-}
-
-.social-btn:hover {
-    background: #F5F5F7;
-}
-
-.social-icon {
-    width: 18px;
-    height: 18px;
-    object-fit: contain;
-    flex-shrink: 0;
 }
