@@ -10,12 +10,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const bettingToolsToggle = document.getElementById("betting-tools-toggle");
     const bettingToolsDropdown = document.getElementById("betting-tools-dropdown");
 
+    const oddsFormat = document.querySelector(".odds-format");
     const oddsToggle = document.getElementById("odds-toggle");
     const oddsDropdown = document.getElementById("odds-dropdown");
+    const oddsLabel = oddsToggle ? oddsToggle.querySelector(".odds-label") : null;
 
     const langToggle = document.querySelector(".language-toggle");
     const langDropdown = document.getElementById("lang-dropdown");
     const LANGUAGE_STORAGE_KEY = "be_language";
+    const languageCodeLabel = langToggle ? langToggle.querySelector(".language-code") : null;
 
     const loginButton = document.querySelector(".auth-btn.login");
     const registerButton = document.querySelector(".auth-btn.register");
@@ -83,10 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // BETTING TOOLS DROPDOWN
     function openBettingToolsDropdown() {
         if (!bettingToolsToggle || !bettingToolsDropdown) return;
-        const rect = bettingToolsToggle.getBoundingClientRect();
         bettingToolsDropdown.style.display = "block";
-        bettingToolsDropdown.style.top = rect.bottom + window.scrollY + "px";
-        bettingToolsDropdown.style.left = rect.left + window.scrollX + "px";
         bettingToolsOpen = true;
     }
 
@@ -110,14 +110,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ODDS FORMAT DROPDOWN
     function openOddsDropdown() {
-        if (!oddsToggle || !oddsDropdown) return;
-        oddsDropdown.style.display = "block";
+        if (!oddsFormat || !oddsDropdown) return;
+        oddsFormat.classList.add("open");
         oddsDropdownOpen = true;
     }
 
     function closeOddsDropdown() {
-        if (!oddsDropdown) return;
-        oddsDropdown.style.display = "none";
+        if (!oddsFormat || !oddsDropdown) return;
+        oddsFormat.classList.remove("open");
         oddsDropdownOpen = false;
     }
 
@@ -140,7 +140,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const allItems = oddsDropdown.querySelectorAll(".odds-item");
             allItems.forEach(i => i.classList.remove("active"));
             item.classList.add("active");
-            oddsToggle.textContent = label + " ▾";
+            if (oddsLabel) {
+                oddsLabel.textContent = label;
+            }
             closeOddsDropdown();
         });
     }
@@ -148,16 +150,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // LANGUAGE DROPDOWN
     function openLangDropdown() {
         if (!langToggle || !langDropdown) return;
-        const rect = langToggle.getBoundingClientRect();
-        langDropdown.style.display = "block";
-        langDropdown.style.top = rect.bottom + window.scrollY + 4 + "px";
-        langDropdown.style.left = rect.left + window.scrollX + "px";
+        langDropdown.classList.add("open");
         langDropdownOpen = true;
     }
 
     function closeLangDropdown() {
         if (!langDropdown) return;
-        langDropdown.style.display = "none";
+        langDropdown.classList.remove("open");
         langDropdownOpen = false;
     }
 
@@ -169,6 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } catch (e) {
             savedLangCode = null;
         }
+
         if (savedLangCode) {
             const savedItem = langDropdown.querySelector(`.lang-item[data-lang="${savedLangCode}"]`);
             if (savedItem) {
@@ -176,7 +176,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 allItems.forEach(i => i.classList.remove("active"));
                 savedItem.classList.add("active");
                 const label = (savedItem.textContent || "").trim();
-                langToggle.textContent = label + " ▾";
+                if (languageCodeLabel) {
+                    languageCodeLabel.textContent = label;
+                }
             }
         }
 
@@ -198,14 +200,15 @@ document.addEventListener("DOMContentLoaded", () => {
             const allItems = langDropdown.querySelectorAll(".lang-item");
             allItems.forEach(i => i.classList.remove("active"));
             item.classList.add("active");
-            langToggle.textContent = label + " ▾";
+            if (languageCodeLabel) {
+                languageCodeLabel.textContent = label;
+            }
 
-            // Persist chosen language and reload the page
             const code = item.getAttribute("data-lang") || "";
             if (code) {
                 try {
                     window.localStorage.setItem(LANGUAGE_STORAGE_KEY, code);
-                } catch (e) {
+                } catch (err) {
                     // ignore storage errors
                 }
             }
@@ -218,15 +221,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // MODALS
     function openModal(modal) {
         if (!modal || !overlay) return;
-        overlay.style.display = "block";
-        modal.style.display = "block";
+        overlay.classList.add("active");
+        modal.setAttribute("aria-hidden", "false");
         activeModal = modal;
     }
 
     function closeModal(modal) {
         if (!modal || !overlay) return;
-        modal.style.display = "none";
-        overlay.style.display = "none";
+        modal.setAttribute("aria-hidden", "true");
+        overlay.classList.remove("active");
         if (activeModal === modal) {
             activeModal = null;
         }
