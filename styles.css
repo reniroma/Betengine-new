@@ -171,12 +171,6 @@ body {
 
 /* LANGUAGE DROPDOWN */
 
-.language-wrapper {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-}
-
 .language-toggle {
     cursor: pointer;
     display: inline-flex;
@@ -782,7 +776,7 @@ body {
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
     display: none;
-    z-index: 5500;
+    z-index: 90;
 }
 
 .modal {
@@ -797,14 +791,14 @@ body {
     padding: 24px 24px 32px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
     display: none;
-    z-index: 6000;
+    z-index: 100;
 }
 
 #register-modal {
     background-color: #11141d;
     border: 1px solid #ff0000;
     color: #ffffff;
-    z-index: 6100;
+    z-index: 200;
 }
 
 .modal.active {
@@ -1312,35 +1306,34 @@ body {
 
 @media (max-width: 900px) {
 
+    /* Global header safety for mobile */
+    .top-bar,
+    .header,
+    .row1,
+    .row2 {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* Hide login / register / notification in mobile header */
+    .auth-btn,
+    .notif-button {
+        display: none !important;
+    }
+
     /* Show hamburger menu in row1 */
     .menu-toggle {
         display: inline-flex;
     }
 
-    /* Mobile nav toggle behavior */
-    .main-nav {
-        display: none;
-    }
-
-    .main-nav.is-open {
-        display: flex;
-    }
-
-    .sub-nav {
-        display: none;
-    }
-
-    .sub-nav.is-open {
-        display: flex;
-    }
-
-    /* Row1: compact bar, left = menu, right = top options */
+    /* Row1: compact bar, allow wrap */
     .header .row1 {
         padding: 8px 12px;
         height: auto;
         align-items: center;
         gap: 8px;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
     }
 
     .header .row1 .left-block {
@@ -1357,8 +1350,24 @@ body {
     }
 
     .top-options {
-        gap: 12px;
+        gap: 10px;
         margin-right: 0;
+        flex-wrap: wrap;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .language-toggle,
+    .odds-toggle {
+        font-size: 12px;
+        gap: 4px;
+        max-width: 100%;
+        flex-wrap: nowrap;
+    }
+
+    .icon {
+        width: 18px;
+        height: 18px;
     }
 
     /* Row2: vertical stack – logo, nav, search */
@@ -1405,11 +1414,15 @@ body {
     /* Search full width under tabs */
     .header .search-box {
         width: 100%;
+        max-width: 100%;
         margin-top: 2px;
+        box-sizing: border-box;
     }
 
     .header .search-box input {
         width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     /* Sub-nav as horizontal scroll tabs */
@@ -1484,5 +1497,9 @@ body {
     .betting-tools-dropdown .tools-item {
         padding: 10px 0;
         font-size: 14px;
+    }
+
+    .sub-item-tools:hover .betting-tools-dropdown {
+        display: none !important;
     }
 }
