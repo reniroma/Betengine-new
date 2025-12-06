@@ -103,7 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
             bettingToolsOpen ? closeBettingTools() : openBettingTools();
         });
 
-        // Prevent closing when clicking inside dropdown
         bettingToolsDropdown.addEventListener("click", (e) => {
             e.stopPropagation();
         });
@@ -165,25 +164,48 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    if (langDropdown) {
-        langDropdown.addEventListener("click", (e) => {
-            const item = e.target.closest(".lang-item");
-            if (!item) return;
+    langDropdown.addEventListener("click", (e) => {
+        const item = e.target.closest(".lang-item");
+        if (!item) return;
 
-            langDropdown.querySelectorAll(".lang-item").forEach(i => i.classList.remove("active"));
-            item.classList.add("active");
+        langDropdown.querySelectorAll(".lang-item").forEach(i => i.classList.remove("active"));
+        item.classList.add("active");
 
-            const codeSpan = langToggle.querySelector(".language-code");
-            if (codeSpan) codeSpan.textContent = item.textContent.trim();
+        const codeSpan = langToggle.querySelector(".language-code");
+        if (codeSpan) codeSpan.textContent = item.textContent.trim();
 
-            try {
-                const code = item.getAttribute("data-lang");
-                if (code) localStorage.setItem(LANGUAGE_STORAGE_KEY, code);
-            } catch (err) {}
+        try {
+            const code = item.getAttribute("data-lang");
+            if (code) localStorage.setItem(LANGUAGE_STORAGE_KEY, code);
+        } catch (err) {}
 
-            closeLang();
-            location.reload();
-        });
+        closeLang();
+        location.reload();
+    });
+
+    /* ============================
+       LANGUAGE INIT (FIX) ⭐⭐⭐
+       Load saved language from storage
+    ============================ */
+    try {
+        const savedLang = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+
+        if (savedLang && langDropdown) {
+            // Find matching item
+            const match = langDropdown.querySelector(`.lang-item[data-lang="${savedLang}"]`);
+            
+            if (match) {
+                // Set header text
+                const codeSpan = langToggle.querySelector(".language-code");
+                if (codeSpan) codeSpan.textContent = match.textContent.trim();
+
+                // Set active state
+                langDropdown.querySelectorAll(".lang-item").forEach(i => i.classList.remove("active"));
+                match.classList.add("active");
+            }
+        }
+    } catch (error) {
+        console.warn("Language init failed:", error);
     }
 
     /* ============================
