@@ -107,7 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
         bettingToolsDropdown.addEventListener("click", (e) => {
             e.stopPropagation();
         });
-
     }
 
     /* ============================
