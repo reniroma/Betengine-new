@@ -35,13 +35,12 @@
                         </div>
                     </div>
 
-                    <!-- LANGUAGE TOGGLE WITH DROPDOWN (BUTTON + SEPARATE PANEL) -->
-                    <div class="language-wrapper">
-                        <button type="button" class="language-toggle" aria-label="Change language">
-                            <img src="assets/icons/language.svg" alt="" class="icon icon-glow icon-language">
-                            <span class="language-code">English</span>
-                            <img src="assets/icons/caret-down.svg" alt="" class="icon icon-glow icon-caret">
-                        </button>
+                    <!-- LANGUAGE TOGGLE WITH DROPDOWN INSIDE BUTTON -->
+                    <button type="button" class="language-toggle" aria-label="Change language">
+                        <img src="assets/icons/language.svg" alt="" class="icon icon-glow icon-language">
+                        <span class="language-code">English</span>
+                        <img src="assets/icons/caret-down.svg" alt="" class="icon icon-glow icon-caret">
+
                         <div class="lang-dropdown" id="lang-dropdown">
                             <div class="lang-item active" data-lang="en">English</div>
                             <div class="lang-item" data-lang="de">German</div>
@@ -66,7 +65,7 @@
                             <div class="lang-item" data-lang="in">Indian</div>
                             <div class="lang-item" data-lang="al">Albanian</div>
                         </div>
-                    </div>
+                    </button>
 
                     <button class="auth-btn login" type="button">
                         <img src="assets/icons/login.svg" alt="" class="icon icon-glow icon-auth">
@@ -131,7 +130,7 @@
             <a href="#" class="sub-item" data-odds-tab="in-play-odds">IN PLAY ODDS</a>
             <a href="#" class="sub-item" data-odds-tab="all-events">ALL EVENTS</a>
 
-            <!-- 🔥 FIXED: BETTING TOOLS WITH DROPDOWN INSIDE -->
+            <!-- BETTING TOOLS WITH DROPDOWN -->
             <div class="sub-item sub-item-tools" id="betting-tools-toggle">
                 BETTING TOOLS ▾
                 <div class="betting-tools-dropdown" id="betting-tools-dropdown">
