@@ -19,6 +19,8 @@
 
             <div class="right-block">
                 <div class="top-options">
+
+                    <!-- ODDS FORMAT -->
                     <div class="odds-format" id="odds-format">
                         <button type="button" class="selector odds-toggle" id="odds-toggle">
                             <span class="small-label">Odds format:</span>
@@ -35,12 +37,14 @@
                         </div>
                     </div>
 
-                       <!-- LANGUAGE TOGGLE WITH DROPDOWN OUTSIDE BUTTON -->
+                    <!-- LANGUAGE WRAPPER -->
+                    <div class="language-wrapper">
                         <button type="button"
                                 class="language-toggle"
                                 aria-label="Change language"
                                 aria-expanded="false"
                                 aria-controls="lang-dropdown">
+
                             <img src="assets/icons/language.svg" alt="" class="icon icon-glow icon-language">
                             <span class="language-code">English</span>
                             <img src="assets/icons/caret-down.svg" alt="" class="icon icon-glow icon-caret">
@@ -70,8 +74,9 @@
                             <div class="lang-item" data-lang="in">Indian</div>
                             <div class="lang-item" data-lang="al">Albanian</div>
                         </div>
-                    </button>
+                    </div>
 
+                    <!-- AUTH BUTTONS -->
                     <button class="auth-btn login" type="button">
                         <img src="assets/icons/login.svg" alt="" class="icon icon-glow icon-auth">
                         <span>LOGIN</span>
@@ -124,7 +129,7 @@
         <div class="row2-separator"></div>
     </header>
 
-    <!-- ROW 3 / SUB NAV -->
+    <!-- ROW 3 NAV -->
     <nav class="sub-nav" id="sub-nav" aria-label="Secondary navigation">
 
         <div class="row-3-group row-3-odds active" data-subnav="odds">
@@ -135,28 +140,27 @@
             <a href="#" class="sub-item" data-odds-tab="in-play-odds">IN PLAY ODDS</a>
             <a href="#" class="sub-item" data-odds-tab="all-events">ALL EVENTS</a>
 
-            <!-- 🔥 FIXED: BETTING TOOLS WITH DROPDOWN INSIDE -->
+            <!-- BETTING TOOLS -->
             <button type="button"
-                    class="sub-item
-                    sub-item-tools" 
-                    id="betting-tools-toggle" 
+                    class="sub-item sub-item-tools"
+                    id="betting-tools-toggle"
                     aria-expanded="false"
                     aria-controls="betting-tools-dropdown">
-                    BETTING TOOLS ▾
+                BETTING TOOLS ▾
             </button>
-            
-                <div class="betting-tools-dropdown" id="betting-tools-dropdown-panel">
-                    <div class="tools-item">BLOCKED ODDS</div>
-                    <div class="tools-item">VALUE BETS</div>
-                    <div class="tools-item">HOT MATCHES</div>
-                    <div class="tools-item">ARCHIVED RESULTS</div>
-                    <div class="tools-item">STANDINGS</div>
-                    <div class="tools-item">BET CALCULATOR</div>
-                </div>
+
+            <div class="betting-tools-dropdown" id="betting-tools-dropdown-panel">
+                <div class="tools-item">BLOCKED ODDS</div>
+                <div class="tools-item">VALUE BETS</div>
+                <div class="tools-item">HOT MATCHES</div>
+                <div class="tools-item">ARCHIVED RESULTS</div>
+                <div class="tools-item">STANDINGS</div>
+                <div class="tools-item">BET CALCULATOR</div>
+            </div>
 
             <a href="#" class="sub-item" data-odds-tab="betting">BETTING</a>
+        </div>
 
-            
         <div class="row-3-group row-3-community" data-subnav="community">
             <a href="#" class="sub-item">HOME</a>
             <a href="#" class="sub-item">FEED</a>
@@ -192,6 +196,7 @@
     <!-- MODALS -->
     <div class="modal-overlay" id="modal-overlay"></div>
 
+    <!-- LOGIN MODAL -->
     <div class="modal login-center" id="login-modal" aria-hidden="true">
         <button class="modal-close" data-modal-close="login">×</button>
 
@@ -253,23 +258,24 @@
         </form>
     </div>
 
+    <!-- REGISTER MODAL -->
     <div class="modal register-center" id="register-modal" aria-hidden="true">
         <button class="modal-close" data-modal-close="register">×</button>
         <h2 class="modal-title">Register</h2>
 
         <div class="login-options">
             <button class="social-btn facebook" type="button">
-                <img src="assets/icons/facebook.svg" alt="" class="social-icon">
+                <img src="assets/icons/facebook.svg" class="social-icon" alt="">
                 <span>SIGN IN WITH FACEBOOK</span>
             </button>
 
             <button class="social-btn apple" type="button">
-                <img src="assets/icons/apple.svg" alt="" class="social-icon">
+                <img src="assets/icons/apple.svg" class="social-icon" alt="">
                 <span>SIGN IN WITH APPLE</span>
             </button>
 
             <button class="social-btn google" type="button">
-                <img src="assets/icons/google.svg" alt="" class="social-icon">
+                <img src="assets/icons/google.svg" class="social-icon" alt="">
                 <span>SIGN IN WITH GOOGLE</span>
             </button>
         </div>
@@ -279,14 +285,17 @@
                 Username <span class="required">*</span>
                 <input type="text" id="reg-username" name="reg-username">
             </label>
+
             <label class="modal-label">
                 Email <span class="required">*</span>
                 <input type="email" id="reg-email" name="reg-email">
             </label>
+
             <label class="modal-label">
                 Password <span class="required">*</span>
                 <input type="password" id="reg-password" name="reg-password">
             </label>
+
             <label class="modal-label">
                 Confirm Password <span class="required">*</span>
                 <input type="password" id="reg-password-confirm" name="reg-password-confirm">
