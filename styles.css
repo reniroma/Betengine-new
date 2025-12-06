@@ -1464,7 +1464,71 @@ body {
         display: none !important;
     }
 
+  /* ========================================================= */
+/* MOBILE HEADER FIX — FINAL PATCH (no HTML changes)         */
+/* ========================================================= */
+
+@media (max-width: 900px) {
+
+    /* Put row2 blocks in column layout */
+    .row2 {
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 10px !important; /* space between items */
+        padding: 10px 0 !important;
+    }
+
+    /* Center the brand/logo block properly */
+    .brand-area {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-top: 10px !important;
+        margin-bottom: 5px !important;
+    }
+
+    /* Logo box itself */
+    .logo {
+        margin-bottom: 6px !important;
+        transform: translateY(0) !important; /* reset any previous push */
+    }
+
+    /* Brand text */
+    .brand-name,
+    .brand-tagline {
+        text-align: center !important;
+    }
+
+    /* Center and stretch the main navigation links */
+    .row2 .center-block,
+    .main-nav {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    .main-nav .nav-item {
+        font-size: 16px !important;
+        margin: 0 8px !important;
+    }
+
+    /* Search bar positioning */
+    .search-box {
+        width: 92% !important;
+        margin: 8px auto 4px auto !important;
+    }
+
+    /* Notification icon positioning */
+    .notif-button {
+        margin-left: 0 !important;
+        margin-top: 6px !important;
+        align-self: center !important;
+    }
 }
+
 
 
 
