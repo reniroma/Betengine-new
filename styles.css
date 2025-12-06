@@ -181,6 +181,7 @@ body {
     color: var(--text-secondary);
     font-size: 13px;
     position: relative !important;
+    z-index: 200;
 }
 
 .lang-dropdown {
@@ -189,7 +190,7 @@ body {
     padding: 6px 10px;
     background-color: var(--bg-panel);
     border: 1px solid var(--border-neon);
-    z-index: 80;
+    z-index: 500 !important;
     max-height: 220px;
     overflow-y: auto;
     min-width: 150px;
@@ -383,6 +384,8 @@ body {
     gap: 8px;
     width: 380px;
 }
+
+/* input inside search box (first definition) */
 
 .search-box input {
     background: transparent;
@@ -1110,7 +1113,7 @@ body {
     gap: 28px;
 }
 
-/* LANGUAGE TOGGLE */
+/* LANGUAGE TOGGLE (override) */
 
 .language-toggle {
     display: inline-flex;
@@ -1122,9 +1125,11 @@ body {
     font-size: 13px;
     cursor: pointer;
     white-space: nowrap;
+    position: relative !important;
+    z-index: 200;
 }
 
-/* ODDS FORMAT TOGGLE */
+/* ODDS FORMAT TOGGLE (override) */
 
 .odds-toggle {
     display: inline-flex;
@@ -1174,7 +1179,7 @@ body {
     color: #000000;
 }
 
-/* ICONS BASE */
+/* ICONS BASE (override) */
 
 .icon {
     width: 22px;
@@ -1221,7 +1226,7 @@ body {
     text-shadow: 0 0 12px #FFEC00;
 }
 
-/* PREMIUM LINK ALIGNMENT */
+/* PREMIUM LINK ALIGNMENT (override) */
 
 .premium-link {
     display: inline-flex;
@@ -1242,12 +1247,13 @@ body {
     gap: 16px;
 }
 
-/* SEARCH BOX (icon inside) */
+/* SEARCH BOX (icon inside, override) */
 
 .search-box {
     position: relative;
     width: 380px;
     height: 36px;
+    z-index: 100;
 }
 
 .search-box input {
@@ -1269,7 +1275,7 @@ body {
     outline: none;
 }
 
-/* search icon over input */
+/* search icon over input (override) */
 
 .search-icon {
     position: absolute;
@@ -1281,7 +1287,7 @@ body {
     filter: drop-shadow(0 0 6px #FFEC00);
 }
 
-/* NOTIFICATION BUTTON */
+/* NOTIFICATION BUTTON (override) */
 
 .notif-button {
     border: none;
