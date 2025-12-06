@@ -275,7 +275,7 @@ body {
 }
 
 .auth-btn.register {
-    background-color: #ffb733 !important; /* same color as ROW 3 */
+    background-color: #ffb733 !important;
     color: #000000;
     border-color: var(--border-neon);
 }
@@ -358,7 +358,7 @@ body {
 
 .premium-link {
     display: inline-flex;
-    align-items: center; /* vertical centering */
+    align-items: center;
     gap: 8px;
 }
 
@@ -384,8 +384,6 @@ body {
     gap: 8px;
     width: 380px;
 }
-
-/* input inside search box (first definition) */
 
 .search-box input {
     background: transparent;
@@ -776,7 +774,7 @@ body {
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5); /* slightly lighter overlay so the register modal is not too dark */
+    background: rgba(0, 0, 0, 0.5);
     display: none;
     z-index: 90;
 }
@@ -965,86 +963,8 @@ body {
 .row1 .search-trigger:hover,
 .row1 .notif-button:hover,
 .row1 .language-toggle:hover {
-    filter: drop-shadow(0 0 6px rgba(255, 236, 0, 0.25));
+    filter: drop-shadow(0 0 6px rgba(255, 236, 0, 0, 0.25));
     transform: translateY(-1px);
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 900px) {
-    .header .row1,
-    .header .row2 {
-        padding: 8px 16px;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        gap: 12px;
-    }
-
-    .menu-toggle {
-        display: inline-flex;
-    }
-
-    .left-block,
-    .center-block,
-    .right-block {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .right-block {
-        order: 2;
-        justify-content: flex-start;
-    }
-
-    .center-block {
-        order: 3;
-        justify-content: flex-start;
-    }
-
-    .header .search-box {
-        width: 100%;
-    }
-
-    .header .search-box input {
-        width: 100%;
-    }
-
-    .main-nav,
-    .sub-nav .row-3-group {
-        flex-wrap: wrap;
-        justify-content: flex-start;
-    }
-
-    .layout {
-        grid-template-columns: 1fr;
-    }
-
-    .sidebar.right {
-        order: 3;
-    }
-
-    .banners {
-        grid-template-columns: 1fr;
-    }
-
-    /* MOBILE FIX — LANGUAGE DROPDOWN */
-    .lang-dropdown {
-        left: 0 !important;
-        top: 110% !important;
-        min-width: 160px;
-        margin-top: 6px;
-        position: absolute !important;
-    }
-
-    .language-toggle {
-        z-index: 9999 !important;
-    }
-
-    .row1,
-    .row2 {
-        position: relative;
-        z-index: 2000;
-    }
 }
 
 .language-code {
@@ -1054,6 +974,7 @@ body {
 
 /* ========================================================= */
 /* NEW BETENGINE HEADER LAYOUT OVERRIDES (ROW1, ROW2, ROW3) */
+/* DESKTOP BEHAVIOUR                                        */
 /* ========================================================= */
 
 .header {
@@ -1169,10 +1090,6 @@ body {
     font-size: 13px;
     cursor: pointer;
     white-space: nowrap;
-}
-
-.small-label {
-    color: var(--text-muted);
 }
 
 .format-value {
@@ -1348,9 +1265,8 @@ body {
 /* FIX — BETTING TOOLS DROPDOWN (HOVER + Z-INDEX + POINTER) */
 /* ========================================================= */
 
-/* 1. Raise dropdown above search bar & row2 elements */
 .betting-tools-dropdown {
-    z-index: 350 !important; /* above odds, search, language */
+    z-index: 350 !important;
     position: absolute;
     top: 100%;
     left: 0;
@@ -1362,7 +1278,6 @@ body {
     min-width: 180px;
 }
 
-/* 2. Fix hover behavior & pointer */
 .betting-tools-dropdown .tools-item {
     cursor: pointer !important;
     padding: 6px 0;
@@ -1376,7 +1291,6 @@ body {
     text-shadow: 0 0 6px rgba(255, 236, 0, 0.4);
 }
 
-/* 3. Ensure parent detects hover correctly */
 .sub-item-tools {
     position: relative !important;
     cursor: pointer;
@@ -1387,13 +1301,156 @@ body {
 }
 
 /* ========================================================= */
-/* MOBILE FIX (no conflict with desktop) */
+/* RESPONSIVE LAYOUT (MOBILE ≤ 900px)                        */
 /* ========================================================= */
 
 @media (max-width: 900px) {
+
+    /* Show hamburger menu in row1 */
+    .menu-toggle {
+        display: inline-flex;
+    }
+
+    /* Row1: compact bar, left = menu, right = top options */
+    .header .row1 {
+        padding: 8px 12px;
+        height: auto;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: nowrap;
+    }
+
+    .header .row1 .left-block {
+        flex: 0 0 auto;
+    }
+
+    .header .row1 .center-block {
+        display: none;
+    }
+
+    .header .row1 .right-block {
+        flex: 1 1 auto;
+        justify-content: flex-end;
+    }
+
+    .top-options {
+        gap: 12px;
+        margin-right: 0;
+    }
+
+    /* Row2: vertical stack – logo, nav, search */
+    .header .row2 {
+        padding: 8px 12px 10px;
+        height: auto;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .row2 .left-block,
+    .row2 .center-block,
+    .row2 .right-block {
+        width: 100%;
+        flex: 0 0 auto;
+        justify-content: center;
+    }
+
+    .brand-area {
+        justify-content: center;
+    }
+
+    /* Main nav as horizontal scroll tabs */
+    .main-nav {
+        justify-content: flex-start;
+        gap: 18px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        scrollbar-width: none;
+    }
+
+    .main-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-item {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        font-size: 14px;
+        padding: 6px 2px;
+    }
+
+    /* Search full width under tabs */
+    .header .search-box {
+        width: 100%;
+        margin-top: 2px;
+    }
+
+    .header .search-box input {
+        width: 100%;
+    }
+
+    /* Sub-nav as horizontal scroll tabs */
+    .sub-nav {
+        padding: 6px 12px;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .sub-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .sub-nav .row-3-group {
+        display: flex;
+        flex-wrap: nowrap;
+        width: max-content;
+        gap: 12px;
+    }
+
+    .sub-item {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+
+    /* Layout single column */
+    .layout {
+        grid-template-columns: 1fr;
+        padding: 12px 10px 24px;
+    }
+
+    .sidebar.right {
+        order: 3;
+    }
+
+    .banners {
+        grid-template-columns: 1fr;
+    }
+
+    /* Language dropdown safe in mobile */
+    .lang-dropdown {
+        left: 0 !important;
+        top: 110% !important;
+        min-width: 160px;
+        margin-top: 6px;
+        position: absolute !important;
+    }
+
+    .language-toggle {
+        z-index: 9999 !important;
+    }
+
+    .row1,
+    .row2 {
+        position: relative;
+        z-index: 2000;
+    }
+
+    /* Betting tools dropdown full width in mobile, click-only (JS) */
     .betting-tools-dropdown {
         position: relative !important;
-        margin-top: 2px !important;
+        margin-top: 4px !important;
         left: 0 !important;
         width: 100% !important;
         border-left: none;
@@ -1403,6 +1460,10 @@ body {
 
     .betting-tools-dropdown .tools-item {
         padding: 10px 0;
-        font-size: 15px;
+        font-size: 14px;
+    }
+
+    .sub-item-tools:hover .betting-tools-dropdown {
+        display: none !important;
     }
 }
