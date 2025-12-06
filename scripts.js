@@ -88,11 +88,16 @@ document.addEventListener("DOMContentLoaded", () => {
        BETTING TOOLS
     ============================ */
     function openBettingTools() {
-        bettingToolsDropdown.style.display = "block";
+        if (bettingToolsDropdown) {
+            bettingToolsDropdown.style.display = "block";
+        }
         bettingToolsOpen = true;
     }
+
     function closeBettingTools() {
-        bettingToolsDropdown.style.display = "none";
+        if (bettingToolsDropdown) {
+            bettingToolsDropdown.style.display = "none";
+        }
         bettingToolsOpen = false;
     }
 
@@ -112,11 +117,16 @@ document.addEventListener("DOMContentLoaded", () => {
        ODDS FORMAT DROPDOWN
     ============================ */
     function openOdds() {
-        oddsDropdown.style.display = "block";
+        if (oddsDropdown) {
+            oddsDropdown.style.display = "block";
+        }
         oddsDropdownOpen = true;
     }
+
     function closeOdds() {
-        oddsDropdown.style.display = "none";
+        if (oddsDropdown) {
+            oddsDropdown.style.display = "none";
+        }
         oddsDropdownOpen = false;
     }
 
@@ -128,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    if (oddsDropdown) {
+    if (oddsDropdown && oddsToggle) {
         oddsDropdown.addEventListener("click", (e) => {
             const item = e.target.closest(".odds-item");
             if (!item) return;
@@ -148,11 +158,16 @@ document.addEventListener("DOMContentLoaded", () => {
        LANGUAGE DROPDOWN
     ============================ */
     function openLang() {
-        langDropdown.style.display = "block";
+        if (langDropdown) {
+            langDropdown.style.display = "block";
+        }
         langDropdownOpen = true;
     }
+
     function closeLang() {
-        langDropdown.style.display = "none";
+        if (langDropdown) {
+            langDropdown.style.display = "none";
+        }
         langDropdownOpen = false;
     }
 
@@ -164,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    if (langDropdown) {
+    if (langDropdown && langToggle) {
         langDropdown.addEventListener("click", (e) => {
             const item = e.target.closest(".lang-item");
             if (!item) return;
@@ -178,7 +193,9 @@ document.addEventListener("DOMContentLoaded", () => {
             try {
                 const code = item.getAttribute("data-lang");
                 if (code) localStorage.setItem(LANGUAGE_STORAGE_KEY, code);
-            } catch (err) {}
+            } catch (err) {
+                // ignore storage errors
+            }
 
             closeLang();
             location.reload();
@@ -186,22 +203,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* ============================
-       LANGUAGE INIT (FIX) ⭐⭐⭐
-       Load saved language from storage
+       LANGUAGE INIT
     ============================ */
     try {
         const savedLang = localStorage.getItem(LANGUAGE_STORAGE_KEY);
-
-        if (savedLang && langDropdown) {
-            // Find matching item
+        if (savedLang && langDropdown && langToggle) {
             const match = langDropdown.querySelector(`.lang-item[data-lang="${savedLang}"]`);
-            
             if (match) {
-                // Set header text
                 const codeSpan = langToggle.querySelector(".language-code");
                 if (codeSpan) codeSpan.textContent = match.textContent.trim();
 
-                // Set active state
                 langDropdown.querySelectorAll(".lang-item").forEach(i => i.classList.remove("active"));
                 match.classList.add("active");
             }
@@ -214,12 +225,14 @@ document.addEventListener("DOMContentLoaded", () => {
        MODALS
     ============================ */
     function openModal(modal) {
+        if (!modal || !overlay) return;
         overlay.style.display = "block";
         modal.style.display = "block";
         activeModal = modal;
     }
 
     function closeModal(modal) {
+        if (!modal || !overlay) return;
         modal.style.display = "none";
         overlay.style.display = "none";
         if (activeModal === modal) activeModal = null;
@@ -229,7 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (activeModal) closeModal(activeModal);
     }
 
-    if (loginButton) {
+    if (loginButton && loginModal) {
         loginButton.addEventListener("click", (e) => {
             e.preventDefault();
             closeAnyModal();
@@ -237,7 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    if (registerButton) {
+    if (registerButton && registerModal) {
         registerButton.addEventListener("click", (e) => {
             e.preventDefault();
             closeAnyModal();
@@ -245,11 +258,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    if (loginClose) loginClose.addEventListener("click", () => closeModal(loginModal));
-    if (registerClose) registerClose.addEventListener("click", () => closeModal(registerModal));
-    if (overlay) overlay.addEventListener("click", () => closeAnyModal());
+    if (loginClose && loginModal) {
+        loginClose.addEventListener("click", () => closeModal(loginModal));
+    }
+    if (registerClose && registerModal) {
+        registerClose.addEventListener("click", () => closeModal(registerModal));
+    }
+    if (overlay) {
+        overlay.addEventListener("click", () => closeAnyModal());
+    }
 
-    if (openRegisterFromLogin) {
+    if (openRegisterFromLogin && loginModal && registerModal) {
         openRegisterFromLogin.addEventListener("click", (e) => {
             e.preventDefault();
             closeModal(loginModal);
@@ -257,7 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    if (openLoginFromRegister) {
+    if (openLoginFromRegister && loginModal && registerModal) {
         openLoginFromRegister.addEventListener("click", (e) => {
             e.preventDefault();
             closeModal(registerModal);
