@@ -1463,4 +1463,44 @@ body {
     .sub-item-tools:hover .betting-tools-dropdown {
         display: none !important;
     }
+
+/* ========================================================= */
+/* MOBILE FIX — REMOVE BRAND AREA AND ALIGN HEADER A1        */
+/* ========================================================= */
+@media (max-width: 900px) {
+
+    /* Hide desktop logo/brand block on mobile */
+    .brand-area {
+        display: none !important;
+    }
+
+    /* Row2 cleanup for the A1 mobile header */
+    .row2 {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    /* Ensure search sits directly under Row1 */
+    .row2 .right-block,
+    .row2 .search-box {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Center mobile logo in row1 */
+    .row1 .center-block {
+        justify-content: center !important;
+    }
+
+    /* Ensure horizontal scroll menu looks clean on mobile */
+    .sub-nav {
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+
+    .sub-nav .row-3-group.active {
+        flex-wrap: nowrap !important;
+        gap: 22px !important;
+    }
 }
