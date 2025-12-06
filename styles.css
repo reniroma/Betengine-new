@@ -1,8 +1,3 @@
-fix the problem.
-rregulloji te 3 gabimet dhe me jep versionin e plote css.
-
-
-
 * {
     box-sizing: border-box;
 }
@@ -58,7 +53,7 @@ body {
 
 .row2 {
     height: 50px;
-    border-bottom: o.3px solid var(--border-neon);
+    border-bottom: 0.3px solid var(--border-neon);
 }
 
 .row1-separator,
@@ -279,14 +274,14 @@ body {
 }
 
 .auth-btn.register {
-     background-color: #ffb733 !important; /* same color as ROW 3 */
+    background-color: #ffb733 !important; /* same color as ROW 3 */
     color: #000000;
     border-color: var(--border-neon);
 }
+
 /* Make only REGISTER icon black */
 .auth-btn.register .icon-auth {
     filter: brightness(0);
-    
 }
 
 /* ICONS BASE & GLOW */
@@ -362,16 +357,16 @@ body {
 
 .premium-link {
     display: inline-flex;
-    align-items: center; /* FIX: centralizim vertikal */
+    align-items: center; /* vertical centering */
     gap: 8px;
 }
 
 .premium-star {
     font-size: 20px;
     color: #FFEC00;
-    line-height: 1;          /* FIX 2 */
-    display: flex;           /* FIX 3 */
-    align-items: center;     /* FIX 4: centron plotësisht */
+    line-height: 1;
+    display: flex;
+    align-items: center;
     justify-content: center;
 }
 
@@ -480,7 +475,6 @@ body {
     background-color: var(--bg-panel);
     border: 1px solid var(--border-neon);
     z-index: 50;
-    
 }
 
 .betting-tools-dropdown .tools-item {
@@ -779,7 +773,7 @@ body {
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5); /* pak me e lehte qe te mos nxihet register */
+    background: rgba(0, 0, 0, 0.5); /* slightly lighter overlay so the register modal is not too dark */
     display: none;
     z-index: 90;
 }
@@ -959,7 +953,7 @@ body {
 .row1 .auth-btn,
 .row1 .search-trigger,
 .row1 .notif-button,
-.row1 .lang-toggle {
+.row1 .language-toggle {
     transition: filter 0.25s ease, transform 0.25s ease;
 }
 
@@ -967,7 +961,7 @@ body {
 .row1 .auth-btn:hover,
 .row1 .search-trigger:hover,
 .row1 .notif-button:hover,
-.row1 .lang-toggle:hover {
+.row1 .language-toggle:hover {
     filter: drop-shadow(0 0 6px rgba(255, 236, 0, 0.25));
     transform: translateY(-1px);
 }
