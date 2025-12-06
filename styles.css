@@ -190,7 +190,7 @@ body {
     padding: 6px 10px;
     background-color: var(--bg-panel);
     border: 1px solid var(--border-neon);
-    z-index: 500 !important;
+    z-index: 9999 !important;
     max-height: 220px;
     overflow-y: auto;
     min-width: 150px;
@@ -1026,6 +1026,25 @@ body {
     .banners {
         grid-template-columns: 1fr;
     }
+
+    /* MOBILE FIX — LANGUAGE DROPDOWN */
+    .lang-dropdown {
+        left: 0 !important;
+        top: 110% !important;
+        min-width: 160px;
+        margin-top: 6px;
+        position: absolute !important;
+    }
+
+    .language-toggle {
+        z-index: 9999 !important;
+    }
+
+    .row1,
+    .row2 {
+        position: relative;
+        z-index: 2000;
+    }
 }
 
 .language-code {
@@ -1055,6 +1074,15 @@ body {
     gap: 16px;
     background-color: var(--bg-header);
     border-bottom: 1px solid var(--border-neon);
+    position: relative;
+}
+
+.row1 {
+    z-index: 5000;
+}
+
+.row2 {
+    z-index: 100;
 }
 
 .row3 {
@@ -1126,7 +1154,7 @@ body {
     cursor: pointer;
     white-space: nowrap;
     position: relative !important;
-    z-index: 200;
+    z-index: 6000;
 }
 
 /* ODDS FORMAT TOGGLE (override) */
