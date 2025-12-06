@@ -35,11 +35,16 @@
                         </div>
                     </div>
 
-                    <!-- LANGUAGE TOGGLE WITH DROPDOWN INSIDE BUTTON -->
-                    <button type="button" class="language-toggle" aria-label="Change language">
-                        <img src="assets/icons/language.svg" alt="" class="icon icon-glow icon-language">
-                        <span class="language-code">English</span>
-                        <img src="assets/icons/caret-down.svg" alt="" class="icon icon-glow icon-caret">
+                       <!-- LANGUAGE TOGGLE WITH DROPDOWN OUTSIDE BUTTON -->
+                        <button type="button"
+                                class="language-toggle"
+                                aria-label="Change language"
+                                aria-expanded="false"
+                                aria-controls="lang-dropdown">
+                            <img src="assets/icons/language.svg" alt="" class="icon icon-glow icon-language">
+                            <span class="language-code">English</span>
+                            <img src="assets/icons/caret-down.svg" alt="" class="icon icon-glow icon-caret">
+                        </button>
 
                         <div class="lang-dropdown" id="lang-dropdown">
                             <div class="lang-item active" data-lang="en">English</div>
@@ -131,9 +136,16 @@
             <a href="#" class="sub-item" data-odds-tab="all-events">ALL EVENTS</a>
 
             <!-- 🔥 FIXED: BETTING TOOLS WITH DROPDOWN INSIDE -->
-            <div class="sub-item sub-item-tools" id="betting-tools-toggle">
-                BETTING TOOLS ▾
-                <div class="betting-tools-dropdown" id="betting-tools-dropdown">
+            <button type="button"
+                    class="sub-item
+                    sub-item-tools" 
+                    id="betting-tools-toggle" 
+                    aria-expanded="false"
+                    aria-controls="betting-tools-dropdown">
+                    BETTING TOOLS ▾
+            </button>
+            
+                <div class="betting-tools-dropdown" id="betting-tools-dropdown-panel">
                     <div class="tools-item">BLOCKED ODDS</div>
                     <div class="tools-item">VALUE BETS</div>
                     <div class="tools-item">HOT MATCHES</div>
@@ -141,11 +153,10 @@
                     <div class="tools-item">STANDINGS</div>
                     <div class="tools-item">BET CALCULATOR</div>
                 </div>
-            </div>
 
             <a href="#" class="sub-item" data-odds-tab="betting">BETTING</a>
-        </div>
 
+            
         <div class="row-3-group row-3-community" data-subnav="community">
             <a href="#" class="sub-item">HOME</a>
             <a href="#" class="sub-item">FEED</a>
