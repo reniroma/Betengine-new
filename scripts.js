@@ -164,24 +164,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    langDropdown.addEventListener("click", (e) => {
-        const item = e.target.closest(".lang-item");
-        if (!item) return;
+    if (langDropdown) {
+        langDropdown.addEventListener("click", (e) => {
+            const item = e.target.closest(".lang-item");
+            if (!item) return;
 
-        langDropdown.querySelectorAll(".lang-item").forEach(i => i.classList.remove("active"));
-        item.classList.add("active");
+            langDropdown.querySelectorAll(".lang-item").forEach(i => i.classList.remove("active"));
+            item.classList.add("active");
 
-        const codeSpan = langToggle.querySelector(".language-code");
-        if (codeSpan) codeSpan.textContent = item.textContent.trim();
+            const codeSpan = langToggle.querySelector(".language-code");
+            if (codeSpan) codeSpan.textContent = item.textContent.trim();
 
-        try {
-            const code = item.getAttribute("data-lang");
-            if (code) localStorage.setItem(LANGUAGE_STORAGE_KEY, code);
-        } catch (err) {}
+            try {
+                const code = item.getAttribute("data-lang");
+                if (code) localStorage.setItem(LANGUAGE_STORAGE_KEY, code);
+            } catch (err) {}
 
-        closeLang();
-        location.reload();
-    });
+            closeLang();
+            location.reload();
+        });
+    }
 
     /* ============================
        LANGUAGE INIT (FIX) ⭐⭐⭐
@@ -266,7 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ============================
        MOBILE MENU
     ============================ */
-    if (menuToggle) {
+    if (menuToggle && navMain && subNav) {
         menuToggle.addEventListener("click", (e) => {
             e.preventDefault();
             navMain.classList.toggle("is-open");
@@ -280,14 +282,23 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", (e) => {
         const t = e.target;
 
-        if (!bettingToolsToggle.contains(t) && !bettingToolsDropdown.contains(t))
-            closeBettingTools();
+        if (bettingToolsToggle && bettingToolsDropdown) {
+            if (!bettingToolsToggle.contains(t) && !bettingToolsDropdown.contains(t)) {
+                closeBettingTools();
+            }
+        }
 
-        if (!oddsToggle.contains(t) && !oddsDropdown.contains(t))
-            closeOdds();
+        if (oddsToggle && oddsDropdown) {
+            if (!oddsToggle.contains(t) && !oddsDropdown.contains(t)) {
+                closeOdds();
+            }
+        }
 
-        if (!langToggle.contains(t) && !langDropdown.contains(t))
-            closeLang();
+        if (langToggle && langDropdown) {
+            if (!langToggle.contains(t) && !langDropdown.contains(t)) {
+                closeLang();
+            }
+        }
     });
 
     /* ============================
