@@ -969,84 +969,6 @@ body {
     transform: translateY(-1px);
 }
 
-/* RESPONSIVE */
-
-@media (max-width: 900px) {
-    .header .row1,
-    .header .row2 {
-        padding: 8px 16px;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        gap: 12px;
-    }
-
-    .menu-toggle {
-        display: inline-flex;
-    }
-
-    .left-block,
-    .center-block,
-    .right-block {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .right-block {
-        order: 2;
-        justify-content: flex-start;
-    }
-
-    .center-block {
-        order: 3;
-        justify-content: flex-start;
-    }
-
-    .header .search-box {
-        width: 100%;
-    }
-
-    .header .search-box input {
-        width: 100%;
-    }
-
-    .main-nav,
-    .sub-nav .row-3-group {
-        flex-wrap: wrap;
-        justify-content: flex-start;
-    }
-
-    .layout {
-        grid-template-columns: 1fr;
-    }
-
-    .sidebar.right {
-        order: 3;
-    }
-
-    .banners {
-        grid-template-columns: 1fr;
-    }
-
-    /* MOBILE FIX — LANGUAGE DROPDOWN */
-    .lang-dropdown {
-        left: 0 !important;
-        top: 110% !important;
-        min-width: 160px;
-        margin-top: 6px;
-        position: absolute !important;
-    }
-
-    .language-toggle {
-        z-index: 9999 !important;
-    }
-
-    .row1,
-    .row2 {
-        position: relative;
-        z-index: 2000;
-    }
-}
-
 .language-code {
     font-weight: 700;
     letter-spacing: 0.3px;
@@ -1054,6 +976,7 @@ body {
 
 /* ========================================================= */
 /* NEW BETENGINE HEADER LAYOUT OVERRIDES (ROW1, ROW2, ROW3) */
+/* (DESKTOP BEHAVIOUR – MBETET SIÇ ËSHTË)                    */
 /* ========================================================= */
 
 .header {
@@ -1362,7 +1285,7 @@ body {
     min-width: 180px;
 }
 
-/* 2. Fix hover behavior & pointer */
+/* 2. Fix hover behavior & pointer (DESKTOP) */
 .betting-tools-dropdown .tools-item {
     cursor: pointer !important;
     padding: 6px 0;
@@ -1376,7 +1299,7 @@ body {
     text-shadow: 0 0 6px rgba(255, 236, 0, 0.4);
 }
 
-/* 3. Ensure parent detects hover correctly */
+/* 3. Ensure parent detects hover correctly (DESKTOP) */
 .sub-item-tools {
     position: relative !important;
     cursor: pointer;
@@ -1387,13 +1310,143 @@ body {
 }
 
 /* ========================================================= */
-/* MOBILE FIX (no conflict with desktop) */
+/* MOBILE LAYOUT FIX — A1 HEADER + M1 TABS (≤ 900px)         */
+/* PC/LAPTOP UI MBETET E PAPREKUR                           */
 /* ========================================================= */
 
 @media (max-width: 900px) {
+    /* Activate hamburger in mobile */
+    .menu-toggle {
+        display: inline-flex;
+    }
+
+    /* ROW1 – compact bar: hamburger + (optional) icons */
+    .row1 {
+        padding: 8px 12px;
+        height: auto;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .row1 .left-block {
+        flex: 0 0 auto;
+        justify-content: flex-start;
+    }
+
+    /* Hide heavy top-options from row1 in mobile (thjeshtim header-i) */
+    .row1 .right-block {
+        display: none;
+    }
+
+    .top-options {
+        gap: 12px;
+        margin-right: 0;
+    }
+
+    /* ROW2 – stacked: LOGO center + SEARCH full width + NAV tabs */
+    .row2 {
+        padding: 8px 12px 10px;
+        height: auto;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .row2 .left-block,
+    .row2 .center-block,
+    .row2 .right-block {
+        width: 100%;
+        flex: 0 0 auto;
+        justify-content: center;
+    }
+
+    /* LOGO + brand në qendër (A1) */
+    .brand-area {
+        justify-content: center;
+    }
+
+    /* SEARCH BOX – full width në mobile */
+    .search-box {
+        width: 100%;
+        margin-top: 4px;
+    }
+
+    .search-box input {
+        width: 100%;
+    }
+
+    /* MAIN NAV – horizontal scroll (M1) */
+    .main-nav {
+        justify-content: flex-start;
+        gap: 18px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+    }
+
+    .main-nav .nav-item {
+        flex: 0 0 auto;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+
+    /* SUB NAV – horizontal scroll tabs (M1) */
+    .sub-nav {
+        padding: 6px 12px;
+        overflow-x: auto;
+    }
+
+    .sub-nav .row-3-group {
+        display: flex;
+        flex-wrap: nowrap;
+        width: max-content;
+        gap: 12px;
+    }
+
+    .sub-item {
+        flex: 0 0 auto;
+        white-space: nowrap;
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+
+    /* LAYOUT – single column in mobile */
+    .layout {
+        grid-template-columns: 1fr;
+        padding: 12px 10px 24px;
+    }
+
+    .sidebar.right {
+        order: 3;
+    }
+
+    .banners {
+        grid-template-columns: 1fr;
+    }
+
+    /* LANGUAGE DROPDOWN POSITION MOBILE */
+    .lang-dropdown {
+        left: 0 !important;
+        top: 110% !important;
+        min-width: 160px;
+        margin-top: 6px;
+        position: absolute !important;
+    }
+
+    .language-toggle {
+        z-index: 9999 !important;
+    }
+
+    .row1,
+    .row2 {
+        position: relative;
+        z-index: 2000;
+    }
+
+    /* BETTING TOOLS DROPDOWN – MOBILE CLICK-ONLY */
     .betting-tools-dropdown {
         position: relative !important;
-        margin-top: 2px !important;
+        margin-top: 4px !important;
         left: 0 !important;
         width: 100% !important;
         border-left: none;
@@ -1403,7 +1456,11 @@ body {
 
     .betting-tools-dropdown .tools-item {
         padding: 10px 0;
-        font-size: 15px;
+        font-size: 14px;
+    }
+
+    /* Disable hover open on mobile, përdorim vetëm JS click */
+    .sub-item-tools:hover .betting-tools-dropdown {
+        display: none !important;
     }
 }
-
