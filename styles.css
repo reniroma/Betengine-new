@@ -171,6 +171,12 @@ body {
 
 /* LANGUAGE DROPDOWN */
 
+.language-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
 .language-toggle {
     cursor: pointer;
     display: inline-flex;
@@ -776,7 +782,7 @@ body {
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
     display: none;
-    z-index: 90;
+    z-index: 5500;
 }
 
 .modal {
@@ -791,14 +797,14 @@ body {
     padding: 24px 24px 32px;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
     display: none;
-    z-index: 100;
+    z-index: 6000;
 }
 
 #register-modal {
     background-color: #11141d;
     border: 1px solid #ff0000;
     color: #ffffff;
-    z-index: 200;
+    z-index: 6100;
 }
 
 .modal.active {
@@ -963,7 +969,7 @@ body {
 .row1 .search-trigger:hover,
 .row1 .notif-button:hover,
 .row1 .language-toggle:hover {
-    filter: drop-shadow(0 0 6px rgba(255, 236, 0, 0, 0.25));
+    filter: drop-shadow(0 0 6px rgba(255, 236, 0, 0.25));
     transform: translateY(-1px);
 }
 
@@ -1311,6 +1317,23 @@ body {
         display: inline-flex;
     }
 
+    /* Mobile nav toggle behavior */
+    .main-nav {
+        display: none;
+    }
+
+    .main-nav.is-open {
+        display: flex;
+    }
+
+    .sub-nav {
+        display: none;
+    }
+
+    .sub-nav.is-open {
+        display: flex;
+    }
+
     /* Row1: compact bar, left = menu, right = top options */
     .header .row1 {
         padding: 8px 12px;
@@ -1461,9 +1484,5 @@ body {
     .betting-tools-dropdown .tools-item {
         padding: 10px 0;
         font-size: 14px;
-    }
-
-    .sub-item-tools:hover .betting-tools-dropdown {
-        display: none !important;
     }
 }
