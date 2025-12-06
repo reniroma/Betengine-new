@@ -1504,70 +1504,68 @@ body {
         gap: 22px !important;
     }
    
-/* ========================================================= */ 
-/* MOBILE FIX — NAV VISIBILITY + MOBILE LOGO CENTERED        */
+/* ========================================================= */
+/* MOBILE FIX — LOGO IN CENTER WITHOUT MODIFYING HTML       */
 /* ========================================================= */
 @media (max-width: 900px) {
 
-    /* Hide desktop navigation until menu-toggle is opened */
+    /* Hide the desktop brand-area completely */
+    .brand-area {
+        display: none !important;
+    }
+
+    /* Inject the mobile logo BE inside center-block (no HTML edits) */
+    .center-block::before {
+        content: "BE";
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        margin: 0 auto;
+        background: var(--bg-button-primary);
+        color: #000;
+        font-weight: 800;
+        font-size: 18px;
+        border-radius: 6px;
+        border: 1px solid var(--border-neon);
+    }
+
+    /* Ensure row1 aligns correctly on mobile */
+    .row1 {
+        justify-content: space-between !important;
+    }
+
+    /* Hide the desktop nav until menu-toggle is opened */
     .main-nav {
         display: none !important;
     }
 
+    /* Mobile nav when menu is open */
     .main-nav.is-open {
         display: flex !important;
         flex-wrap: nowrap !important;
         overflow-x: auto !important;
         white-space: nowrap !important;
         gap: 24px !important;
-        padding: 10px 0 !important;
     }
 
-    /* Mobile centered logo */
-    .mobile-logo {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        width: 100% !important;
-    }
-
-    .mobile-logo .logo {
-        width: 38px;
-        height: 38px;
-        border-radius: 6px;
-        background: var(--bg-button-primary);
-        color: #000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 800;
-        border: 1px solid var(--border-neon);
-    }
-
-    /* Cleanup for row2 positioning */
-    .row2 {
-        padding-top: 0 !important;
-        margin-top: 0 !important;
-    }
-
-    /* Ensure search box is full width */
-    .row2 .right-block,
+    /* Search full-width */
     .row2 .search-box {
         width: 100% !important;
         max-width: 100% !important;
     }
 
-    /* Sub-nav horizontal scrolling */
+    /* Sub-nav scroll */
     .sub-nav {
         overflow-x: auto !important;
         white-space: nowrap !important;
-        -webkit-overflow-scrolling: touch !important;
     }
 
     .sub-nav .row-3-group.active {
         flex-wrap: nowrap !important;
-        gap: 22px !important;
     }
 }
+
 
 
