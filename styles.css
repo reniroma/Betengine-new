@@ -1343,3 +1343,67 @@ body {
     background-color: var(--bg-button-primary);
     color: #000000;
 }
+
+/* ========================================================= */
+/* FIX — BETTING TOOLS DROPDOWN (HOVER + Z-INDEX + POINTER) */
+/* ========================================================= */
+
+/* 1. Raise dropdown above search bar & row2 elements */
+.betting-tools-dropdown {
+    z-index: 350 !important; /* above odds, search, language */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 4px;
+    display: none;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-neon);
+    padding: 8px 12px;
+    min-width: 180px;
+}
+
+/* 2. Fix hover behavior & pointer */
+.betting-tools-dropdown .tools-item {
+    cursor: pointer !important;
+    padding: 6px 0;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.betting-tools-dropdown .tools-item:hover {
+    color: var(--text-primary);
+    font-weight: 700;
+    text-shadow: 0 0 6px rgba(255, 236, 0, 0.4);
+}
+
+/* 3. Ensure parent detects hover correctly */
+.sub-item-tools {
+    position: relative !important;
+    cursor: pointer;
+}
+
+.sub-item-tools:hover .betting-tools-dropdown {
+    display: block !important;
+}
+
+/* ========================================================= */
+/* MOBILE FIX (no conflict with desktop) */
+/* ========================================================= */
+
+@media (max-width: 900px) {
+    .betting-tools-dropdown {
+        position: relative !important;
+        margin-top: 2px !important;
+        left: 0 !important;
+        width: 100% !important;
+        border-left: none;
+        border-right: none;
+        z-index: 500 !important;
+    }
+
+    .betting-tools-dropdown .tools-item {
+        padding: 10px 0;
+        font-size: 15px;
+    }
+}
+
