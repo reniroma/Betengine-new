@@ -1463,47 +1463,6 @@ body {
     .sub-item-tools:hover .betting-tools-dropdown {
         display: none !important;
     }
-
-/* ========================================================= */
-/* MOBILE HEADER FIX — PATCH V2 (SAFE)                      */
-/* ========================================================= */
-
-@media (max-width: 900px) {
-
-    /* 1) Logo block – add breathing space */
-    .brand-area {
-        margin-top: 6px !important;
-        margin-bottom: 6px !important;
-    }
-
-    .logo {
-        margin-bottom: 4px !important;
-    }
-
-    /* 2) Tabs (ODDS, COMMUNITY…) – give slight spacing */
-    .main-nav {
-        margin-top: 8px !important;
-        margin-bottom: 6px !important;
-        justify-content: center !important;
-    }
-
-    .main-nav .nav-item {
-        font-size: 17px !important;
-        margin: 0 10px !important;
-    }
-
-    /* 3) Search Box – push it slightly down from tabs */
-    .search-box {
-        margin-top: 10px !important;
-        margin-bottom: 4px !important;
-        width: 92% !important;
-    }
-
-    /* 4) Notification bell – align better */
-    .notif-button {
-        margin-left: 4px !important;
-        margin-top: 12px !important;
-    }
 }
 
 
