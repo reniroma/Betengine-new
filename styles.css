@@ -1463,7 +1463,129 @@ body {
     .sub-item-tools:hover .betting-tools-dropdown {
         display: none !important;
     }
+/* ========================================================= */
+/* MOBILE HEADER FIX V4 — CLEAN RESET FOR ROW2 STRUCTURE     */
+/* ========================================================= */
+
+@media (max-width: 900px) {
+
+    /* ----------------------------------------------------- */
+    /* RESET — neutralize conflicting desktop rules          */
+    /* ----------------------------------------------------- */
+    .row2 {
+        all: unset;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        width: 100% !important;
+        padding: 10px 12px !important;
+        gap: 10px !important;
+        background-color: var(--bg-header) !important;
+        border-bottom: 1px solid var(--border-neon) !important;
+    }
+
+    /* ----------------------------------------------------- */
+    /* 1. LOGO – centered                                    */
+    /* ----------------------------------------------------- */
+    .row2 .left-block {
+        all: unset;
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+        margin-top: 6px !important;
+    }
+
+    .brand-area {
+        justify-content: center !important;
+    }
+
+    /* ----------------------------------------------------- */
+    /* 2. NAV – centered + horizontal scroll                 */
+    /* ----------------------------------------------------- */
+    .row2 .center-block {
+        all: unset;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    .main-nav {
+        display: flex !important;
+        justify-content: flex-start !important;
+        width: 100% !important;
+        overflow-x: auto !important;
+        gap: 20px !important;
+        padding: 6px 0 !important;
+        scrollbar-width: none;
+    }
+
+    .main-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-item {
+        flex: 0 0 auto !important;
+        white-space: nowrap !important;
+        font-size: 15px !important;
+        padding: 6px 2px !important;
+    }
+
+    /* ----------------------------------------------------- */
+    /* 3. SEARCH BOX – full width + centered                 */
+    /* ----------------------------------------------------- */
+    .row2 .right-block {
+        all: unset;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 10px !important;
+        width: 100% !important;
+    }
+
+    .search-box {
+        width: 100% !important;
+        max-width: 600px !important;
+        height: 40px !important;
+        padding: 0 12px !important;
+    }
+
+    .search-box input {
+        font-size: 15px !important;
+    }
+
+    .notif-button {
+        margin-left: 4px !important;
+    }
+
+    /* ----------------------------------------------------- */
+    /* 4. SUB-NAV — horizontal scroll                        */
+    /* ----------------------------------------------------- */
+    .sub-nav {
+        padding: 8px 12px !important;
+        overflow-x: auto !important;
+        scrollbar-width: none;
+    }
+
+    .sub-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .row-3-group {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        gap: 16px !important;
+        width: max-content !important;
+    }
+
+    .sub-item {
+        flex: 0 0 auto !important;
+        white-space: nowrap !important;
+        font-size: 13px !important;
+        padding: 6px 8px !important;
+    }
 }
+
 
 
 
