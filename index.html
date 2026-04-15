@@ -3,406 +3,491 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BetEngine</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Quantum Pro: Strategic Architecture Blueprint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* slate-900 */
+            color: #f8fafc; /* slate-50 */
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Mandatory Chart Container Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7); /* slate-800 */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(51, 65, 85, 0.8); /* slate-700 */
+        }
+
+        .tab-btn.active {
+            border-bottom: 2px solid #10b981; /* emerald-500 */
+            color: #10b981;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+        .pulse-dot {
+            height: 10px;
+            width: 10px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px #10b981;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+    </style>
 </head>
-<body>
-    <header class="top-bar header">
-        <div class="row1">
-            <div class="left-block">
-                <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
-                    ☰
-                </button>
-            </div>
+<body class="min-h-screen flex flex-col">
 
-            <div class="center-block"></div>
+    <!-- Chosen Palette: Midnight Slate & Neon Emerald (slate-900 base, slate-800 cards, emerald-500 accents, ensuring a premium, high-tech sportsbook feel) -->
+    <!-- Application Structure Plan: The SPA is structured as a strategic dashboard, presenting the requested architectural blueprint in distinct, easily navigable sections (Feature Analysis, Tech Feasibility, Roadmap). A top navigation bar controls visibility of these core sections to avoid overwhelming the user with text, aligning with modern dashboard UX. Interactive components (cards, charts) are used to present dense technical evaluations and market comparisons dynamically. -->
+    <!-- Visualization & Content Choices: 
+         - Feature Grid (Cards): Goal: Organize & Evaluate. Present the 8 original + 3 new features clearly. Interaction: Hover effects and categorized color-coding (Red=Commodity, Green=Premium). Library: Tailwind HTML.
+         - Scatter Plot (Chart.js): Goal: Relationships. Compare API Providers based on Cost vs. Quality. Justification: A scatter plot instantly visualizes the trade-offs between cheap/slow APIs and expensive/sharp APIs.
+         - Architecture Flow (HTML/CSS): Goal: Process Flow. Show Next.js -> Redis -> Prisma/Neon pipeline without SVG/Mermaid. Justification: Meets constraint, uses unicode arrows and flexbox for clean technical delivery.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 
-            <div class="right-block">
-                <div class="top-options">
-                    <div class="odds-format" id="odds-format">
-                        <button type="button" class="selector odds-toggle" id="odds-toggle">
-                            <span class="small-label">Odds format:</span>
-                            <span class="odds-label">Decimal Odds</span>
-                            <img src="assets/icons/caret-down.svg" alt="" class="icon icon-glow icon-caret">
-                        </button>
-                        <div class="odds-dropdown" id="odds-dropdown">
-                            <div class="odds-item active">Decimal Odds (1.50) ✔</div>
-                            <div class="odds-item">Fractional Odds (1/2)</div>
-                            <div class="odds-item">Money Line Odds (-200)</div>
-                            <div class="odds-item">Hong Kong Odds (0.50)</div>
-                            <div class="odds-item">Malay Odds (0.50)</div>
-                            <div class="odds-item">Indonesian Odds (-2.00)</div>
-                        </div>
-                    </div>
-
-                    <button type="button" class="language-toggle" aria-label="Change language">
-                        <img src="assets/icons/language.svg" alt="" class="icon icon-glow icon-language">
-                        <span class="language-code">English</span>
-                        <img src="assets/icons/caret-down.svg" alt="" class="icon icon-glow icon-caret">
-                    </button>
-
-                    <div class="lang-dropdown" id="lang-dropdown">
-
-                        <div class="lang-item active" data-lang="en">English</div>
-                        <div class="lang-item" data-lang="de">German</div>
-                        <div class="lang-item" data-lang="nl">Dutch</div>
-                        <div class="lang-item" data-lang="fr">French</div>
-                        <div class="lang-item" data-lang="it">Italian</div>
-                        <div class="lang-item" data-lang="es">Spanish</div>
-                        <div class="lang-item" data-lang="pt">Portuguese</div>
-                        <div class="lang-item" data-lang="tr">Turkish</div>
-                        <div class="lang-item" data-lang="pl">Polish</div>
-                        <div class="lang-item" data-lang="sr">Serbian</div>
-                        <div class="lang-item" data-lang="hr">Croatian</div>
-                        <div class="lang-item" data-lang="ro">Romanian</div>
-                        <div class="lang-item" data-lang="el">Greek</div>
-                        <div class="lang-item" data-lang="ru">Russian</div>
-                        <div class="lang-item" data-lang="uk">Ukrainian</div>
-                        <div class="lang-item" data-lang="ar">Arabic</div>
-                        <div class="lang-item" data-lang="zh">Chinese</div>
-                        <div class="lang-item" data-lang="ja">Japanese</div>
-                        <div class="lang-item" data-lang="ko">Korean</div>
-                        <div class="lang-item" data-lang="id">Indonesian</div>
-                        <div class="lang-item" data-lang="hi">Hindi</div>
-                        <div class="lang-item" data-lang="al">Albanian</div>
-
-                    </div>
-
-                    <button class="auth-btn login" type="button">
-                        <img src="assets/icons/login.svg" alt="" class="icon icon-glow icon-auth">
-                        <span>LOGIN</span>
-                    </button>
-                    <button class="auth-btn register" type="button">
-                        <img src="assets/icons/register.svg" alt="" class="icon icon-glow icon-auth">
-                        <span>REGISTER</span>
-                    </button>
-                </div>
-            </div>
+    <!-- Header -->
+    <header class="glass-panel sticky top-0 z-50 border-b px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <div class="pulse-dot"></div>
+            <h1 class="text-2xl font-bold tracking-tight text-white">Quantum <span class="text-emerald-500">Pro</span></h1>
+            <span class="text-xs font-mono bg-slate-700 px-2 py-1 rounded text-slate-300 ml-4 hidden md:inline">ARCHITECTURE BLUEPRINT</span>
         </div>
-
-        <div class="row1-separator"></div>
-
-        <div class="row2">
-            <div class="left-block">
-                <div class="brand-area">
-                    <div class="logo">BE</div>
-                    <div class="brand">
-                        <span class="brand-name">BetEngine</span>
-                        <span class="brand-tagline">Smart betting tools</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="center-block">
-                <!-- MAIN NAV -->
-                <nav class="main-nav nav-main" id="main-nav" aria-label="Primary navigation">
-                    <a href="#" class="nav-item primary-link active" data-section="odds">
-                        ODDS COMPARISON
-                    </a>
-                    <a href="#" class="nav-item primary-link" data-section="community">
-                        COMMUNITY
-                    </a>
-                    <a href="#" class="nav-item primary-link" data-section="bookmakers" id="bookmakers-nav">
-                        BOOKMAKERS
-                    </a>
-                    <a href="#" class="nav-item primary-link premium-link" id="premium-toggle" data-section="premium">
-                        PREMIUM <span class="premium-star">★</span>
-                    </a>
-                </nav>
-                <!-- END MAIN NAV -->
-            </div>
-
-            <div class="right-block">
-                <div class="search-box">
-                    <span class="search-icon">
-                        <img src="assets/icons/search.svg" alt="" class="icon icon-glow icon-search">
-                    </span>
-                    <input type="search" placeholder="Search (team / player)" aria-label="Search team or player" />
-                </div>
-                <button type="button" class="notif-button" aria-label="Notifications">
-                    <img src="assets/icons/notification.svg" alt="" class="icon icon-glow icon-notification">
-                </button>
-            </div>
-        <div class="row2-separator"></div>
+        <nav class="hidden md:flex space-x-6 text-sm font-semibold text-slate-400">
+            <button class="tab-btn active hover:text-white transition-colors pb-1" data-target="section-features">1. Feature Strategy</button>
+            <button class="tab-btn hover:text-white transition-colors pb-1" data-target="section-tech">2. Tech & Data</button>
+            <button class="tab-btn hover:text-white transition-colors pb-1" data-target="section-roadmap">3. Execution Roadmap</button>
+        </nav>
+        <!-- Mobile menu toggle -->
+        <button class="md:hidden text-slate-300 text-2xl" onclick="document.getElementById('mobile-nav').classList.toggle('hidden')">&#9776;</button>
     </header>
 
-    <nav class="sub-nav" id="sub-nav" aria-label="Secondary navigation">
-        <div class="row-3-group row-3-odds active" data-subnav="odds">
-            <a href="#" class="sub-item" data-odds-tab="home">HOME</a>
-            <a href="#" class="sub-item" data-odds-tab="next-matches">NEXT MATCHES</a>
-            <a href="#" class="sub-item" data-odds-tab="dropping-odds">DROPPING ODDS</a>
-            <a href="#" class="sub-item" data-odds-tab="sure-bets">SURE BETS</a>
-            <a href="#" class="sub-item" data-odds-tab="in-play-odds">IN PLAY ODDS</a>
-            <a href="#" class="sub-item" data-odds-tab="all-events">ALL EVENTS</a>
-            <a href="#" class="sub-item sub-item-tools" id="betting-tools-toggle">
-                BETTING TOOLS ▾
-            </a>
-            <a href="#" class="sub-item" data-odds-tab="betting">BETTING</a>
-        </div>
-
-        <div class="row-3-group row-3-community" data-subnav="community">
-            <a href="#" class="sub-item">HOME</a>
-            <a href="#" class="sub-item">FEED</a>
-            <a href="#" class="sub-item">USERS</a>
-            <a href="#" class="sub-item">TOP PREDICTIONS</a>
-            <a href="#" class="sub-item">MY STATISTICS</a>
-            <a href="#" class="sub-item">MY PROFILE</a>
-            <a href="#" class="sub-item">MY PREDICTIONS</a>
-            <a href="#" class="sub-item">MY COUPONS</a>
-        </div>
-
-        <div class="row-3-group row-3-bookmakers" data-subnav="bookmakers">
-            <a href="#" class="sub-item">BOOKIE INFO</a>
-            <a href="#" class="sub-item">BONUS OFFERS</a>
-            <a href="#" class="sub-item">ODDS QUALITY</a>
-            <a href="#" class="sub-item">BETTING APPS</a>
-        </div>
-
-        <div class="row-3-group row-3-premium" data-subnav="premium">
-            <a href="#" class="sub-item">Premium Dashboard</a>
-            <a href="#" class="sub-item">Market Insights</a>
-            <a href="#" class="sub-item">Fair Odds Engine</a>
-            <a href="#" class="sub-item">AI Predictions</a>
-            <a href="#" class="sub-item">Smart H2H Insights</a>
-            <a href="#" class="sub-item">Value Finder</a>
-            <a href="#" class="sub-item">Sharp vs Public Money</a>
-            <a href="#" class="sub-item">Shock Alerts</a>
-            <a href="#" class="sub-item">AI Live Momentum</a>
-            <a href="#" class="sub-item">Fake Trend Detector</a>
-        </div>
-    </nav>
-
-    <div class="betting-tools-dropdown" id="betting-tools-dropdown">
-        <div class="tools-item">BLOCKED ODDS</div>
-        <div class="tools-item">VALUE BETS</div>
-        <div class="tools-item">HOT MATCHES</div>
-        <div class="tools-item">ARCHIVED RESULTS</div>
-        <div class="tools-item">STANDINGS</div>
-        <div class="tools-item">BET CALCULATOR</div>
+    <!-- Mobile Nav -->
+    <div id="mobile-nav" class="hidden glass-panel border-b p-4 md:hidden flex-col space-y-4 text-sm font-semibold text-slate-300">
+        <button class="tab-btn text-left active text-emerald-500" data-target="section-features">1. Feature Strategy</button>
+        <button class="tab-btn text-left" data-target="section-tech">2. Tech & Data</button>
+        <button class="tab-btn text-left" data-target="section-roadmap">3. Execution Roadmap</button>
     </div>
 
-    <main class="layout">
-        <aside class="sidebar">
-            <section class="panel">
-                <header class="panel-head">MY LEAGUES</header>
-                <div class="panel-body">
-                    <button class="panel-toggle" type="button">
-                        <span class="toggle-icon">▶</span>
-                        <span class="toggle-text">Manage my leagues</span>
-                    </button>
-                    <div class="list-item">
-                        <img src="images/football.svg" alt="Football icon" class="list-icon">
-                        <span class="list-text">Football</span>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/baseball.svg" alt="Baseball icon" class="list-icon">
-                        <span class="list-text">Baseball</span>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/rugby.svg" alt="Rugby icon" class="list-icon">
-                        <span class="list-text">Rugby League</span>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/basketball.svg" alt="Basketball icon" class="list-icon">
-                        <span class="list-text">Basketball</span>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/golf.svg" alt="Golf icon" class="list-icon">
-                        <span class="list-text">Golf</span>
-                    </div>
-                </div>
-            </section>
+    <!-- Main Content -->
+    <main class="flex-grow p-4 md:p-8 max-w-7xl mx-auto w-full">
 
-            <section class="panel coupon">
-                <header class="panel-head">MY COUPON</header>
-                <div class="panel-body coupon-body">
-                    <div class="coupon-row coupon-leagues">
-                        <div class="coupon-label">All leagues</div>
-                        <div class="coupon-count">(0)</div>
-                    </div>
-                    <div class="coupon-row coupon-values">
-                        <div class="coupon-col">Total odds: 1.00</div>
-                        <div class="coupon-col">Stake:</div>
-                    </div>
-                    <div class="coupon-row">
-                        <div class="coupon-col">Max. stake:</div>
-                    </div>
-                    <div class="coupon-row">
-                        <div class="coupon-col">Total profit:</div>
-                    </div>
-                </div>
-            </section>
-        </aside>
-
-        <section class="content-area">
-            <div class="banners">
-                <div class="banner-card">
-                    <div class="banner-title">BETFURY</div>
-                    <div class="banner-sub">Exclusive 250-450% Rakeback on Bingo</div>
-                    <button class="banner-btn" type="button">CLAIM</button>
-                </div>
-                <div class="banner-card">
-                    <div class="banner-title">betsson</div>
-                    <div class="banner-sub">100% up to €100 + €25 if a bet loses!</div>
-                    <button class="banner-btn" type="button">CLAIM</button>
-                </div>
-                <div class="banner-card">
-                    <div class="banner-title">BC.GAME</div>
-                    <div class="banner-sub">Up to 330% deposit bonus on your first deposit</div>
-                    <button class="banner-btn" type="button">CLAIM</button>
-                </div>
+        <!-- SECTION 1: Features -->
+        <section id="section-features" class="animate-fade-in block">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold mb-2">Feature Refinement & Expansion</h2>
+                <p class="text-slate-400 text-lg">Analysis of the proposed Quantum Pro features against current premium market standards (Action Network, BetQL, OddsJam), plus new high-alpha proposals.</p>
             </div>
 
-            <div class="page-header">
-                <div class="breadcrumb">Home &gt; Dropping Odds</div>
-                <h1 class="page-title">Dropping Odds</h1>
-                <p class="page-text">Dropping odds on OddsPortal enables you to find the online bookmakers that have the best odds right now and it helps you to place the most profitable bet!</p>
-                <p class="page-text">Odds could drop because of a player injury or illness throughout a team, or when bookmakers has intentionally decided to decrease their odds because they consider there has been a lot of betting on one team versus another, possibly because the public has placed too much money on a particular team with bookmaker.</p>
-                <p class="page-text">On this site you'll find a list of the best dropping odds across different sports, with several bookmakers, all tabularly presented for you to find the most profitable odds in the market.</p>
-            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+                <!-- Orig Features Col -->
+                <div class="lg:col-span-2">
+                    <h3 class="text-xl font-semibold mb-4 border-b border-slate-700 pb-2 text-slate-300">&#9660; Evaluation of Proposed Features</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="orig-features-container">
+                        <!-- JS populated -->
+                    </div>
+                </div>
 
-            <div class="filters">
-                <label class="filter-control">
-                    <span class="filter-label">24 hours</span>
-                    <img src="images/chevron.svg" alt="" aria-hidden="true" class="filter-icon">
-                </label>
-                <label class="filter-control">
-                    <span class="filter-label">Dropping bookies</span>
-                    <img src="images/chevron.svg" alt="" aria-hidden="true" class="filter-icon">
-                </label>
-                <label class="filter-control">
-                    <span class="filter-label">1X2 FT Only</span>
-                    <img src="images/chevron.svg" alt="" aria-hidden="true" class="filter-icon">
-                </label>
-                <label class="filter-check">
-                    <input type="checkbox" checked>
-                    Show additional matches of selected leagues only
-                </label>
+                <!-- New Features Col -->
+                <div>
+                    <h3 class="text-xl font-semibold mb-4 border-b border-slate-700 pb-2 text-emerald-400">&#9733; The "Alpha" Proposals</h3>
+                    <div class="flex flex-col space-y-4" id="new-features-container">
+                        <!-- JS populated -->
+                    </div>
+                </div>
             </div>
         </section>
 
-        <aside class="sidebar right">
-            <section class="panel">
-                <header class="panel-head">TOP EVENTS</header>
-                <div class="panel-body">
-                    <div class="list-item">
-                        <img src="images/football.svg" alt="Football icon" class="list-icon">
-                        <div class="event-text">Champions League <span>↩</span></div>
+        <!-- SECTION 2: Tech & Data -->
+        <section id="section-tech" class="animate-fade-in hidden">
+            <div class="mb-8">
+                <h2 class="text-3xl font-bold mb-2">Technical Feasibility & Data Sourcing</h2>
+                <p class="text-slate-400 text-lg">Balancing high-frequency data demands with serverless architectures (Next.js / Neon).</p>
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 mb-8">
+                <!-- API Matrix -->
+                <div class="glass-panel rounded-xl p-6">
+                    <h3 class="text-xl font-semibold mb-4 text-emerald-400">Data Provider Matrix</h3>
+                    <div class="chart-container">
+                        <canvas id="apiChart"></canvas>
                     </div>
-                    <div class="list-item">
-                        <img src="images/basketball.svg" alt="Basketball icon" class="list-icon">
-                        <div class="event-text">BBL <span>↩</span></div>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/tennis.svg" alt="Tennis icon" class="list-icon">
-                        <div class="event-text">ITF Men / ITF Women <span>↩</span></div>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/football.svg" alt="Football icon" class="list-icon">
-                        <div class="event-text">Bundesliga <span>↩</span></div>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/football.svg" alt="Football icon" class="list-icon">
-                        <div class="event-text">Premier League <span>↩</span></div>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/football.svg" alt="Football icon" class="list-icon">
-                        <div class="event-text">Primera División <span>↩</span></div>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/football.svg" alt="Football icon" class="list-icon">
-                        <div class="event-text">Serie A <span>↩</span></div>
-                    </div>
-                    <div class="list-item">
-                        <img src="images/football.svg" alt="Football icon" class="list-icon">
-                        <div class="event-text">Ligue 1 <span>↩</span></div>
+                    <div class="mt-4 overflow-x-auto">
+                        <table class="w-full text-sm text-left text-slate-300">
+                            <thead class="text-xs text-slate-400 uppercase bg-slate-800">
+                                <tr>
+                                    <th class="px-4 py-2">Provider</th>
+                                    <th class="px-4 py-2">Cost Tier</th>
+                                    <th class="px-4 py-2">Latency</th>
+                                    <th class="px-4 py-2">Best For</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-slate-700">
+                                    <td class="px-4 py-3 font-semibold text-white">The Odds API</td>
+                                    <td class="px-4 py-3 text-emerald-400">Low ($)</td>
+                                    <td class="px-4 py-3">~1-5 min</td>
+                                    <td class="px-4 py-3">MVP, True Odds Baseline</td>
+                                </tr>
+                                <tr class="border-b border-slate-700">
+                                    <td class="px-4 py-3 font-semibold text-white">LSports</td>
+                                    <td class="px-4 py-3 text-yellow-400">Med-High ($$$)</td>
+                                    <td class="px-4 py-3">&lt; 5s</td>
+                                    <td class="px-4 py-3">Live Alerts, Player Props</td>
+                                </tr>
+                                <tr class="border-b border-slate-700">
+                                    <td class="px-4 py-3 font-semibold text-white">Sportradar</td>
+                                    <td class="px-4 py-3 text-red-400">Enterprise ($$$$)</td>
+                                    <td class="px-4 py-3">Sub-second</td>
+                                    <td class="px-4 py-3">B2B Sportsbooks</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 font-semibold text-white">Pinnacle API</td>
+                                    <td class="px-4 py-3 text-emerald-400">Variable / Free (if proxy)</td>
+                                    <td class="px-4 py-3">Fast</td>
+                                    <td class="px-4 py-3">Sharp Line Reference</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </section>
-        </aside>
+
+                <!-- Database Architecture -->
+                <div class="glass-panel rounded-xl p-6">
+                    <h3 class="text-xl font-semibold mb-4 text-emerald-400">Data Pipeline Architecture</h3>
+                    <p class="text-sm text-slate-400 mb-6"><strong>Critical Architectural Decision:</strong> Never write raw, live-tick odds directly to Neon PostgreSQL. The high I/O will exhaust compute credits and cause Prisma bottlenecks. Use an In-Memory cache (Redis) as a buffer.</p>
+                    
+                    <!-- Text/HTML Diagram (No SVG) -->
+                    <div class="flex flex-col space-y-2 items-center text-center font-mono text-sm">
+                        <!-- Data Source -->
+                        <div class="w-full flex justify-around">
+                            <div class="bg-blue-900/50 border border-blue-700 text-blue-300 p-3 rounded w-1/3">
+                                <div>[Webhooks / Polling]</div>
+                                <div>Sports Data API</div>
+                            </div>
+                        </div>
+                        <div class="text-slate-500">&#8595;</div>
+                        <!-- Ingestion -->
+                        <div class="bg-slate-800 border border-slate-600 text-slate-200 p-3 rounded w-3/4">
+                            <div>Next.js API Route (Edge/Serverless)</div>
+                            <div class="text-xs text-slate-400">Format standardization & validation</div>
+                        </div>
+                        <div class="text-slate-500">&#8595;</div>
+                        <!-- Hot Path -->
+                        <div class="bg-red-900/40 border border-red-700 text-red-300 p-3 rounded w-3/4 flex justify-between items-center px-4">
+                            <div class="text-left w-1/2">
+                                <strong class="text-white">Upstash Redis (Hot Path)</strong><br>
+                                <span class="text-xs">Live Odds State, WebSockets</span>
+                            </div>
+                            <div class="text-right text-xs">
+                                <em>O(1) read/write</em><br>
+                                <em>Serves live frontend</em>
+                            </div>
+                        </div>
+                        <div class="text-slate-500">&#8595; (Batch Cron Job every 5m)</div>
+                        <!-- Cold Storage -->
+                        <div class="bg-emerald-900/40 border border-emerald-700 text-emerald-300 p-3 rounded w-3/4 flex justify-between items-center px-4">
+                            <div class="text-left w-1/2">
+                                <strong class="text-white">Neon Serverless DB (Cold)</strong><br>
+                                <span class="text-xs">Prisma ORM</span>
+                            </div>
+                            <div class="text-right text-xs">
+                                <em>Historical Analysis</em><br>
+                                <em>Trend Detection Models</em>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- "Brutal Truth" proxy callout -->
+            <div class="bg-amber-900/20 border-l-4 border-amber-500 p-6 rounded-r-lg">
+                <h4 class="text-lg font-bold text-amber-500 mb-2">&#9888; The Brutal Truth: "Sharp vs Public Money"</h4>
+                <p class="text-slate-300 mb-2">True handle/ticket splits are tightly guarded by sportsbooks. Claims of "100% accurate sharp money" by consumer apps are largely marketing fluff based on very small sample sizes from proxy aggregators.</p>
+                <p class="text-slate-300"><strong>The Proxy Strategy:</strong> Instead of spending $10k/mo on unreliable syndication data, calculate <em>"Reverse Line Movement"</em>. If 80% of the public is on Team A (using a cheap API proxy like Action Network's public feed), but the line moves in favor of Team B across Pinnacle/Circa, flag this programmatically as <strong>Sharp Action Detected</strong>. It's mathematically sound and costs 90% less.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 3: Roadmap -->
+        <section id="section-roadmap" class="animate-fade-in hidden">
+             <div class="mb-8">
+                <h2 class="text-3xl font-bold mb-2">The "Quantum Pro" Execution Strategy</h2>
+                <p class="text-slate-400 text-lg">A pragmatic, phased approach to scaling data costs with revenue.</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row gap-6">
+                <!-- Phase 1 -->
+                <div class="flex-1 glass-panel rounded-xl p-6 border-t-4 border-blue-500 relative overflow-hidden">
+                    <div class="absolute -right-4 -top-4 text-6xl text-blue-500/10 font-bold">01</div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Phase 1: The Bootstrapped MVP</h3>
+                    <p class="text-slate-400 mb-6 text-sm">Focus on high-value, low-infrastructure features using easily accessible data.</p>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-blue-400 mr-2 mt-1">&#10003;</span>
+                            <div>
+                                <strong class="text-slate-200 block">Features to Build:</strong>
+                                <span class="text-slate-400 text-sm">True Odds Calculator, Value Radar (EV), Fake Trend Detector.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-400 mr-2 mt-1">&#10003;</span>
+                            <div>
+                                <strong class="text-slate-200 block">Data Strategy:</strong>
+                                <span class="text-slate-400 text-sm">Use <strong>The Odds API</strong>. Polling every 5 minutes is sufficient for EV calculations. No WebSockets needed yet.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-400 mr-2 mt-1">&#10003;</span>
+                            <div>
+                                <strong class="text-slate-200 block">Infrastructure:</strong>
+                                <span class="text-slate-400 text-sm">Next.js Cron Jobs hitting Prisma/Neon. Standard relational DB queries are fine for 5m intervals.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="flex-1 glass-panel rounded-xl p-6 border-t-4 border-emerald-500 relative overflow-hidden">
+                    <div class="absolute -right-4 -top-4 text-6xl text-emerald-500/10 font-bold">02</div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Phase 2: The Pro Arsenal</h3>
+                    <p class="text-slate-400 mb-6 text-sm">Implement live data streaming, ML models, and high-frequency alerts.</p>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-emerald-400 mr-2 mt-1">&#10003;</span>
+                            <div>
+                                <strong class="text-slate-200 block">Features to Build:</strong>
+                                <span class="text-slate-400 text-sm">Shock Alerts AI Live, CLV Decay Tracker, Latency Arbitrage Map.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-emerald-400 mr-2 mt-1">&#10003;</span>
+                            <div>
+                                <strong class="text-slate-200 block">Data Strategy:</strong>
+                                <span class="text-slate-400 text-sm">Upgrade to <strong>LSports</strong> or <strong>Sportradar</strong> via Webhooks. Integrate Pinnacle line as the source of truth.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-emerald-400 mr-2 mt-1">&#10003;</span>
+                            <div>
+                                <strong class="text-slate-200 block">Infrastructure:</strong>
+                                <span class="text-slate-400 text-sm"><strong>Redis required.</strong> Live ticks update Redis cache. Users subscribe via WebSockets. Batch write to Neon DB hourly.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <div class="modal-overlay" id="modal-overlay"></div>
+    <footer class="border-t border-slate-800 text-center py-6 text-slate-500 text-sm">
+        Quantum Pro Architecture Blueprint &copy; 2026. Internal Confidential.
+    </footer>
 
-    <div class="modal login-center" id="login-modal" aria-hidden="true">
-        <button class="modal-close" data-modal-close="login">×</button>
+    <!-- Logic & Interaction -->
+    <script>
+        // Data Storage: Features
+        const originalFeatures = [
+            { id: 1, name: "Dashboard Market Insights", status: "commodity", desc: "Basic line movements and public percentages.", verdict: "Commoditized. Needed as a baseline, but won't sell premium subs. Don't over-engineer." },
+            { id: 2, name: "True Odds", status: "standard", desc: "Removing vig/juice to find the break-even probability.", verdict: "Industry Standard (OddsJam). Essential for any EV platform. Must be mathematically perfect." },
+            { id: 3, name: "AI Picks", status: "warning", desc: "Machine learning generated picks based on models.", verdict: "Overused buzzword. Users want it, but you MUST provide 'Explainable AI' (why the model picked it) to retain trust during losing streaks." },
+            { id: 4, name: "Smart H2H Insights", status: "commodity", desc: "Head-to-head historical data.", verdict: "Commoditized. Widely available for free. Keep it visually clean but don't spend API budget here." },
+            { id: 5, name: "Value Radar (EV)", status: "premium", desc: "Scanning books for positive Expected Value.", verdict: "Strong Premium Feature. The core engine for professional bettors. Requires Pinnacle as sharp reference." },
+            { id: 6, name: "Sharp vs Public Money", status: "premium", desc: "Contrarian betting splits.", verdict: "Extremely valuable, but true data is near impossible/expensive to get. Use Reverse Line Movement as a proxy." },
+            { id: 7, name: "Shock Alerts AI Live", status: "premium", desc: "Push notifications for sudden, massive line shifts.", verdict: "Highly Premium. Requires low-latency WebSockets. Excellent for mobile engagement." },
+            { id: 8, name: "Fake Trend Detector", status: "premium", desc: "Debunking correlation without causation trends.", verdict: "Novel & Premium. 'Team X is 10-0 on Thursdays' is statistically noise. An algorithm that highlights statistical variance vs edge is highly marketable." }
+        ];
 
-        <div class="login-header">
-            <div class="login-icon">👤</div>
-            <h2 class="modal-title">Login</h2>
-        </div>
+        const alphaFeatures = [
+            { id: 9, name: "CLV Decay Tracker", icon: "&#128200;", desc: "Tracks a user's bet from placement to closing. If they bet at +150 and it closes at +110, they gained massive CLV. Gamify this metric." },
+            { id: 10, name: "Synthetic Market Maker", icon: "&#9881;", desc: "Calculates the 'fair price' of derivatives (e.g., Alt lines) that sharp books don't offer, exposing mispriced alt-lines on soft books (DraftKings/FanDuel)." },
+            { id: 11, name: "Latency Arbitrage Map", icon: "&#128640;", desc: "Visualizes the delay between Pinnacle shifting a line and a soft book shifting theirs. 'FanDuel is currently 14 seconds behind Pinnacle on NBA totals'." }
+        ];
 
-        <div class="login-options">
-            <button class="modal-btn social facebook" type="button">SIGN IN WITH FACEBOOK</button>
-            <button class="modal-btn social apple" type="button">SIGN IN WITH APPLE</button>
-            <button class="modal-btn social google" type="button">SIGN IN WITH GOOGLE</button>
-        </div>
+        // UI State & Rendering
+        document.addEventListener('DOMContentLoaded', () => {
+            renderOriginalFeatures();
+            renderAlphaFeatures();
+            initTabs();
+            initChart();
+        });
 
-        <div class="modal-or">OR</div>
+        function renderOriginalFeatures() {
+            const container = document.getElementById('orig-features-container');
+            let html = '';
+            
+            const colorMap = {
+                'commodity': 'text-red-400 border-red-900/50 bg-red-900/10',
+                'standard': 'text-blue-400 border-blue-900/50 bg-blue-900/10',
+                'warning': 'text-amber-400 border-amber-900/50 bg-amber-900/10',
+                'premium': 'text-emerald-400 border-emerald-900/50 bg-emerald-900/10'
+            };
 
-        <form class="modal-form">
-            <label class="modal-label">
-                Username <span class="required">*</span>
-                <input type="text" name="username">
-            </label>
+            const labelMap = {
+                'commodity': 'Commodity',
+                'standard': 'Standard',
+                'warning': 'Caution',
+                'premium': 'Premium'
+            };
 
-            <label class="modal-label">
-                Password <span class="required">*</span>
-                <div class="password-field">
-                    <input type="password" name="password">
-                    <button type="button" class="password-toggle" aria-label="Toggle password visibility">👁</button>
-                </div>
-            </label>
+            originalFeatures.forEach(f => {
+                const styleClass = colorMap[f.status];
+                const label = labelMap[f.status];
+                
+                html += `
+                    <div class="glass-panel p-4 rounded-lg border ${styleClass} flex flex-col justify-between hover:bg-slate-800 transition-colors cursor-pointer group">
+                        <div>
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-bold text-slate-100 group-hover:text-white">${f.name}</h4>
+                                <span class="text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded bg-slate-900/50">${label}</span>
+                            </div>
+                            <p class="text-xs text-slate-400 mb-3">${f.desc}</p>
+                        </div>
+                        <div class="text-sm border-t border-slate-700/50 pt-2 mt-2 font-mono text-slate-300">
+                            <strong>Architect Verdict:</strong> ${f.verdict}
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
 
-            <label class="modal-remember">
-                <input type="checkbox" checked>
-                <span>Remember me</span>
-            </label>
+        function renderAlphaFeatures() {
+            const container = document.getElementById('new-features-container');
+            let html = '';
 
-            <button class="modal-btn primary" type="submit">LOGIN</button>
+            alphaFeatures.forEach(f => {
+                html += `
+                    <div class="glass-panel p-5 rounded-lg border border-emerald-500/30 bg-emerald-900/10 transform transition hover:scale-[1.02]">
+                        <h4 class="font-bold text-emerald-400 text-lg mb-2 flex items-center">
+                            <span class="mr-2">${f.icon}</span> ${f.name}
+                        </h4>
+                        <p class="text-sm text-slate-300">${f.desc}</p>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
 
-            <p class="modal-text">
-                Don’t have an account?
-                <a href="#" id="open-register-from-login">Create one for free now!</a>
-            </p>
+        function initTabs() {
+            const buttons = document.querySelectorAll('.tab-btn');
+            const sections = document.querySelectorAll('main > section');
 
-            <p class="modal-text">
-                <a href="#">Forgot password</a>
-            </p>
-        </form>
-    </div>
+            buttons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    // Update buttons
+                    buttons.forEach(b => {
+                        b.classList.remove('active', 'text-emerald-500');
+                        if(b.dataset.target === e.target.dataset.target) {
+                            b.classList.add('active', 'text-emerald-500');
+                        }
+                    });
 
-    <div class="modal" id="register-modal" aria-hidden="true">
-        <button class="modal-close" data-modal-close="register">×</button>
-        <h2 class="modal-title">Register</h2>
+                    // Update sections
+                    const targetId = e.target.dataset.target;
+                    sections.forEach(sec => {
+                        if(sec.id === targetId) {
+                            sec.classList.remove('hidden');
+                        } else {
+                            sec.classList.add('hidden');
+                        }
+                    });
 
-        <form class="modal-form">
-            <label class="modal-label">
-                Username <span class="required">*</span>
-                <input type="text" name="reg-username">
-            </label>
-            <label class="modal-label">
-                Email <span class="required">*</span>
-                <input type="email" name="reg-email">
-            </label>
-            <label class="modal-label">
-                Password <span class="required">*</span>
-                <input type="password" name="reg-password">
-            </label>
-            <label class="modal-label">
-                Confirm Password <span class="required">*</span>
-                <input type="password" name="reg-password-confirm">
-            </label>
+                    // Close mobile nav if open
+                    document.getElementById('mobile-nav').classList.add('hidden');
+                });
+            });
+        }
 
-            <button class="modal-btn primary" type="submit">CREATE ACCOUNT</button>
+        // Chart.js Setup
+        function initChart() {
+            const ctx = document.getElementById('apiChart').getContext('2d');
+            
+            // X: Cost (1-10), Y: Quality/Speed (1-10)
+            const data = {
+                datasets: [{
+                    label: 'API Providers',
+                    data: [
+                        { x: 2, y: 3, r: 10, label: 'The Odds API' },
+                        { x: 7, y: 8, r: 15, label: 'LSports' },
+                        { x: 10, y: 10, r: 20, label: 'Sportradar' },
+                        { x: 3, y: 9, r: 12, label: 'Pinnacle API (Proxy)' }
+                    ],
+                    backgroundColor: [
+                        'rgba(16, 185, 129, 0.7)', // emerald
+                        'rgba(234, 179, 8, 0.7)',  // yellow
+                        'rgba(239, 68, 68, 0.7)',  // red
+                        'rgba(59, 130, 246, 0.7)'   // blue
+                    ],
+                    borderColor: 'rgba(255, 255, 255, 0.2)',
+                    borderWidth: 1
+                }]
+            };
 
-            <p class="modal-text">
-                Already have an account?
-                <a href="#" id="open-login-from-register">Login here</a>
-            </p>
-        </form>
-    </div>
+            const config = {
+                type: 'bubble',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.raw.label + ': Cost ' + context.raw.x + '/10, Quality ' + context.raw.y + '/10';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: { display: true, text: 'Cost & Infrastructure Complexity', color: '#94a3b8' },
+                            grid: { color: 'rgba(51, 65, 85, 0.3)' },
+                            ticks: { color: '#64748b', min: 0, max: 11 }
+                        },
+                        y: {
+                            title: { display: true, text: 'Data Speed & Sharpness', color: '#94a3b8' },
+                            grid: { color: 'rgba(51, 65, 85, 0.3)' },
+                            ticks: { color: '#64748b', min: 0, max: 11 }
+                        }
+                    }
+                }
+            };
 
-    <script src="scripts.js"></script>
+            new Chart(ctx, config);
+        }
+    </script>
 </body>
 </html>
